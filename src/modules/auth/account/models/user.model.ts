@@ -1,0 +1,51 @@
+import type { User } from "@/prisma/generated";
+import { Field, ID, ObjectType } from "@nestjs/graphql";
+
+@ObjectType()
+export class UserModel implements User{
+    @Field(() => ID)
+    public id: string
+
+    @Field(() => String)
+    public email: string
+
+    @Field(() => String)
+    public password: string
+
+    @Field(() => String)
+    public username: string
+
+    @Field(() => String)
+    public dispayName: string
+
+    @Field(() => String, {nullable: true})
+    public avatar: string
+
+    @Field(() => String, {nullable: true})
+    public bio: string
+
+    @Field(() => Date)
+    public createdAt: Date
+
+    @Field(() => Date)
+    public updatedAt: Date
+
+    @Field(() => Boolean)
+    public isVerefied: boolean
+
+    @Field(() => Boolean)
+    public isDeactivated: boolean
+
+    @Field(() => Date, { nullable: true })
+    public deactivatedAt: Date
+
+    @Field(() => Boolean)
+    public isEmailVerefied: boolean
+
+    @Field(() => Boolean)
+    public isTotpEnabled: boolean;
+
+    @Field(() => String, {nullable: true})
+    public totpSecret: string
+
+}

@@ -1,0 +1,62 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_URI")
+}
+
+model User {
+  id String @id @default(uuid())
+
+  email    String @unique
+  password String
+
+  username   String @unique
+  dispayName String
+
+  avatar String?
+  bio    String?
+
+  isVerefied      Boolean @default(false) @map("IsVerefied")
+  isEmailVerefied Boolean @default(false) @map("IsEmailVerefied")
+
+  isTotpEnabled Boolean @default(false) @map("is_totp_enabled")
+  totpSecret    String? @map("totp_secret")
+
+  isDeactivated Boolean   @default(false) @map("is_deactivate")
+  deactivatedAt DateTime? @map("deactivated_at")
+
+  tokens Token[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("Customers")
+}
+
+model Token {
+  id String @id @default(uuid())
+
+  token     String    @unique
+  type      TokenType
+  expiresIn DateTime  @map("expires_in")
+
+  user   User?  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String @map("user_id")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("tokens")
+}
+
+enum TokenType {
+  MAIL_VERIFY
+  PASSWORD_RESET
+  DEACTIVATE_ACCAUNT
+
+  @@map("token_types")
+}
