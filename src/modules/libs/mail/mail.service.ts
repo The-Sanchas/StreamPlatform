@@ -6,6 +6,7 @@ import { render } from '@react-email/components';
 import { DeactevateTemplate } from './templates/deactivate.template';
 import { PasswordRecaveryTemplate } from './templates/password-recavery.template';
 import { VerificationTemplate } from './templates/verification.template';
+import { AccauntDeletionTemplate } from './templates/accaunt-deletion.template';
 
 @Injectable()
 export class MailService {
@@ -42,6 +43,13 @@ export class MailService {
 
         return this.sendMail(email, 'Деактивация аккаунта', html)
 
+    }
+
+    public async sendAccountDeletion(email: string){
+        const domain = this.configService.getOrThrow<string>('ALLOWED_ORIGIN')
+        const html = await render(AccauntDeletionTemplate({ domain }))
+
+        return this.sendMail(email, 'Удаление аккаунта', html)
     }
 
     private sendMail(email: string, subject: string, html: string){
