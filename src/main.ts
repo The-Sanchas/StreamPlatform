@@ -5,17 +5,22 @@ import * as cookieParser from 'cookie-parser'
 import * as session from 'express-session'
 import { CoreModule } from './core/core.module';
 import { ms, type StringValue } from './shared/utils/ms.util';
+// import * as graphqlUploadExpress from 'graphql-upload/graphqlUploadExpress.js'
+// import graphqlUploadExpress, { GraphQLUpload } from 'graphql-upload'
+import { graphqlUploadExpress } from 'graphql-upload'
 import { RedisStore } from 'connect-redis';
 import { parseBoolean } from './shared/utils/parse-boolean.util';
 import { RedisService } from './core/redis/redis.service';
 
 async function bootstrap() {
+
   const app = await NestFactory.create(CoreModule);
 
   const config = app.get(ConfigService)
   const redis = app.get(RedisService)
 
   app.use(cookieParser(config.getOrThrow<string>('COOKIES_SECRET')))
+  app.use(config.getOrThrow<string>('GRAPHQL_PREFIX'), graphqlUploadExpress())
 
   app.useGlobalPipes(
     new ValidationPipe({

@@ -1,8 +1,11 @@
 import { PrismaService } from '@/src/core/prisma/prisma.service';
-import { ConflictException, Injectable } from '@nestjs/common';
-import { hash } from 'argon2';
+import { ConflictException, Injectable, UnauthorizedException } from '@nestjs/common';
+import { hash, verify } from 'argon2';
 import { VerificationService } from '../verification/verification.service';
 import { CreateUserInput } from './inputs/create-user.input';
+import type { User } from '@/prisma/generated';
+import { ChangeEmailInput } from './inputs/chang-email.input';
+import { ChangePasswordInput } from './inputs/chang-password.input';
 
 @Injectable()
 export class AccountService 
@@ -13,6 +16,9 @@ export class AccountService
         const user = await this.prismaService.user.findUnique({
             where: {
                 id
+            },
+            include: {
+                socialLinks: true
             }
         })
 
@@ -29,7 +35,7 @@ export class AccountService
         }) 
 
         if (isUsernameExists){
-            throw new ConflictException('Это имя пользователя уже занято')
+            throw new ConflictException('Это username пользователя уже занято')
         }
 
         const isEmailExists = await this.prismaService.user.findUnique({
@@ -47,11 +53,52 @@ export class AccountService
                 username,
                 email,
                 password: await hash(password),
-                dispayName: username
+                dispayName: username,
+                stream: {
+                    create: {
+                        title: `Стрим ${username}`
+                    }
+                }
             }
         })
 
         await this.verificationService.sendVerificationToken(user)
+
+        return true
+    }
+
+    public async chengeEmail(user: User, input: ChangeEmailInput){
+        const{ email } = input
+
+        await this.prismaService.user.update({
+            where:{
+                id: user.id
+            },
+            data:{
+                email
+            }
+        })
+
+        return true
+    }
+
+    public async changePassword(user: User, input: ChangePasswordInput){
+        const{ oldPassword, newPassword } = input
+         
+        const isValidPassword = await verify(user.password, oldPassword)
+
+        if(!isValidPassword){
+            throw new UnauthorizedException('Неверный старый пароль')
+        }
+
+        await this.prismaService.user.update({
+            where:{
+                id: user.id
+            },
+            data: {
+                password: await hash(newPassword)
+            }
+        })
 
         return true
     }

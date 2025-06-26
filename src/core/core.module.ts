@@ -14,6 +14,9 @@ import { PasswordRecoveryModule } from '../modules/auth/password-recovery/passwo
 import { TotpModule } from '../modules/auth/totp/totp.module';
 import { DeactivateModule } from '../modules/auth/deactivate/deactivate.module';
 import { CronModule } from '../modules/cron/cron.module';
+import { StorageModule } from '../modules/libs/storage/storage.module';
+import { ProfileModule } from '../modules/auth/profile/profile.module';
+import { StreamModule } from '../modules/stream/stream.module';
 
 @Module({
   imports: [
@@ -34,10 +37,13 @@ import { CronModule } from '../modules/cron/cron.module';
     AccountModule,
     SessionModule,
     VerificationModule,
+    StorageModule,
     PasswordRecoveryModule,
     TotpModule,
+    ProfileModule,
     CronModule,
-    DeactivateModule
+    DeactivateModule,
+    StreamModule
   ]
 })
 export class CoreModule {}

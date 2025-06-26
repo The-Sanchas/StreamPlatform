@@ -1,6 +1,6 @@
 generator client {
   provider = "prisma-client-js"
-  output = "./generated"
+  output   = "./generated"
 }
 
 datasource db {
@@ -20,34 +20,72 @@ model User {
   avatar String?
   bio    String?
 
-  isVerefied Boolean @default(false) @map("IsVerefied")
+  isVerefied      Boolean @default(false) @map("IsVerefied")
   isEmailVerefied Boolean @default(false) @map("IsEmailVerefied")
 
   isTotpEnabled Boolean @default(false) @map("is_totp_enabled")
   totpSecret    String? @map("totp_secret")
 
-  isDeactivated Boolean @default(false) @map("is_deactivate")
+  isDeactivated Boolean   @default(false) @map("is_deactivate")
   deactivatedAt DateTime? @map("deactivated_at")
 
   tokens Token[]
+  socialLinks SocialLink[]
+  stream Stream[]
 
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt 
+  updatedAt DateTime @updatedAt
 
   @@map("Customers")
 }
 
+model SocialLink {
+  id String @id @default(uuid())
+
+  title String
+  url   String
+  position Int
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  user   User?  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String @map("user_id")
+
+  @@map("social_links")
+}
+
+model Stream {
+
+  id String @id @default(uuid())
+
+  title         String
+  thumbnailUrl  String? @map("thumbnail_url")
+
+  ingressId     String? @unique @map("ingress_id")
+  serverUrl     String? @map("server_url")
+  steamKey      String? @map("stream_key")
+
+  isLive        Boolean @default(false) @map("is_live")
+
+  user   User?  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String @map("user_id")
+
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("streams")
+}
 
 model Token {
   id String @id @default(uuid())
-  
-  token String @unique
-  type TokenType
-  expiresIn DateTime @map("expires_in")
 
-  user User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+  token     String    @unique
+  type      TokenType
+  expiresIn DateTime  @map("expires_in")
+
+  user   User?  @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String @map("user_id")
-
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -56,7 +94,7 @@ model Token {
 }
 
 enum TokenType {
-  MAIL_VERIFY 
+  MAIL_VERIFY
   PASSWORD_RESET
   DEACTIVATE_ACCAUNT
 
