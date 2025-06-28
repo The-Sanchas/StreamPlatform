@@ -1,4 +1,5 @@
 import type { User } from "@/prisma/generated";
+import { StreamModel } from "@/src/modules/stream/model/stream.model";
 import { Field, ID, ObjectType } from "@nestjs/graphql";
 import { SocialLinkModel } from "../../profile/model/social-link.model";
 
@@ -42,6 +43,9 @@ export class UserModel implements User{
 
     @Field(() => [SocialLinkModel])
     public  socialLinks: SocialLinkModel[]
+
+    @Field(() => [SocialLinkModel])
+    public  stream: StreamModel
 
     @Field(() => Boolean)
     public isEmailVerefied: boolean
