@@ -17,6 +17,8 @@ import { CronModule } from '../modules/cron/cron.module';
 import { StorageModule } from '../modules/libs/storage/storage.module';
 import { ProfileModule } from '../modules/auth/profile/profile.module';
 import { StreamModule } from '../modules/stream/stream.module';
+import { LivekitModule } from '../modules/libs/livekit/livekit.module';
+import { getLivektConfig } from './config/livekit.config';
 
 @Module({
   imports: [
@@ -30,7 +32,11 @@ import { StreamModule } from '../modules/stream/stream.module';
       useFactory: getGraphQLConfig,
       inject: [ConfigService]
     }),
-
+    LivekitModule.registerAsync({
+      imports: [ConfigModule],
+      useFactory: getLivektConfig,
+      inject: [ConfigService]
+    }),
     PrismaModule,
     RedisModule,
     MailModule,
@@ -38,6 +44,7 @@ import { StreamModule } from '../modules/stream/stream.module';
     SessionModule,
     VerificationModule,
     StorageModule,
+    LivekitModule,
     PasswordRecoveryModule,
     TotpModule,
     ProfileModule,
