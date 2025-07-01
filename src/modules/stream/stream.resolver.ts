@@ -16,7 +16,7 @@ import { GenersteStreamTokenModel } from './model/generate-stream-token.model';
 
 @Resolver('Stream')
 export class StreamResolver {
-  constructor(private readonly streamService: StreamService) {}
+  public constructor(private readonly streamService: StreamService) {}
 
   @Query(() => [StreamModel], { name: 'findAllStreams' })
   public async findAllStream(@Args('filters') input: FiltersInput){
