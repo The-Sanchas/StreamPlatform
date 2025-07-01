@@ -10,6 +10,8 @@ import { StreamService } from './stream.service';
 import { FileValidationPipe } from '@/src/shared/pipes/file-validation.pipe';
 import { ChangeStreamTumbnailInput } from './inputs/change-stream-tumbnail.input';
 import { CreateStreamInput } from './inputs/create-stream.input';
+import { GenerateStreamTokenInput } from './inputs/generate-stream-token.input';
+import { GenersteStreamTokenModel } from './model/generate-stream-token.model';
 
 
 @Resolver('Stream')
@@ -47,21 +49,25 @@ export class StreamResolver {
 
   @Authorization()
   @Mutation(() => Boolean, { name: 'removeStreamTombnail' })
-  public async removeSocialLink(
+  public async removeThumbnail(
     @Authorized() user: User,
     @Args('streamId') streamId: ChangeStreamTumbnailInput
   ){
     return this.streamService.removeThumbnail(user, streamId)
   }
 
-  @Authorization()
-  @Mutation(() => StreamModel, { name: 'createStream' })
-  public async createStream(
-    @Authorized() user: User,
-    @Args('data') input: CreateStreamInput
-  ){
-    return this.streamService.createStream(user, input)
+  @Mutation(() => GenersteStreamTokenModel, { name: 'genersteStreamToken' })
+  public async generateToken(@Args('data') input: GenerateStreamTokenInput){
+    return this.streamService.generateStreamToken(input)
   }
 
+  // @Authorization()
+  // @Mutation(() => StreamModel, { name: 'createStream' })
+  // public async createStream(
+  //   @Authorized() user: User,
+  //   @Args('data') input: CreateStreamInput
+  // ){
+  //   return this.streamService.createStream(user, input)
+  // }
 
 }

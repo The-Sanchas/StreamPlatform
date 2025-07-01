@@ -70,6 +70,15 @@ input FiltersInput {
   take: Float
 }
 
+input GenerateStreamTokenInput {
+  channelId: String!
+  userId: String!
+}
+
+type GenersteStreamTokenModel {
+  token: ID!
+}
+
 type LocationModel {
   city: String!
   country: String!
@@ -92,11 +101,12 @@ type Mutation {
   changeStreamTombnail(data: ChangeStreamTumbnailInput!, tombnail: Upload!): Boolean!
   clearSessionCookie: Boolean!
   createSocialLink(data: SocialLinksInput!): Boolean!
-  createStream(data: CreateStreamInput!): StreamModel!
+  createStreamWithIngress(data: CreateStreamInput!, ingressType: Float!): Boolean!
   createUser(data: CreateUserInput!): Boolean!
   deactivateAccaunt(data: DeactivateAccauntInput!): AuthModel!
   disableTotp: Boolean!
   enableTotp(data: EnableTotpInput!): Boolean!
+  genersteStreamToken(data: GenerateStreamTokenInput!): GenersteStreamTokenModel!
   loginUser(data: LoginInput!): AuthModel!
   logoutUser: Boolean!
   newPassword(data: NewPasswordInput!): Boolean!
