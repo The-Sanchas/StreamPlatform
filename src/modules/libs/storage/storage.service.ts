@@ -16,22 +16,24 @@ export class StorageService {
 
     public constructor(public readonly configservice: ConfigService ){
         this.client = new S3Client({
-            region: this.configservice.getOrThrow<string>('AWS_REGION'),
+            region: this.configservice.getOrThrow<string>('HETZNER_REGION'),
+            endpoint: this.configservice.getOrThrow<string>('HETZNER_S3_URL'),
             credentials: {
-                accessKeyId: this.configservice.getOrThrow<string>('AWS_S3_KEY_ID'),
-                secretAccessKey: this.configservice.getOrThrow<string>('AWS_S3_SECRET_ID')
-            }
-        })
-
-        this.backet = this.configservice.getOrThrow<string>('AWS_BUCKET_NAME')
-    }
-
+              accessKeyId: this.configservice.getOrThrow<string>('HETZNER_S3_ACCES_KEY'),
+              secretAccessKey: this.configservice.getOrThrow<string>('HETZNER_S3_SECRET_KEY'),
+            },
+            forcePathStyle: true // 👈 ОБЯЗАТЕЛЬНО для Hetzner!
+          })
+          
+          this.backet = this.configservice.getOrThrow<string>('HETZNER_BUCKET_NAME')
+        }
     public async upload(buffer: Buffer, key: string, mimetype: string){
         const command: PutObjectCommandInput = {
             Bucket: this.backet,
             Key: String(key),
             Body: buffer,
-            ContentType: mimetype
+            ContentType: mimetype,
+            ACL: 'public-read'
         }
 
         try {

@@ -54,11 +54,11 @@ export class AccountService
                 email,
                 password: await hash(password),
                 dispayName: username,
-                stream: {
-                    create: {
-                        title: `Стрим ${username}`
-                    }
-                }
+                // stream: {   Создает стрим вместе с пользователем но без id потоков что не есть правильно в реализации модели пользователь -> стримы (один ко многим)
+                //     create: {
+                //         title: `Стрим ${username}`
+                //     }
+                // }
             }
         })
 

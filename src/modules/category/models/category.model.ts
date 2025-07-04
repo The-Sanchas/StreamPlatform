@@ -20,8 +20,8 @@ export class CategoryModel implements Category{
     @Field(() => String)
     public thumbnailUrl: string
 
-    @Field(() => StreamModel)
-    public streans: StreamModel[]
+    @Field(() => [StreamModel])
+    public streams: StreamModel[]
 
     @Field(() => Date)
     public createdAt: Date
