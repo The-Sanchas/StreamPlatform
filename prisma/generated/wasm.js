@@ -159,6 +159,23 @@ exports.Prisma.StreamScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.ChatMessageScalarFieldEnum = {
+  id: 'id',
+  text: 'text',
+  streamid: 'streamid',
+  userid: 'userid',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ChatSettingsScalarFieldEnum = {
+  id: 'id',
+  isChatEnabled: 'isChatEnabled',
+  isChatFollowersOnly: 'isChatFollowersOnly',
+  isChatPremiumFollowersOnly: 'isChatPremiumFollowersOnly',
+  streamId: 'streamId'
+};
+
 exports.Prisma.CategoryScalarFieldEnum = {
   id: 'id',
   title: 'title',
@@ -203,6 +220,8 @@ exports.Prisma.ModelName = {
   User: 'User',
   SocialLink: 'SocialLink',
   Stream: 'Stream',
+  ChatMessage: 'ChatMessage',
+  ChatSettings: 'ChatSettings',
   Category: 'Category',
   Token: 'Token'
 };

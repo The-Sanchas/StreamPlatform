@@ -1,9 +1,10 @@
+import { ChatService } from './../../chat/chat.service';
 import { Module } from '@nestjs/common';
 import { IngressService } from './ingress.service';
 import { IngressResolver } from './ingress.resolver';
 import { StreamService } from '../stream.service';
 
 @Module({
-  providers: [IngressResolver, IngressService, StreamService],
+  providers: [IngressResolver, IngressService, StreamService, ChatService],
 })
 export class IngressModule {}
