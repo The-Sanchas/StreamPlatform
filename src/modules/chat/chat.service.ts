@@ -1,5 +1,7 @@
+import type { User } from '@/prisma/generated';
 import { PrismaService } from '@/src/core/prisma/prisma.service';
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { ChangeChatSettingsInput } from './inputs/change-chat-settings.input';
 import { SendMessageInput } from './inputs/send-message.input';
 
 @Injectable()
@@ -41,7 +43,7 @@ export class ChatService {
         })
 
         if(!stream){
-            throw new NotFoundException("тсрим не найден")
+            throw new NotFoundException("стрим не найден")
         }
 
         if(!stream.isLive){
@@ -66,7 +68,19 @@ export class ChatService {
         return true
     }
 
+    public async changeChatSettings(user: User, input: ChangeChatSettingsInput){
+        const { isChatEnabled, isChatFollowersOnly, isChatPremiumFollowersOnly } = input
 
-    
+        const stream = await this.prismaService.stream.findFirst({
+            where: {
+                userId: user.id,
+                isLive: true
+            },
+            orderBy: {
+                createdAt: 'desc'
+            }
+        })
+    }
+
 
 }
