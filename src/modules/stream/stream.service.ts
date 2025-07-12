@@ -39,7 +39,8 @@ export class StreamService {
             },
             include: {
                 user: true,
-                category: true
+                category: true,
+                chatSettings: true
             },
             orderBy: {
                 createdAt: 'desc'

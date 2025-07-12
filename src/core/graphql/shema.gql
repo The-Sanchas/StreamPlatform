@@ -43,6 +43,28 @@ input ChangeStreamTumbnailInput {
   id: String!
 }
 
+type ChatMessagesModel {
+  createdAt: DateTime!
+  id: ID!
+  stream: StreamModel!
+  streamid: String!
+  text: String!
+  updatedAt: DateTime!
+  user: UserModel!
+  userid: String!
+}
+
+type ChatSettingsModel {
+  createdAt: DateTime!
+  id: ID!
+  isChatEnabled: Boolean!
+  isChatFollowersOnly: Boolean!
+  isChatPremiumFollowersOnly: Boolean!
+  stream: StreamModel!
+  streamId: String!
+  updatedAt: DateTime!
+}
+
 input CreateStreamInput {
   title: String!
 }
@@ -190,6 +212,8 @@ input SocialLinksOrderInput {
 type StreamModel {
   category: CategoryModel!
   categoryId: String!
+  chatMessage: [ChatMessagesModel!]!
+  chatSettings: ChatSettingsModel!
   createdAt: DateTime!
   id: ID!
   ingressId: String

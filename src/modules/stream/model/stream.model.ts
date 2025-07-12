@@ -2,6 +2,8 @@ import type { Stream, User } from "@/prisma/generated";
 import { Field, ID, ObjectType } from "@nestjs/graphql";
 import { UserModel } from "../../auth/account/models/user.model";
 import { CategoryModel } from "../../category/models/category.model";
+import { ChatMessagesModel } from "../../chat/models/chat-message.model";
+import { ChatSettingsModel } from "../../chat/models/chat-settings.model";
 
 @ObjectType()
 export class StreamModel implements Stream{
@@ -32,6 +34,11 @@ export class StreamModel implements Stream{
     @Field(() => String)
     public userId: string
 
+    @Field(() => [ChatMessagesModel])
+    public chatMessage: ChatMessagesModel[]
+
+    @Field(() => ChatSettingsModel)
+    public chatSettings: ChatSettingsModel
 
     @Field(() => CategoryModel)
     public category: CategoryModel

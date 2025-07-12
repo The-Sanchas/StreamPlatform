@@ -80,6 +80,20 @@ export class ChatService {
                 createdAt: 'desc'
             }
         })
+
+
+        await this.prismaService.chatSettings.update({
+            where: {
+                streamId: stream.id
+            },
+            data: {
+                isChatEnabled,
+                isChatFollowersOnly,
+                isChatPremiumFollowersOnly
+            }
+        })
+
+        return true
     }
 
 
