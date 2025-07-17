@@ -11,5 +11,6 @@ export function getGraphQLConfig(configService: ConfigService): ApolloDriverConf
         sortSchema: true,
         introspection: true,
         context: ({req, res}) => ({req, res}),
+        installSubscriptionHandlers: true
     }
 }

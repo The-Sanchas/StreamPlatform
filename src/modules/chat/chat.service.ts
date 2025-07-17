@@ -33,24 +33,24 @@ export class ChatService {
         return messages
     }
 
-    public async sendMessage(userId: string, streamId: string, input: SendMessageInput){
-        const { text } = input
+    public async sendMessage(userId: string, input: SendMessageInput){
+        const { text, streamid } = input
 
         const stream = await this.prismaService.stream.findUnique({
             where: {
-                id: streamId
+                id: streamid
             }
         })
 
         if(!stream){
-            throw new NotFoundException("стрим не найден")
+            throw new NotFoundException("Стрим не найден")
         }
 
         if(!stream.isLive){
             throw new BadRequestException("Стрим сейчас не онлайн")
         }
 
-        await this.prismaService.chatMessage.create({
+        const message = await this.prismaService.chatMessage.create({
             data: {
                 text,
                 user: {
@@ -60,12 +60,16 @@ export class ChatService {
                 },
                 stream: {
                     connect: {
-                        id: streamId
+                        id: streamid
                     }
                 }
+            },
+            include: {
+                stream: true,
+                user: true 
             }
         })
-        return true
+        return message
     }
 
     public async changeChatSettings(user: User, input: ChangeChatSettingsInput){
