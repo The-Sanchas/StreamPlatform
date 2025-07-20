@@ -89,6 +89,16 @@ export class StreamService {
    public async changeInfo(user: User, input: ChangeStreamInfoInput, ){
         const { title, categoryId, id } = input
 
+        const stream = await this.prismaService.stream.findFirst({
+            where: {
+                id: id
+            }
+        })
+
+        if(!stream) {
+            throw new NotFoundException('Стрим для которго нужо обновить информацию не найден')
+        }
+
         await this.prismaService.stream.update({
             where: {
                 id: id

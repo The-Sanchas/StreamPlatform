@@ -85,6 +85,10 @@ export class ChatService {
             }
         })
 
+        if(!stream){
+            throw new BadRequestException('У вас нету активного стрима')
+        }
+
 
         await this.prismaService.chatSettings.update({
             where: {

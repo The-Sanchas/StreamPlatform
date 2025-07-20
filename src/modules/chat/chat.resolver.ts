@@ -51,7 +51,6 @@ export class ChatResolver {
     @Authorized() user: User, 
     @Args('data') input: ChangeChatSettingsInput
   ){
-    console.log(user)
     return this.chatService.changeChatSettings(user, input)
   }
 

@@ -109,6 +109,16 @@ input FiltersInput {
   take: Float
 }
 
+type FollowModel {
+  createdAt: DateTime!
+  follower: UserModel!
+  followerId: String!
+  following: UserModel!
+  followingId: String!
+  id: ID!
+  updatedAt: DateTime!
+}
+
 input GenerateStreamTokenInput {
   channelId: String!
   userId: String!
@@ -146,6 +156,7 @@ type Mutation {
   deactivateAccaunt(data: DeactivateAccauntInput!): AuthModel!
   disableTotp: Boolean!
   enableTotp(data: EnableTotpInput!): Boolean!
+  followChannel(channelId: String!): Boolean!
   genersteStreamToken(data: GenerateStreamTokenInput!): GenersteStreamTokenModel!
   loginUser(data: LoginInput!): AuthModel!
   logoutUser: Boolean!
@@ -157,6 +168,7 @@ type Mutation {
   reorderSocialLink(list: [SocialLinksOrderInput!]!): Boolean!
   resetPassword(data: ResetPasswordInput!): Boolean!
   sendChatMessage(data: SendMessageInput!): ChatMessagesModel!
+  unfollowChannel(channelId: String!): Boolean!
   updateSocialLink(data: SocialLinksInput!, id: String!): Boolean!
   verifyAccount(data: VerificationInput!): UserModel!
 }
@@ -171,11 +183,16 @@ type Query {
   findAllCategories: [CategoryModel!]!
   findAllStreams(filters: FiltersInput!): [StreamModel!]!
   findCategoryBySlug(slug: String!): CategoryModel!
+  findChannelByUsername(username: String!): UserModel!
   findChatMessagesByStream(streamId: String!): [ChatMessagesModel!]!
   findCurrentSession: SessionModel!
+  findFollowersCountByChannel(channelId: String!): Float!
+  findMyFollowers: [FollowModel!]!
+  findMyFollowings: [FollowModel!]!
   findProfile: UserModel!
   findRandomStreams: [StreamModel!]!
   findRandomlCategories: [CategoryModel!]!
+  findRecomendedChannle: [UserModel!]!
   findSessionsByUser: [SessionModel!]!
   findSocialLink: [SocialLinkModel!]!
   generateTotpSecret: TotpModel!
@@ -260,6 +277,8 @@ type UserModel {
   deactivatedAt: DateTime
   dispayName: String!
   email: String!
+  followers: [FollowModel!]!
+  followings: [FollowModel!]!
   id: ID!
   isDeactivated: Boolean!
   isEmailVerefied: Boolean!
@@ -267,7 +286,7 @@ type UserModel {
   isVerefied: Boolean!
   password: String!
   socialLinks: [SocialLinkModel!]!
-  stream: [SocialLinkModel!]!
+  stream: [StreamModel!]!
   totpSecret: String
   updatedAt: DateTime!
   username: String!
