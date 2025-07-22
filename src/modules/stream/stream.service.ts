@@ -135,7 +135,7 @@ export class StreamService {
 
     const buffer = Buffer.concat(chunks)
 
-    const fileName = `/streams/${user.username}.webp`
+    const fileName = `/streams/${user.username}-${uuidv4()}.webp`
 
     if(file.filename && file.filename.endsWith('.gif')){
 
@@ -309,3 +309,7 @@ export class StreamService {
         }
     }
 }
+function uuidv4() {
+    throw new Error('Function not implemented.');
+}
+
