@@ -21,11 +21,14 @@ export class UserModel implements User{
     @Field(() => String)
     public dispayName: string
 
-    @Field(() => String, {nullable: true})
+    @Field(() => String, { nullable: true })
     public avatar: string
 
-    @Field(() => String, {nullable: true})
+    @Field(() => String, { nullable: true })
     public bio: string
+
+    @Field(() => String, { nullable: true })
+    public telegramId: string
 
     @Field(() => Date)
     public createdAt: Date
