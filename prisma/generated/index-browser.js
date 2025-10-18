@@ -125,12 +125,91 @@ exports.Prisma.UserScalarFieldEnum = {
   dispayName: 'dispayName',
   avatar: 'avatar',
   bio: 'bio',
+  telegramId: 'telegramId',
   isVerefied: 'isVerefied',
   isEmailVerefied: 'isEmailVerefied',
   isTotpEnabled: 'isTotpEnabled',
   totpSecret: 'totpSecret',
   isDeactivated: 'isDeactivated',
   deactivatedAt: 'deactivatedAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.SocialLinkScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  url: 'url',
+  position: 'position',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId'
+};
+
+exports.Prisma.StreamScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  thumbnailUrl: 'thumbnailUrl',
+  ingressId: 'ingressId',
+  serverUrl: 'serverUrl',
+  steamKey: 'steamKey',
+  isLive: 'isLive',
+  userId: 'userId',
+  categoryId: 'categoryId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ChatMessageScalarFieldEnum = {
+  id: 'id',
+  text: 'text',
+  streamid: 'streamid',
+  userid: 'userid',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.ChatSettingsScalarFieldEnum = {
+  id: 'id',
+  isChatEnabled: 'isChatEnabled',
+  isChatFollowersOnly: 'isChatFollowersOnly',
+  isChatPremiumFollowersOnly: 'isChatPremiumFollowersOnly',
+  streamId: 'streamId'
+};
+
+exports.Prisma.CategoryScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  slug: 'slug',
+  description: 'description',
+  thumbnailUrl: 'thumbnailUrl',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.FollowScalarFieldEnum = {
+  id: 'id',
+  followerId: 'followerId',
+  followingId: 'followingId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.NotificationScalarFieldEnum = {
+  id: 'id',
+  message: 'message',
+  type: 'type',
+  isRead: 'isRead',
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.NotificationSettingsScalarFieldEnum = {
+  id: 'id',
+  siteNotifications: 'siteNotifications',
+  telegramNotifications: 'telegramNotifications',
+  userId: 'userId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -159,6 +238,14 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
+exports.NotificationType = exports.$Enums.NotificationType = {
+  STREAM_START: 'STREAM_START',
+  NEW_FOLLOWER: 'NEW_FOLLOWER',
+  NEW_SPONSORSHIP: 'NEW_SPONSORSHIP',
+  ENABLE_TWO_FACTOR: 'ENABLE_TWO_FACTOR',
+  VEREFIED_CHANNEL: 'VEREFIED_CHANNEL'
+};
+
 exports.TokenType = exports.$Enums.TokenType = {
   MAIL_VERIFY: 'MAIL_VERIFY',
   PASSWORD_RESET: 'PASSWORD_RESET',
@@ -167,6 +254,14 @@ exports.TokenType = exports.$Enums.TokenType = {
 
 exports.Prisma.ModelName = {
   User: 'User',
+  SocialLink: 'SocialLink',
+  Stream: 'Stream',
+  ChatMessage: 'ChatMessage',
+  ChatSettings: 'ChatSettings',
+  Category: 'Category',
+  Follow: 'Follow',
+  Notification: 'Notification',
+  NotificationSettings: 'NotificationSettings',
   Token: 'Token'
 };
 

@@ -13,6 +13,19 @@ import { MailModule } from '../modules/libs/mail/mail.module';
 import { PasswordRecoveryModule } from '../modules/auth/password-recovery/password-recovery.module';
 import { TotpModule } from '../modules/auth/totp/totp.module';
 import { DeactivateModule } from '../modules/auth/deactivate/deactivate.module';
+import { CronModule } from '../modules/cron/cron.module';
+import { StorageModule } from '../modules/libs/storage/storage.module';
+import { ProfileModule } from '../modules/auth/profile/profile.module';
+import { StreamModule } from '../modules/stream/stream.module';
+import { LivekitModule } from '../modules/libs/livekit/livekit.module';
+import { getLivektConfig } from './config/livekit.config';
+import { IngressModule } from '../modules/stream/ingress/ingress.module';
+import { WebhookModule } from '../modules/webhook/webhook.module';
+import { CategoryModule } from '../modules/category/category.module';
+import { ChatModule } from '../modules/chat/chat.module';
+import { FollowModule } from '../modules/follow/follow.module';
+import { ChannelModule } from '../modules/channel/channel.module';
+import { NotificationModule } from '../modules/notification/notification.module';
 
 @Module({
   imports: [
@@ -26,16 +39,32 @@ import { DeactivateModule } from '../modules/auth/deactivate/deactivate.module';
       useFactory: getGraphQLConfig,
       inject: [ConfigService]
     }),
-
+    LivekitModule.registerAsync({
+      imports: [ConfigModule],
+      useFactory: getLivektConfig,
+      inject: [ConfigService]
+    }),
     PrismaModule,
     RedisModule,
     MailModule,
     AccountModule,
     SessionModule,
     VerificationModule,
+    StorageModule,
+    LivekitModule,
     PasswordRecoveryModule,
     TotpModule,
-    DeactivateModule
+    ProfileModule,
+    CronModule,
+    DeactivateModule,
+    StreamModule,
+    ChatModule,
+    IngressModule,
+    WebhookModule,
+    CategoryModule,
+    FollowModule,
+    ChannelModule,
+    NotificationModule
   ]
 })
 export class CoreModule {}

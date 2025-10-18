@@ -7,6 +7,74 @@ type AuthModel {
   user: UserModel
 }
 
+type CategoryModel {
+  createdAt: DateTime!
+  description: String
+  id: ID!
+  slug: String!
+  streams: [StreamModel!]!
+  thumbnailUrl: String!
+  title: String!
+  updatedAt: DateTime!
+}
+
+input ChangeChatSettingsInput {
+  isChatEnabled: Boolean!
+  isChatFollowersOnly: Boolean!
+  isChatPremiumFollowersOnly: Boolean!
+}
+
+input ChangeEmailInput {
+  email: String!
+}
+
+input ChangePasswordInput {
+  newPassword: String!
+  oldPassword: String!
+}
+
+input ChangeProfileInfoInput {
+  bio: String!
+  dispayName: String!
+  username: String!
+}
+
+input ChangeStreamInfoInput {
+  categoryId: String!
+  id: String!
+  title: String!
+}
+
+input ChangeStreamTumbnailInput {
+  id: String!
+}
+
+type ChatMessagesModel {
+  createdAt: DateTime!
+  id: ID!
+  stream: StreamModel!
+  streamid: String!
+  text: String!
+  updatedAt: DateTime!
+  user: UserModel!
+  userid: String!
+}
+
+type ChatSettingsModel {
+  createdAt: DateTime!
+  id: ID!
+  isChatEnabled: Boolean!
+  isChatFollowersOnly: Boolean!
+  isChatPremiumFollowersOnly: Boolean!
+  stream: StreamModel!
+  streamId: String!
+  updatedAt: DateTime!
+}
+
+input CreateStreamInput {
+  title: String!
+}
+
 input CreateUserInput {
   email: String!
   password: String!
@@ -35,6 +103,31 @@ input EnableTotpInput {
   secret: String!
 }
 
+input FiltersInput {
+  searchTerm: String
+  skip: Float
+  take: Float
+}
+
+type FollowModel {
+  createdAt: DateTime!
+  follower: UserModel!
+  followerId: String!
+  following: UserModel!
+  followingId: String!
+  id: ID!
+  updatedAt: DateTime!
+}
+
+input GenerateStreamTokenInput {
+  channelId: String!
+  userId: String!
+}
+
+type GenersteStreamTokenModel {
+  token: ID!
+}
+
 type LocationModel {
   city: String!
   country: String!
@@ -49,16 +142,34 @@ input LoginInput {
 }
 
 type Mutation {
+  changeChatSettings(data: ChangeChatSettingsInput!): Boolean!
+  changeEmail(data: ChangeEmailInput!): Boolean!
+  changePassword(data: ChangePasswordInput!): Boolean!
+  changeProfileAvatar(avatar: Upload!): Boolean!
+  changeProfileInfo(data: ChangeProfileInfoInput!): Boolean!
+  changeStreamInfo(data: ChangeStreamInfoInput!): Boolean!
+  changeStreamTombnail(data: ChangeStreamTumbnailInput!, tombnail: Upload!): Boolean!
   clearSessionCookie: Boolean!
+  createSocialLink(data: SocialLinksInput!): Boolean!
+  createStreamWithIngress(data: CreateStreamInput!, ingressType: Float!): Boolean!
   createUser(data: CreateUserInput!): Boolean!
   deactivateAccaunt(data: DeactivateAccauntInput!): AuthModel!
   disableTotp: Boolean!
   enableTotp(data: EnableTotpInput!): Boolean!
+  followChannel(channelId: String!): Boolean!
+  genersteStreamToken(data: GenerateStreamTokenInput!): GenersteStreamTokenModel!
   loginUser(data: LoginInput!): AuthModel!
   logoutUser: Boolean!
   newPassword(data: NewPasswordInput!): Boolean!
+  removeProfileAvatar: Boolean!
   removeSession(id: String!): Boolean!
+  removeSocialLink(id: String!): Boolean!
+  removeStreamTombnail(streamId: ChangeStreamTumbnailInput!): Boolean!
+  reorderSocialLink(list: [SocialLinksOrderInput!]!): Boolean!
   resetPassword(data: ResetPasswordInput!): Boolean!
+  sendChatMessage(data: SendMessageInput!): ChatMessagesModel!
+  unfollowChannel(channelId: String!): Boolean!
+  updateSocialLink(data: SocialLinksInput!, id: String!): Boolean!
   verifyAccount(data: VerificationInput!): UserModel!
 }
 
@@ -69,14 +180,31 @@ input NewPasswordInput {
 }
 
 type Query {
-  findAProfile: UserModel!
+  findAllCategories: [CategoryModel!]!
+  findAllStreams(filters: FiltersInput!): [StreamModel!]!
+  findCategoryBySlug(slug: String!): CategoryModel!
+  findChannelByUsername(username: String!): UserModel!
+  findChatMessagesByStream(streamId: String!): [ChatMessagesModel!]!
   findCurrentSession: SessionModel!
+  findFollowersCountByChannel(channelId: String!): Float!
+  findMyFollowers: [FollowModel!]!
+  findMyFollowings: [FollowModel!]!
+  findProfile: UserModel!
+  findRandomStreams: [StreamModel!]!
+  findRandomlCategories: [CategoryModel!]!
+  findRecomendedChannle: [UserModel!]!
   findSessionsByUser: [SessionModel!]!
+  findSocialLink: [SocialLinkModel!]!
   generateTotpSecret: TotpModel!
 }
 
 input ResetPasswordInput {
   email: String!
+}
+
+input SendMessageInput {
+  streamid: String!
+  text: String!
 }
 
 type SessionMetadataModel {
@@ -92,10 +220,55 @@ type SessionModel {
   userId: String!
 }
 
+type SocialLinkModel {
+  createdAt: DateTime!
+  id: ID!
+  position: Float!
+  title: String!
+  updatedAt: DateTime!
+  url: String!
+  userId: String!
+}
+
+input SocialLinksInput {
+  title: String!
+  url: String!
+}
+
+input SocialLinksOrderInput {
+  id: String!
+  position: Float!
+}
+
+type StreamModel {
+  category: CategoryModel!
+  categoryId: String!
+  chatMessage: [ChatMessagesModel!]!
+  chatSettings: ChatSettingsModel!
+  createdAt: DateTime!
+  id: ID!
+  ingressId: String
+  isLive: Boolean!
+  serverUrl: String
+  steamKey: String
+  thumbnailUrl: String
+  title: String!
+  updatedAt: DateTime!
+  user: UserModel!
+  userId: String!
+}
+
+type Subscription {
+  chatMessageAdded(streamid: String!): ChatMessagesModel!
+}
+
 type TotpModel {
   qrcodeUrl: String!
   secret: String!
 }
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
 
 type UserModel {
   avatar: String
@@ -104,12 +277,17 @@ type UserModel {
   deactivatedAt: DateTime
   dispayName: String!
   email: String!
+  followers: [FollowModel!]!
+  followings: [FollowModel!]!
   id: ID!
   isDeactivated: Boolean!
   isEmailVerefied: Boolean!
   isTotpEnabled: Boolean!
   isVerefied: Boolean!
   password: String!
+  socialLinks: [SocialLinkModel!]!
+  stream: [StreamModel!]!
+  telegramId: String
   totpSecret: String
   updatedAt: DateTime!
   username: String!

@@ -1,5 +1,8 @@
 import type { User } from "@/prisma/generated";
+import { FollowModel } from "@/src/modules/follow/model/follow.model";
+import { StreamModel } from "@/src/modules/stream/model/stream.model";
 import { Field, ID, ObjectType } from "@nestjs/graphql";
+import { SocialLinkModel } from "../../profile/model/social-link.model";
 
 @ObjectType()
 export class UserModel implements User{
@@ -18,11 +21,14 @@ export class UserModel implements User{
     @Field(() => String)
     public dispayName: string
 
-    @Field(() => String, {nullable: true})
+    @Field(() => String, { nullable: true })
     public avatar: string
 
-    @Field(() => String, {nullable: true})
+    @Field(() => String, { nullable: true })
     public bio: string
+
+    @Field(() => String, { nullable: true })
+    public telegramId: string
 
     @Field(() => Date)
     public createdAt: Date
@@ -38,6 +44,18 @@ export class UserModel implements User{
 
     @Field(() => Date, { nullable: true })
     public deactivatedAt: Date
+
+    @Field(() => [SocialLinkModel])
+    public  socialLinks: SocialLinkModel[]
+
+    @Field(() => [FollowModel])
+    public  followers: FollowModel[]
+
+    @Field(() => [FollowModel])
+    public  followings: FollowModel[]
+
+    @Field(() => [StreamModel])
+    public  stream: StreamModel
 
     @Field(() => Boolean)
     public isEmailVerefied: boolean

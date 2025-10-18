@@ -19,6 +19,46 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
 /**
+ * Model SocialLink
+ * 
+ */
+export type SocialLink = $Result.DefaultSelection<Prisma.$SocialLinkPayload>
+/**
+ * Model Stream
+ * 
+ */
+export type Stream = $Result.DefaultSelection<Prisma.$StreamPayload>
+/**
+ * Model ChatMessage
+ * 
+ */
+export type ChatMessage = $Result.DefaultSelection<Prisma.$ChatMessagePayload>
+/**
+ * Model ChatSettings
+ * 
+ */
+export type ChatSettings = $Result.DefaultSelection<Prisma.$ChatSettingsPayload>
+/**
+ * Model Category
+ * 
+ */
+export type Category = $Result.DefaultSelection<Prisma.$CategoryPayload>
+/**
+ * Model Follow
+ * 
+ */
+export type Follow = $Result.DefaultSelection<Prisma.$FollowPayload>
+/**
+ * Model Notification
+ * 
+ */
+export type Notification = $Result.DefaultSelection<Prisma.$NotificationPayload>
+/**
+ * Model NotificationSettings
+ * 
+ */
+export type NotificationSettings = $Result.DefaultSelection<Prisma.$NotificationSettingsPayload>
+/**
  * Model Token
  * 
  */
@@ -36,11 +76,26 @@ export namespace $Enums {
 
 export type TokenType = (typeof TokenType)[keyof typeof TokenType]
 
+
+export const NotificationType: {
+  STREAM_START: 'STREAM_START',
+  NEW_FOLLOWER: 'NEW_FOLLOWER',
+  NEW_SPONSORSHIP: 'NEW_SPONSORSHIP',
+  ENABLE_TWO_FACTOR: 'ENABLE_TWO_FACTOR',
+  VEREFIED_CHANNEL: 'VEREFIED_CHANNEL'
+};
+
+export type NotificationType = (typeof NotificationType)[keyof typeof NotificationType]
+
 }
 
 export type TokenType = $Enums.TokenType
 
 export const TokenType: typeof $Enums.TokenType
+
+export type NotificationType = $Enums.NotificationType
+
+export const NotificationType: typeof $Enums.NotificationType
 
 /**
  * ##  Prisma Client ʲˢ
@@ -176,6 +231,86 @@ export class PrismaClient<
     * ```
     */
   get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.socialLink`: Exposes CRUD operations for the **SocialLink** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more SocialLinks
+    * const socialLinks = await prisma.socialLink.findMany()
+    * ```
+    */
+  get socialLink(): Prisma.SocialLinkDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.stream`: Exposes CRUD operations for the **Stream** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Streams
+    * const streams = await prisma.stream.findMany()
+    * ```
+    */
+  get stream(): Prisma.StreamDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.chatMessage`: Exposes CRUD operations for the **ChatMessage** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ChatMessages
+    * const chatMessages = await prisma.chatMessage.findMany()
+    * ```
+    */
+  get chatMessage(): Prisma.ChatMessageDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.chatSettings`: Exposes CRUD operations for the **ChatSettings** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ChatSettings
+    * const chatSettings = await prisma.chatSettings.findMany()
+    * ```
+    */
+  get chatSettings(): Prisma.ChatSettingsDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.category`: Exposes CRUD operations for the **Category** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Categories
+    * const categories = await prisma.category.findMany()
+    * ```
+    */
+  get category(): Prisma.CategoryDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.follow`: Exposes CRUD operations for the **Follow** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Follows
+    * const follows = await prisma.follow.findMany()
+    * ```
+    */
+  get follow(): Prisma.FollowDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.notification`: Exposes CRUD operations for the **Notification** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Notifications
+    * const notifications = await prisma.notification.findMany()
+    * ```
+    */
+  get notification(): Prisma.NotificationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.notificationSettings`: Exposes CRUD operations for the **NotificationSettings** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more NotificationSettings
+    * const notificationSettings = await prisma.notificationSettings.findMany()
+    * ```
+    */
+  get notificationSettings(): Prisma.NotificationSettingsDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.token`: Exposes CRUD operations for the **Token** model.
@@ -627,6 +762,14 @@ export namespace Prisma {
 
   export const ModelName: {
     User: 'User',
+    SocialLink: 'SocialLink',
+    Stream: 'Stream',
+    ChatMessage: 'ChatMessage',
+    ChatSettings: 'ChatSettings',
+    Category: 'Category',
+    Follow: 'Follow',
+    Notification: 'Notification',
+    NotificationSettings: 'NotificationSettings',
     Token: 'Token'
   };
 
@@ -643,7 +786,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "user" | "token"
+      modelProps: "user" | "socialLink" | "stream" | "chatMessage" | "chatSettings" | "category" | "follow" | "notification" | "notificationSettings" | "token"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -718,6 +861,598 @@ export namespace Prisma {
           count: {
             args: Prisma.UserCountArgs<ExtArgs>
             result: $Utils.Optional<UserCountAggregateOutputType> | number
+          }
+        }
+      }
+      SocialLink: {
+        payload: Prisma.$SocialLinkPayload<ExtArgs>
+        fields: Prisma.SocialLinkFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SocialLinkFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SocialLinkPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SocialLinkFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SocialLinkPayload>
+          }
+          findFirst: {
+            args: Prisma.SocialLinkFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SocialLinkPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SocialLinkFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SocialLinkPayload>
+          }
+          findMany: {
+            args: Prisma.SocialLinkFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SocialLinkPayload>[]
+          }
+          create: {
+            args: Prisma.SocialLinkCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SocialLinkPayload>
+          }
+          createMany: {
+            args: Prisma.SocialLinkCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SocialLinkCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SocialLinkPayload>[]
+          }
+          delete: {
+            args: Prisma.SocialLinkDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SocialLinkPayload>
+          }
+          update: {
+            args: Prisma.SocialLinkUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SocialLinkPayload>
+          }
+          deleteMany: {
+            args: Prisma.SocialLinkDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SocialLinkUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.SocialLinkUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SocialLinkPayload>[]
+          }
+          upsert: {
+            args: Prisma.SocialLinkUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SocialLinkPayload>
+          }
+          aggregate: {
+            args: Prisma.SocialLinkAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSocialLink>
+          }
+          groupBy: {
+            args: Prisma.SocialLinkGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SocialLinkGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SocialLinkCountArgs<ExtArgs>
+            result: $Utils.Optional<SocialLinkCountAggregateOutputType> | number
+          }
+        }
+      }
+      Stream: {
+        payload: Prisma.$StreamPayload<ExtArgs>
+        fields: Prisma.StreamFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.StreamFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StreamPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.StreamFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StreamPayload>
+          }
+          findFirst: {
+            args: Prisma.StreamFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StreamPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.StreamFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StreamPayload>
+          }
+          findMany: {
+            args: Prisma.StreamFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StreamPayload>[]
+          }
+          create: {
+            args: Prisma.StreamCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StreamPayload>
+          }
+          createMany: {
+            args: Prisma.StreamCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.StreamCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StreamPayload>[]
+          }
+          delete: {
+            args: Prisma.StreamDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StreamPayload>
+          }
+          update: {
+            args: Prisma.StreamUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StreamPayload>
+          }
+          deleteMany: {
+            args: Prisma.StreamDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.StreamUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.StreamUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StreamPayload>[]
+          }
+          upsert: {
+            args: Prisma.StreamUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$StreamPayload>
+          }
+          aggregate: {
+            args: Prisma.StreamAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateStream>
+          }
+          groupBy: {
+            args: Prisma.StreamGroupByArgs<ExtArgs>
+            result: $Utils.Optional<StreamGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.StreamCountArgs<ExtArgs>
+            result: $Utils.Optional<StreamCountAggregateOutputType> | number
+          }
+        }
+      }
+      ChatMessage: {
+        payload: Prisma.$ChatMessagePayload<ExtArgs>
+        fields: Prisma.ChatMessageFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ChatMessageFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChatMessagePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ChatMessageFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChatMessagePayload>
+          }
+          findFirst: {
+            args: Prisma.ChatMessageFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChatMessagePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ChatMessageFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChatMessagePayload>
+          }
+          findMany: {
+            args: Prisma.ChatMessageFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChatMessagePayload>[]
+          }
+          create: {
+            args: Prisma.ChatMessageCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChatMessagePayload>
+          }
+          createMany: {
+            args: Prisma.ChatMessageCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ChatMessageCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChatMessagePayload>[]
+          }
+          delete: {
+            args: Prisma.ChatMessageDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChatMessagePayload>
+          }
+          update: {
+            args: Prisma.ChatMessageUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChatMessagePayload>
+          }
+          deleteMany: {
+            args: Prisma.ChatMessageDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ChatMessageUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ChatMessageUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChatMessagePayload>[]
+          }
+          upsert: {
+            args: Prisma.ChatMessageUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChatMessagePayload>
+          }
+          aggregate: {
+            args: Prisma.ChatMessageAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateChatMessage>
+          }
+          groupBy: {
+            args: Prisma.ChatMessageGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ChatMessageGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ChatMessageCountArgs<ExtArgs>
+            result: $Utils.Optional<ChatMessageCountAggregateOutputType> | number
+          }
+        }
+      }
+      ChatSettings: {
+        payload: Prisma.$ChatSettingsPayload<ExtArgs>
+        fields: Prisma.ChatSettingsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ChatSettingsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChatSettingsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ChatSettingsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChatSettingsPayload>
+          }
+          findFirst: {
+            args: Prisma.ChatSettingsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChatSettingsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ChatSettingsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChatSettingsPayload>
+          }
+          findMany: {
+            args: Prisma.ChatSettingsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChatSettingsPayload>[]
+          }
+          create: {
+            args: Prisma.ChatSettingsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChatSettingsPayload>
+          }
+          createMany: {
+            args: Prisma.ChatSettingsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ChatSettingsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChatSettingsPayload>[]
+          }
+          delete: {
+            args: Prisma.ChatSettingsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChatSettingsPayload>
+          }
+          update: {
+            args: Prisma.ChatSettingsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChatSettingsPayload>
+          }
+          deleteMany: {
+            args: Prisma.ChatSettingsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ChatSettingsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ChatSettingsUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChatSettingsPayload>[]
+          }
+          upsert: {
+            args: Prisma.ChatSettingsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChatSettingsPayload>
+          }
+          aggregate: {
+            args: Prisma.ChatSettingsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateChatSettings>
+          }
+          groupBy: {
+            args: Prisma.ChatSettingsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ChatSettingsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ChatSettingsCountArgs<ExtArgs>
+            result: $Utils.Optional<ChatSettingsCountAggregateOutputType> | number
+          }
+        }
+      }
+      Category: {
+        payload: Prisma.$CategoryPayload<ExtArgs>
+        fields: Prisma.CategoryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CategoryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CategoryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload>
+          }
+          findFirst: {
+            args: Prisma.CategoryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CategoryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload>
+          }
+          findMany: {
+            args: Prisma.CategoryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload>[]
+          }
+          create: {
+            args: Prisma.CategoryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload>
+          }
+          createMany: {
+            args: Prisma.CategoryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.CategoryCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload>[]
+          }
+          delete: {
+            args: Prisma.CategoryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload>
+          }
+          update: {
+            args: Prisma.CategoryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload>
+          }
+          deleteMany: {
+            args: Prisma.CategoryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CategoryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CategoryUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload>[]
+          }
+          upsert: {
+            args: Prisma.CategoryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload>
+          }
+          aggregate: {
+            args: Prisma.CategoryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCategory>
+          }
+          groupBy: {
+            args: Prisma.CategoryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CategoryGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CategoryCountArgs<ExtArgs>
+            result: $Utils.Optional<CategoryCountAggregateOutputType> | number
+          }
+        }
+      }
+      Follow: {
+        payload: Prisma.$FollowPayload<ExtArgs>
+        fields: Prisma.FollowFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.FollowFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FollowPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.FollowFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FollowPayload>
+          }
+          findFirst: {
+            args: Prisma.FollowFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FollowPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.FollowFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FollowPayload>
+          }
+          findMany: {
+            args: Prisma.FollowFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FollowPayload>[]
+          }
+          create: {
+            args: Prisma.FollowCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FollowPayload>
+          }
+          createMany: {
+            args: Prisma.FollowCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.FollowCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FollowPayload>[]
+          }
+          delete: {
+            args: Prisma.FollowDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FollowPayload>
+          }
+          update: {
+            args: Prisma.FollowUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FollowPayload>
+          }
+          deleteMany: {
+            args: Prisma.FollowDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.FollowUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.FollowUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FollowPayload>[]
+          }
+          upsert: {
+            args: Prisma.FollowUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$FollowPayload>
+          }
+          aggregate: {
+            args: Prisma.FollowAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateFollow>
+          }
+          groupBy: {
+            args: Prisma.FollowGroupByArgs<ExtArgs>
+            result: $Utils.Optional<FollowGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.FollowCountArgs<ExtArgs>
+            result: $Utils.Optional<FollowCountAggregateOutputType> | number
+          }
+        }
+      }
+      Notification: {
+        payload: Prisma.$NotificationPayload<ExtArgs>
+        fields: Prisma.NotificationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.NotificationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.NotificationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
+          }
+          findFirst: {
+            args: Prisma.NotificationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.NotificationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
+          }
+          findMany: {
+            args: Prisma.NotificationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>[]
+          }
+          create: {
+            args: Prisma.NotificationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
+          }
+          createMany: {
+            args: Prisma.NotificationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.NotificationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>[]
+          }
+          delete: {
+            args: Prisma.NotificationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
+          }
+          update: {
+            args: Prisma.NotificationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
+          }
+          deleteMany: {
+            args: Prisma.NotificationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.NotificationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.NotificationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>[]
+          }
+          upsert: {
+            args: Prisma.NotificationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
+          }
+          aggregate: {
+            args: Prisma.NotificationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateNotification>
+          }
+          groupBy: {
+            args: Prisma.NotificationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<NotificationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.NotificationCountArgs<ExtArgs>
+            result: $Utils.Optional<NotificationCountAggregateOutputType> | number
+          }
+        }
+      }
+      NotificationSettings: {
+        payload: Prisma.$NotificationSettingsPayload<ExtArgs>
+        fields: Prisma.NotificationSettingsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.NotificationSettingsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationSettingsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.NotificationSettingsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationSettingsPayload>
+          }
+          findFirst: {
+            args: Prisma.NotificationSettingsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationSettingsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.NotificationSettingsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationSettingsPayload>
+          }
+          findMany: {
+            args: Prisma.NotificationSettingsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationSettingsPayload>[]
+          }
+          create: {
+            args: Prisma.NotificationSettingsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationSettingsPayload>
+          }
+          createMany: {
+            args: Prisma.NotificationSettingsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.NotificationSettingsCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationSettingsPayload>[]
+          }
+          delete: {
+            args: Prisma.NotificationSettingsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationSettingsPayload>
+          }
+          update: {
+            args: Prisma.NotificationSettingsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationSettingsPayload>
+          }
+          deleteMany: {
+            args: Prisma.NotificationSettingsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.NotificationSettingsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.NotificationSettingsUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationSettingsPayload>[]
+          }
+          upsert: {
+            args: Prisma.NotificationSettingsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationSettingsPayload>
+          }
+          aggregate: {
+            args: Prisma.NotificationSettingsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateNotificationSettings>
+          }
+          groupBy: {
+            args: Prisma.NotificationSettingsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<NotificationSettingsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.NotificationSettingsCountArgs<ExtArgs>
+            result: $Utils.Optional<NotificationSettingsCountAggregateOutputType> | number
           }
         }
       }
@@ -880,6 +1615,14 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     user?: UserOmit
+    socialLink?: SocialLinkOmit
+    stream?: StreamOmit
+    chatMessage?: ChatMessageOmit
+    chatSettings?: ChatSettingsOmit
+    category?: CategoryOmit
+    follow?: FollowOmit
+    notification?: NotificationOmit
+    notificationSettings?: NotificationSettingsOmit
     token?: TokenOmit
   }
 
@@ -976,10 +1719,22 @@ export namespace Prisma {
 
   export type UserCountOutputType = {
     tokens: number
+    socialLinks: number
+    stream: number
+    chatMessages: number
+    notifications: number
+    followers: number
+    followings: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tokens?: boolean | UserCountOutputTypeCountTokensArgs
+    socialLinks?: boolean | UserCountOutputTypeCountSocialLinksArgs
+    stream?: boolean | UserCountOutputTypeCountStreamArgs
+    chatMessages?: boolean | UserCountOutputTypeCountChatMessagesArgs
+    notifications?: boolean | UserCountOutputTypeCountNotificationsArgs
+    followers?: boolean | UserCountOutputTypeCountFollowersArgs
+    followings?: boolean | UserCountOutputTypeCountFollowingsArgs
   }
 
   // Custom InputTypes
@@ -998,6 +1753,110 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountTokensArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TokenWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountSocialLinksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SocialLinkWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountStreamArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StreamWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountChatMessagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ChatMessageWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountNotificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: NotificationWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountFollowersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FollowWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountFollowingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FollowWhereInput
+  }
+
+
+  /**
+   * Count Type StreamCountOutputType
+   */
+
+  export type StreamCountOutputType = {
+    chatMessages: number
+  }
+
+  export type StreamCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    chatMessages?: boolean | StreamCountOutputTypeCountChatMessagesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * StreamCountOutputType without action
+   */
+  export type StreamCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StreamCountOutputType
+     */
+    select?: StreamCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * StreamCountOutputType without action
+   */
+  export type StreamCountOutputTypeCountChatMessagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ChatMessageWhereInput
+  }
+
+
+  /**
+   * Count Type CategoryCountOutputType
+   */
+
+  export type CategoryCountOutputType = {
+    streams: number
+  }
+
+  export type CategoryCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    streams?: boolean | CategoryCountOutputTypeCountStreamsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * CategoryCountOutputType without action
+   */
+  export type CategoryCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CategoryCountOutputType
+     */
+    select?: CategoryCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * CategoryCountOutputType without action
+   */
+  export type CategoryCountOutputTypeCountStreamsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StreamWhereInput
   }
 
 
@@ -1023,6 +1882,7 @@ export namespace Prisma {
     dispayName: string | null
     avatar: string | null
     bio: string | null
+    telegramId: string | null
     isVerefied: boolean | null
     isEmailVerefied: boolean | null
     isTotpEnabled: boolean | null
@@ -1041,6 +1901,7 @@ export namespace Prisma {
     dispayName: string | null
     avatar: string | null
     bio: string | null
+    telegramId: string | null
     isVerefied: boolean | null
     isEmailVerefied: boolean | null
     isTotpEnabled: boolean | null
@@ -1059,6 +1920,7 @@ export namespace Prisma {
     dispayName: number
     avatar: number
     bio: number
+    telegramId: number
     isVerefied: number
     isEmailVerefied: number
     isTotpEnabled: number
@@ -1079,6 +1941,7 @@ export namespace Prisma {
     dispayName?: true
     avatar?: true
     bio?: true
+    telegramId?: true
     isVerefied?: true
     isEmailVerefied?: true
     isTotpEnabled?: true
@@ -1097,6 +1960,7 @@ export namespace Prisma {
     dispayName?: true
     avatar?: true
     bio?: true
+    telegramId?: true
     isVerefied?: true
     isEmailVerefied?: true
     isTotpEnabled?: true
@@ -1115,6 +1979,7 @@ export namespace Prisma {
     dispayName?: true
     avatar?: true
     bio?: true
+    telegramId?: true
     isVerefied?: true
     isEmailVerefied?: true
     isTotpEnabled?: true
@@ -1206,6 +2071,7 @@ export namespace Prisma {
     dispayName: string
     avatar: string | null
     bio: string | null
+    telegramId: string | null
     isVerefied: boolean
     isEmailVerefied: boolean
     isTotpEnabled: boolean
@@ -1241,6 +2107,7 @@ export namespace Prisma {
     dispayName?: boolean
     avatar?: boolean
     bio?: boolean
+    telegramId?: boolean
     isVerefied?: boolean
     isEmailVerefied?: boolean
     isTotpEnabled?: boolean
@@ -1250,6 +2117,13 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     tokens?: boolean | User$tokensArgs<ExtArgs>
+    socialLinks?: boolean | User$socialLinksArgs<ExtArgs>
+    stream?: boolean | User$streamArgs<ExtArgs>
+    chatMessages?: boolean | User$chatMessagesArgs<ExtArgs>
+    notifications?: boolean | User$notificationsArgs<ExtArgs>
+    notificationSettings?: boolean | User$notificationSettingsArgs<ExtArgs>
+    followers?: boolean | User$followersArgs<ExtArgs>
+    followings?: boolean | User$followingsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1261,6 +2135,7 @@ export namespace Prisma {
     dispayName?: boolean
     avatar?: boolean
     bio?: boolean
+    telegramId?: boolean
     isVerefied?: boolean
     isEmailVerefied?: boolean
     isTotpEnabled?: boolean
@@ -1279,6 +2154,7 @@ export namespace Prisma {
     dispayName?: boolean
     avatar?: boolean
     bio?: boolean
+    telegramId?: boolean
     isVerefied?: boolean
     isEmailVerefied?: boolean
     isTotpEnabled?: boolean
@@ -1297,6 +2173,7 @@ export namespace Prisma {
     dispayName?: boolean
     avatar?: boolean
     bio?: boolean
+    telegramId?: boolean
     isVerefied?: boolean
     isEmailVerefied?: boolean
     isTotpEnabled?: boolean
@@ -1307,9 +2184,16 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password" | "username" | "dispayName" | "avatar" | "bio" | "isVerefied" | "isEmailVerefied" | "isTotpEnabled" | "totpSecret" | "isDeactivated" | "deactivatedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password" | "username" | "dispayName" | "avatar" | "bio" | "telegramId" | "isVerefied" | "isEmailVerefied" | "isTotpEnabled" | "totpSecret" | "isDeactivated" | "deactivatedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tokens?: boolean | User$tokensArgs<ExtArgs>
+    socialLinks?: boolean | User$socialLinksArgs<ExtArgs>
+    stream?: boolean | User$streamArgs<ExtArgs>
+    chatMessages?: boolean | User$chatMessagesArgs<ExtArgs>
+    notifications?: boolean | User$notificationsArgs<ExtArgs>
+    notificationSettings?: boolean | User$notificationSettingsArgs<ExtArgs>
+    followers?: boolean | User$followersArgs<ExtArgs>
+    followings?: boolean | User$followingsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1319,6 +2203,13 @@ export namespace Prisma {
     name: "User"
     objects: {
       tokens: Prisma.$TokenPayload<ExtArgs>[]
+      socialLinks: Prisma.$SocialLinkPayload<ExtArgs>[]
+      stream: Prisma.$StreamPayload<ExtArgs>[]
+      chatMessages: Prisma.$ChatMessagePayload<ExtArgs>[]
+      notifications: Prisma.$NotificationPayload<ExtArgs>[]
+      notificationSettings: Prisma.$NotificationSettingsPayload<ExtArgs> | null
+      followers: Prisma.$FollowPayload<ExtArgs>[]
+      followings: Prisma.$FollowPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -1328,6 +2219,7 @@ export namespace Prisma {
       dispayName: string
       avatar: string | null
       bio: string | null
+      telegramId: string | null
       isVerefied: boolean
       isEmailVerefied: boolean
       isTotpEnabled: boolean
@@ -1731,6 +2623,13 @@ export namespace Prisma {
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     tokens<T extends User$tokensArgs<ExtArgs> = {}>(args?: Subset<T, User$tokensArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TokenPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
+    socialLinks<T extends User$socialLinksArgs<ExtArgs> = {}>(args?: Subset<T, User$socialLinksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SocialLinkPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
+    stream<T extends User$streamArgs<ExtArgs> = {}>(args?: Subset<T, User$streamArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StreamPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
+    chatMessages<T extends User$chatMessagesArgs<ExtArgs> = {}>(args?: Subset<T, User$chatMessagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChatMessagePayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
+    notifications<T extends User$notificationsArgs<ExtArgs> = {}>(args?: Subset<T, User$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
+    notificationSettings<T extends User$notificationSettingsArgs<ExtArgs> = {}>(args?: Subset<T, User$notificationSettingsArgs<ExtArgs>>): Prisma__NotificationSettingsClient<$Result.GetResult<Prisma.$NotificationSettingsPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | null, null, ExtArgs, ClientOptions>
+    followers<T extends User$followersArgs<ExtArgs> = {}>(args?: Subset<T, User$followersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FollowPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
+    followings<T extends User$followingsArgs<ExtArgs> = {}>(args?: Subset<T, User$followingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FollowPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1767,6 +2666,7 @@ export namespace Prisma {
     readonly dispayName: FieldRef<"User", 'String'>
     readonly avatar: FieldRef<"User", 'String'>
     readonly bio: FieldRef<"User", 'String'>
+    readonly telegramId: FieldRef<"User", 'String'>
     readonly isVerefied: FieldRef<"User", 'Boolean'>
     readonly isEmailVerefied: FieldRef<"User", 'Boolean'>
     readonly isTotpEnabled: FieldRef<"User", 'Boolean'>
@@ -2175,6 +3075,169 @@ export namespace Prisma {
   }
 
   /**
+   * User.socialLinks
+   */
+  export type User$socialLinksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SocialLink
+     */
+    select?: SocialLinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SocialLink
+     */
+    omit?: SocialLinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SocialLinkInclude<ExtArgs> | null
+    where?: SocialLinkWhereInput
+    orderBy?: SocialLinkOrderByWithRelationInput | SocialLinkOrderByWithRelationInput[]
+    cursor?: SocialLinkWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SocialLinkScalarFieldEnum | SocialLinkScalarFieldEnum[]
+  }
+
+  /**
+   * User.stream
+   */
+  export type User$streamArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Stream
+     */
+    select?: StreamSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Stream
+     */
+    omit?: StreamOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StreamInclude<ExtArgs> | null
+    where?: StreamWhereInput
+    orderBy?: StreamOrderByWithRelationInput | StreamOrderByWithRelationInput[]
+    cursor?: StreamWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: StreamScalarFieldEnum | StreamScalarFieldEnum[]
+  }
+
+  /**
+   * User.chatMessages
+   */
+  export type User$chatMessagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChatMessage
+     */
+    select?: ChatMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChatMessage
+     */
+    omit?: ChatMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChatMessageInclude<ExtArgs> | null
+    where?: ChatMessageWhereInput
+    orderBy?: ChatMessageOrderByWithRelationInput | ChatMessageOrderByWithRelationInput[]
+    cursor?: ChatMessageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ChatMessageScalarFieldEnum | ChatMessageScalarFieldEnum[]
+  }
+
+  /**
+   * User.notifications
+   */
+  export type User$notificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+    where?: NotificationWhereInput
+    orderBy?: NotificationOrderByWithRelationInput | NotificationOrderByWithRelationInput[]
+    cursor?: NotificationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: NotificationScalarFieldEnum | NotificationScalarFieldEnum[]
+  }
+
+  /**
+   * User.notificationSettings
+   */
+  export type User$notificationSettingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationSettings
+     */
+    select?: NotificationSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationSettings
+     */
+    omit?: NotificationSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationSettingsInclude<ExtArgs> | null
+    where?: NotificationSettingsWhereInput
+  }
+
+  /**
+   * User.followers
+   */
+  export type User$followersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Follow
+     */
+    select?: FollowSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Follow
+     */
+    omit?: FollowOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FollowInclude<ExtArgs> | null
+    where?: FollowWhereInput
+    orderBy?: FollowOrderByWithRelationInput | FollowOrderByWithRelationInput[]
+    cursor?: FollowWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FollowScalarFieldEnum | FollowScalarFieldEnum[]
+  }
+
+  /**
+   * User.followings
+   */
+  export type User$followingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Follow
+     */
+    select?: FollowSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Follow
+     */
+    omit?: FollowOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FollowInclude<ExtArgs> | null
+    where?: FollowWhereInput
+    orderBy?: FollowOrderByWithRelationInput | FollowOrderByWithRelationInput[]
+    cursor?: FollowWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: FollowScalarFieldEnum | FollowScalarFieldEnum[]
+  }
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2190,6 +3253,8774 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: UserInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model SocialLink
+   */
+
+  export type AggregateSocialLink = {
+    _count: SocialLinkCountAggregateOutputType | null
+    _avg: SocialLinkAvgAggregateOutputType | null
+    _sum: SocialLinkSumAggregateOutputType | null
+    _min: SocialLinkMinAggregateOutputType | null
+    _max: SocialLinkMaxAggregateOutputType | null
+  }
+
+  export type SocialLinkAvgAggregateOutputType = {
+    position: number | null
+  }
+
+  export type SocialLinkSumAggregateOutputType = {
+    position: number | null
+  }
+
+  export type SocialLinkMinAggregateOutputType = {
+    id: string | null
+    title: string | null
+    url: string | null
+    position: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    userId: string | null
+  }
+
+  export type SocialLinkMaxAggregateOutputType = {
+    id: string | null
+    title: string | null
+    url: string | null
+    position: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    userId: string | null
+  }
+
+  export type SocialLinkCountAggregateOutputType = {
+    id: number
+    title: number
+    url: number
+    position: number
+    createdAt: number
+    updatedAt: number
+    userId: number
+    _all: number
+  }
+
+
+  export type SocialLinkAvgAggregateInputType = {
+    position?: true
+  }
+
+  export type SocialLinkSumAggregateInputType = {
+    position?: true
+  }
+
+  export type SocialLinkMinAggregateInputType = {
+    id?: true
+    title?: true
+    url?: true
+    position?: true
+    createdAt?: true
+    updatedAt?: true
+    userId?: true
+  }
+
+  export type SocialLinkMaxAggregateInputType = {
+    id?: true
+    title?: true
+    url?: true
+    position?: true
+    createdAt?: true
+    updatedAt?: true
+    userId?: true
+  }
+
+  export type SocialLinkCountAggregateInputType = {
+    id?: true
+    title?: true
+    url?: true
+    position?: true
+    createdAt?: true
+    updatedAt?: true
+    userId?: true
+    _all?: true
+  }
+
+  export type SocialLinkAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SocialLink to aggregate.
+     */
+    where?: SocialLinkWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SocialLinks to fetch.
+     */
+    orderBy?: SocialLinkOrderByWithRelationInput | SocialLinkOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SocialLinkWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SocialLinks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SocialLinks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned SocialLinks
+    **/
+    _count?: true | SocialLinkCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: SocialLinkAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SocialLinkSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SocialLinkMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SocialLinkMaxAggregateInputType
+  }
+
+  export type GetSocialLinkAggregateType<T extends SocialLinkAggregateArgs> = {
+        [P in keyof T & keyof AggregateSocialLink]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSocialLink[P]>
+      : GetScalarType<T[P], AggregateSocialLink[P]>
+  }
+
+
+
+
+  export type SocialLinkGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SocialLinkWhereInput
+    orderBy?: SocialLinkOrderByWithAggregationInput | SocialLinkOrderByWithAggregationInput[]
+    by: SocialLinkScalarFieldEnum[] | SocialLinkScalarFieldEnum
+    having?: SocialLinkScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SocialLinkCountAggregateInputType | true
+    _avg?: SocialLinkAvgAggregateInputType
+    _sum?: SocialLinkSumAggregateInputType
+    _min?: SocialLinkMinAggregateInputType
+    _max?: SocialLinkMaxAggregateInputType
+  }
+
+  export type SocialLinkGroupByOutputType = {
+    id: string
+    title: string
+    url: string
+    position: number
+    createdAt: Date
+    updatedAt: Date
+    userId: string
+    _count: SocialLinkCountAggregateOutputType | null
+    _avg: SocialLinkAvgAggregateOutputType | null
+    _sum: SocialLinkSumAggregateOutputType | null
+    _min: SocialLinkMinAggregateOutputType | null
+    _max: SocialLinkMaxAggregateOutputType | null
+  }
+
+  type GetSocialLinkGroupByPayload<T extends SocialLinkGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SocialLinkGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SocialLinkGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SocialLinkGroupByOutputType[P]>
+            : GetScalarType<T[P], SocialLinkGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SocialLinkSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    url?: boolean
+    position?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
+    user?: boolean | SocialLink$userArgs<ExtArgs>
+  }, ExtArgs["result"]["socialLink"]>
+
+  export type SocialLinkSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    url?: boolean
+    position?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
+    user?: boolean | SocialLink$userArgs<ExtArgs>
+  }, ExtArgs["result"]["socialLink"]>
+
+  export type SocialLinkSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    url?: boolean
+    position?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
+    user?: boolean | SocialLink$userArgs<ExtArgs>
+  }, ExtArgs["result"]["socialLink"]>
+
+  export type SocialLinkSelectScalar = {
+    id?: boolean
+    title?: boolean
+    url?: boolean
+    position?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    userId?: boolean
+  }
+
+  export type SocialLinkOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "url" | "position" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["socialLink"]>
+  export type SocialLinkInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | SocialLink$userArgs<ExtArgs>
+  }
+  export type SocialLinkIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | SocialLink$userArgs<ExtArgs>
+  }
+  export type SocialLinkIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | SocialLink$userArgs<ExtArgs>
+  }
+
+  export type $SocialLinkPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "SocialLink"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      title: string
+      url: string
+      position: number
+      createdAt: Date
+      updatedAt: Date
+      userId: string
+    }, ExtArgs["result"]["socialLink"]>
+    composites: {}
+  }
+
+  type SocialLinkGetPayload<S extends boolean | null | undefined | SocialLinkDefaultArgs> = $Result.GetResult<Prisma.$SocialLinkPayload, S>
+
+  type SocialLinkCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SocialLinkFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SocialLinkCountAggregateInputType | true
+    }
+
+  export interface SocialLinkDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['SocialLink'], meta: { name: 'SocialLink' } }
+    /**
+     * Find zero or one SocialLink that matches the filter.
+     * @param {SocialLinkFindUniqueArgs} args - Arguments to find a SocialLink
+     * @example
+     * // Get one SocialLink
+     * const socialLink = await prisma.socialLink.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SocialLinkFindUniqueArgs>(args: SelectSubset<T, SocialLinkFindUniqueArgs<ExtArgs>>): Prisma__SocialLinkClient<$Result.GetResult<Prisma.$SocialLinkPayload<ExtArgs>, T, "findUnique", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find one SocialLink that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SocialLinkFindUniqueOrThrowArgs} args - Arguments to find a SocialLink
+     * @example
+     * // Get one SocialLink
+     * const socialLink = await prisma.socialLink.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SocialLinkFindUniqueOrThrowArgs>(args: SelectSubset<T, SocialLinkFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SocialLinkClient<$Result.GetResult<Prisma.$SocialLinkPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first SocialLink that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SocialLinkFindFirstArgs} args - Arguments to find a SocialLink
+     * @example
+     * // Get one SocialLink
+     * const socialLink = await prisma.socialLink.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SocialLinkFindFirstArgs>(args?: SelectSubset<T, SocialLinkFindFirstArgs<ExtArgs>>): Prisma__SocialLinkClient<$Result.GetResult<Prisma.$SocialLinkPayload<ExtArgs>, T, "findFirst", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first SocialLink that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SocialLinkFindFirstOrThrowArgs} args - Arguments to find a SocialLink
+     * @example
+     * // Get one SocialLink
+     * const socialLink = await prisma.socialLink.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SocialLinkFindFirstOrThrowArgs>(args?: SelectSubset<T, SocialLinkFindFirstOrThrowArgs<ExtArgs>>): Prisma__SocialLinkClient<$Result.GetResult<Prisma.$SocialLinkPayload<ExtArgs>, T, "findFirstOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find zero or more SocialLinks that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SocialLinkFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all SocialLinks
+     * const socialLinks = await prisma.socialLink.findMany()
+     * 
+     * // Get first 10 SocialLinks
+     * const socialLinks = await prisma.socialLink.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const socialLinkWithIdOnly = await prisma.socialLink.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SocialLinkFindManyArgs>(args?: SelectSubset<T, SocialLinkFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SocialLinkPayload<ExtArgs>, T, "findMany", ClientOptions>>
+
+    /**
+     * Create a SocialLink.
+     * @param {SocialLinkCreateArgs} args - Arguments to create a SocialLink.
+     * @example
+     * // Create one SocialLink
+     * const SocialLink = await prisma.socialLink.create({
+     *   data: {
+     *     // ... data to create a SocialLink
+     *   }
+     * })
+     * 
+     */
+    create<T extends SocialLinkCreateArgs>(args: SelectSubset<T, SocialLinkCreateArgs<ExtArgs>>): Prisma__SocialLinkClient<$Result.GetResult<Prisma.$SocialLinkPayload<ExtArgs>, T, "create", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Create many SocialLinks.
+     * @param {SocialLinkCreateManyArgs} args - Arguments to create many SocialLinks.
+     * @example
+     * // Create many SocialLinks
+     * const socialLink = await prisma.socialLink.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SocialLinkCreateManyArgs>(args?: SelectSubset<T, SocialLinkCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many SocialLinks and returns the data saved in the database.
+     * @param {SocialLinkCreateManyAndReturnArgs} args - Arguments to create many SocialLinks.
+     * @example
+     * // Create many SocialLinks
+     * const socialLink = await prisma.socialLink.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many SocialLinks and only return the `id`
+     * const socialLinkWithIdOnly = await prisma.socialLink.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SocialLinkCreateManyAndReturnArgs>(args?: SelectSubset<T, SocialLinkCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SocialLinkPayload<ExtArgs>, T, "createManyAndReturn", ClientOptions>>
+
+    /**
+     * Delete a SocialLink.
+     * @param {SocialLinkDeleteArgs} args - Arguments to delete one SocialLink.
+     * @example
+     * // Delete one SocialLink
+     * const SocialLink = await prisma.socialLink.delete({
+     *   where: {
+     *     // ... filter to delete one SocialLink
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SocialLinkDeleteArgs>(args: SelectSubset<T, SocialLinkDeleteArgs<ExtArgs>>): Prisma__SocialLinkClient<$Result.GetResult<Prisma.$SocialLinkPayload<ExtArgs>, T, "delete", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Update one SocialLink.
+     * @param {SocialLinkUpdateArgs} args - Arguments to update one SocialLink.
+     * @example
+     * // Update one SocialLink
+     * const socialLink = await prisma.socialLink.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SocialLinkUpdateArgs>(args: SelectSubset<T, SocialLinkUpdateArgs<ExtArgs>>): Prisma__SocialLinkClient<$Result.GetResult<Prisma.$SocialLinkPayload<ExtArgs>, T, "update", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Delete zero or more SocialLinks.
+     * @param {SocialLinkDeleteManyArgs} args - Arguments to filter SocialLinks to delete.
+     * @example
+     * // Delete a few SocialLinks
+     * const { count } = await prisma.socialLink.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SocialLinkDeleteManyArgs>(args?: SelectSubset<T, SocialLinkDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SocialLinks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SocialLinkUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many SocialLinks
+     * const socialLink = await prisma.socialLink.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SocialLinkUpdateManyArgs>(args: SelectSubset<T, SocialLinkUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more SocialLinks and returns the data updated in the database.
+     * @param {SocialLinkUpdateManyAndReturnArgs} args - Arguments to update many SocialLinks.
+     * @example
+     * // Update many SocialLinks
+     * const socialLink = await prisma.socialLink.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more SocialLinks and only return the `id`
+     * const socialLinkWithIdOnly = await prisma.socialLink.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends SocialLinkUpdateManyAndReturnArgs>(args: SelectSubset<T, SocialLinkUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SocialLinkPayload<ExtArgs>, T, "updateManyAndReturn", ClientOptions>>
+
+    /**
+     * Create or update one SocialLink.
+     * @param {SocialLinkUpsertArgs} args - Arguments to update or create a SocialLink.
+     * @example
+     * // Update or create a SocialLink
+     * const socialLink = await prisma.socialLink.upsert({
+     *   create: {
+     *     // ... data to create a SocialLink
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the SocialLink we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SocialLinkUpsertArgs>(args: SelectSubset<T, SocialLinkUpsertArgs<ExtArgs>>): Prisma__SocialLinkClient<$Result.GetResult<Prisma.$SocialLinkPayload<ExtArgs>, T, "upsert", ClientOptions>, never, ExtArgs, ClientOptions>
+
+
+    /**
+     * Count the number of SocialLinks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SocialLinkCountArgs} args - Arguments to filter SocialLinks to count.
+     * @example
+     * // Count the number of SocialLinks
+     * const count = await prisma.socialLink.count({
+     *   where: {
+     *     // ... the filter for the SocialLinks we want to count
+     *   }
+     * })
+    **/
+    count<T extends SocialLinkCountArgs>(
+      args?: Subset<T, SocialLinkCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SocialLinkCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a SocialLink.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SocialLinkAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SocialLinkAggregateArgs>(args: Subset<T, SocialLinkAggregateArgs>): Prisma.PrismaPromise<GetSocialLinkAggregateType<T>>
+
+    /**
+     * Group by SocialLink.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SocialLinkGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SocialLinkGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SocialLinkGroupByArgs['orderBy'] }
+        : { orderBy?: SocialLinkGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SocialLinkGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSocialLinkGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the SocialLink model
+   */
+  readonly fields: SocialLinkFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for SocialLink.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SocialLinkClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends SocialLink$userArgs<ExtArgs> = {}>(args?: Subset<T, SocialLink$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | null, null, ExtArgs, ClientOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the SocialLink model
+   */ 
+  interface SocialLinkFieldRefs {
+    readonly id: FieldRef<"SocialLink", 'String'>
+    readonly title: FieldRef<"SocialLink", 'String'>
+    readonly url: FieldRef<"SocialLink", 'String'>
+    readonly position: FieldRef<"SocialLink", 'Int'>
+    readonly createdAt: FieldRef<"SocialLink", 'DateTime'>
+    readonly updatedAt: FieldRef<"SocialLink", 'DateTime'>
+    readonly userId: FieldRef<"SocialLink", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * SocialLink findUnique
+   */
+  export type SocialLinkFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SocialLink
+     */
+    select?: SocialLinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SocialLink
+     */
+    omit?: SocialLinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SocialLinkInclude<ExtArgs> | null
+    /**
+     * Filter, which SocialLink to fetch.
+     */
+    where: SocialLinkWhereUniqueInput
+  }
+
+  /**
+   * SocialLink findUniqueOrThrow
+   */
+  export type SocialLinkFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SocialLink
+     */
+    select?: SocialLinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SocialLink
+     */
+    omit?: SocialLinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SocialLinkInclude<ExtArgs> | null
+    /**
+     * Filter, which SocialLink to fetch.
+     */
+    where: SocialLinkWhereUniqueInput
+  }
+
+  /**
+   * SocialLink findFirst
+   */
+  export type SocialLinkFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SocialLink
+     */
+    select?: SocialLinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SocialLink
+     */
+    omit?: SocialLinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SocialLinkInclude<ExtArgs> | null
+    /**
+     * Filter, which SocialLink to fetch.
+     */
+    where?: SocialLinkWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SocialLinks to fetch.
+     */
+    orderBy?: SocialLinkOrderByWithRelationInput | SocialLinkOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SocialLinks.
+     */
+    cursor?: SocialLinkWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SocialLinks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SocialLinks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SocialLinks.
+     */
+    distinct?: SocialLinkScalarFieldEnum | SocialLinkScalarFieldEnum[]
+  }
+
+  /**
+   * SocialLink findFirstOrThrow
+   */
+  export type SocialLinkFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SocialLink
+     */
+    select?: SocialLinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SocialLink
+     */
+    omit?: SocialLinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SocialLinkInclude<ExtArgs> | null
+    /**
+     * Filter, which SocialLink to fetch.
+     */
+    where?: SocialLinkWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SocialLinks to fetch.
+     */
+    orderBy?: SocialLinkOrderByWithRelationInput | SocialLinkOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for SocialLinks.
+     */
+    cursor?: SocialLinkWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SocialLinks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SocialLinks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of SocialLinks.
+     */
+    distinct?: SocialLinkScalarFieldEnum | SocialLinkScalarFieldEnum[]
+  }
+
+  /**
+   * SocialLink findMany
+   */
+  export type SocialLinkFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SocialLink
+     */
+    select?: SocialLinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SocialLink
+     */
+    omit?: SocialLinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SocialLinkInclude<ExtArgs> | null
+    /**
+     * Filter, which SocialLinks to fetch.
+     */
+    where?: SocialLinkWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of SocialLinks to fetch.
+     */
+    orderBy?: SocialLinkOrderByWithRelationInput | SocialLinkOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing SocialLinks.
+     */
+    cursor?: SocialLinkWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` SocialLinks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` SocialLinks.
+     */
+    skip?: number
+    distinct?: SocialLinkScalarFieldEnum | SocialLinkScalarFieldEnum[]
+  }
+
+  /**
+   * SocialLink create
+   */
+  export type SocialLinkCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SocialLink
+     */
+    select?: SocialLinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SocialLink
+     */
+    omit?: SocialLinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SocialLinkInclude<ExtArgs> | null
+    /**
+     * The data needed to create a SocialLink.
+     */
+    data: XOR<SocialLinkCreateInput, SocialLinkUncheckedCreateInput>
+  }
+
+  /**
+   * SocialLink createMany
+   */
+  export type SocialLinkCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many SocialLinks.
+     */
+    data: SocialLinkCreateManyInput | SocialLinkCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * SocialLink createManyAndReturn
+   */
+  export type SocialLinkCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SocialLink
+     */
+    select?: SocialLinkSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SocialLink
+     */
+    omit?: SocialLinkOmit<ExtArgs> | null
+    /**
+     * The data used to create many SocialLinks.
+     */
+    data: SocialLinkCreateManyInput | SocialLinkCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SocialLinkIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * SocialLink update
+   */
+  export type SocialLinkUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SocialLink
+     */
+    select?: SocialLinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SocialLink
+     */
+    omit?: SocialLinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SocialLinkInclude<ExtArgs> | null
+    /**
+     * The data needed to update a SocialLink.
+     */
+    data: XOR<SocialLinkUpdateInput, SocialLinkUncheckedUpdateInput>
+    /**
+     * Choose, which SocialLink to update.
+     */
+    where: SocialLinkWhereUniqueInput
+  }
+
+  /**
+   * SocialLink updateMany
+   */
+  export type SocialLinkUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update SocialLinks.
+     */
+    data: XOR<SocialLinkUpdateManyMutationInput, SocialLinkUncheckedUpdateManyInput>
+    /**
+     * Filter which SocialLinks to update
+     */
+    where?: SocialLinkWhereInput
+  }
+
+  /**
+   * SocialLink updateManyAndReturn
+   */
+  export type SocialLinkUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SocialLink
+     */
+    select?: SocialLinkSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the SocialLink
+     */
+    omit?: SocialLinkOmit<ExtArgs> | null
+    /**
+     * The data used to update SocialLinks.
+     */
+    data: XOR<SocialLinkUpdateManyMutationInput, SocialLinkUncheckedUpdateManyInput>
+    /**
+     * Filter which SocialLinks to update
+     */
+    where?: SocialLinkWhereInput
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SocialLinkIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * SocialLink upsert
+   */
+  export type SocialLinkUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SocialLink
+     */
+    select?: SocialLinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SocialLink
+     */
+    omit?: SocialLinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SocialLinkInclude<ExtArgs> | null
+    /**
+     * The filter to search for the SocialLink to update in case it exists.
+     */
+    where: SocialLinkWhereUniqueInput
+    /**
+     * In case the SocialLink found by the `where` argument doesn't exist, create a new SocialLink with this data.
+     */
+    create: XOR<SocialLinkCreateInput, SocialLinkUncheckedCreateInput>
+    /**
+     * In case the SocialLink was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SocialLinkUpdateInput, SocialLinkUncheckedUpdateInput>
+  }
+
+  /**
+   * SocialLink delete
+   */
+  export type SocialLinkDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SocialLink
+     */
+    select?: SocialLinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SocialLink
+     */
+    omit?: SocialLinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SocialLinkInclude<ExtArgs> | null
+    /**
+     * Filter which SocialLink to delete.
+     */
+    where: SocialLinkWhereUniqueInput
+  }
+
+  /**
+   * SocialLink deleteMany
+   */
+  export type SocialLinkDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which SocialLinks to delete
+     */
+    where?: SocialLinkWhereInput
+  }
+
+  /**
+   * SocialLink.user
+   */
+  export type SocialLink$userArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+  }
+
+  /**
+   * SocialLink without action
+   */
+  export type SocialLinkDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SocialLink
+     */
+    select?: SocialLinkSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the SocialLink
+     */
+    omit?: SocialLinkOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SocialLinkInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Stream
+   */
+
+  export type AggregateStream = {
+    _count: StreamCountAggregateOutputType | null
+    _min: StreamMinAggregateOutputType | null
+    _max: StreamMaxAggregateOutputType | null
+  }
+
+  export type StreamMinAggregateOutputType = {
+    id: string | null
+    title: string | null
+    thumbnailUrl: string | null
+    ingressId: string | null
+    serverUrl: string | null
+    steamKey: string | null
+    isLive: boolean | null
+    userId: string | null
+    categoryId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type StreamMaxAggregateOutputType = {
+    id: string | null
+    title: string | null
+    thumbnailUrl: string | null
+    ingressId: string | null
+    serverUrl: string | null
+    steamKey: string | null
+    isLive: boolean | null
+    userId: string | null
+    categoryId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type StreamCountAggregateOutputType = {
+    id: number
+    title: number
+    thumbnailUrl: number
+    ingressId: number
+    serverUrl: number
+    steamKey: number
+    isLive: number
+    userId: number
+    categoryId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type StreamMinAggregateInputType = {
+    id?: true
+    title?: true
+    thumbnailUrl?: true
+    ingressId?: true
+    serverUrl?: true
+    steamKey?: true
+    isLive?: true
+    userId?: true
+    categoryId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type StreamMaxAggregateInputType = {
+    id?: true
+    title?: true
+    thumbnailUrl?: true
+    ingressId?: true
+    serverUrl?: true
+    steamKey?: true
+    isLive?: true
+    userId?: true
+    categoryId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type StreamCountAggregateInputType = {
+    id?: true
+    title?: true
+    thumbnailUrl?: true
+    ingressId?: true
+    serverUrl?: true
+    steamKey?: true
+    isLive?: true
+    userId?: true
+    categoryId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type StreamAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Stream to aggregate.
+     */
+    where?: StreamWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Streams to fetch.
+     */
+    orderBy?: StreamOrderByWithRelationInput | StreamOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: StreamWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Streams from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Streams.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Streams
+    **/
+    _count?: true | StreamCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: StreamMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: StreamMaxAggregateInputType
+  }
+
+  export type GetStreamAggregateType<T extends StreamAggregateArgs> = {
+        [P in keyof T & keyof AggregateStream]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateStream[P]>
+      : GetScalarType<T[P], AggregateStream[P]>
+  }
+
+
+
+
+  export type StreamGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: StreamWhereInput
+    orderBy?: StreamOrderByWithAggregationInput | StreamOrderByWithAggregationInput[]
+    by: StreamScalarFieldEnum[] | StreamScalarFieldEnum
+    having?: StreamScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: StreamCountAggregateInputType | true
+    _min?: StreamMinAggregateInputType
+    _max?: StreamMaxAggregateInputType
+  }
+
+  export type StreamGroupByOutputType = {
+    id: string
+    title: string
+    thumbnailUrl: string | null
+    ingressId: string | null
+    serverUrl: string | null
+    steamKey: string | null
+    isLive: boolean
+    userId: string
+    categoryId: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: StreamCountAggregateOutputType | null
+    _min: StreamMinAggregateOutputType | null
+    _max: StreamMaxAggregateOutputType | null
+  }
+
+  type GetStreamGroupByPayload<T extends StreamGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<StreamGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof StreamGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], StreamGroupByOutputType[P]>
+            : GetScalarType<T[P], StreamGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type StreamSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    thumbnailUrl?: boolean
+    ingressId?: boolean
+    serverUrl?: boolean
+    steamKey?: boolean
+    isLive?: boolean
+    userId?: boolean
+    categoryId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    chatMessages?: boolean | Stream$chatMessagesArgs<ExtArgs>
+    chatSettings?: boolean | Stream$chatSettingsArgs<ExtArgs>
+    user?: boolean | Stream$userArgs<ExtArgs>
+    category?: boolean | Stream$categoryArgs<ExtArgs>
+    _count?: boolean | StreamCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["stream"]>
+
+  export type StreamSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    thumbnailUrl?: boolean
+    ingressId?: boolean
+    serverUrl?: boolean
+    steamKey?: boolean
+    isLive?: boolean
+    userId?: boolean
+    categoryId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | Stream$userArgs<ExtArgs>
+    category?: boolean | Stream$categoryArgs<ExtArgs>
+  }, ExtArgs["result"]["stream"]>
+
+  export type StreamSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    thumbnailUrl?: boolean
+    ingressId?: boolean
+    serverUrl?: boolean
+    steamKey?: boolean
+    isLive?: boolean
+    userId?: boolean
+    categoryId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | Stream$userArgs<ExtArgs>
+    category?: boolean | Stream$categoryArgs<ExtArgs>
+  }, ExtArgs["result"]["stream"]>
+
+  export type StreamSelectScalar = {
+    id?: boolean
+    title?: boolean
+    thumbnailUrl?: boolean
+    ingressId?: boolean
+    serverUrl?: boolean
+    steamKey?: boolean
+    isLive?: boolean
+    userId?: boolean
+    categoryId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type StreamOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "thumbnailUrl" | "ingressId" | "serverUrl" | "steamKey" | "isLive" | "userId" | "categoryId" | "createdAt" | "updatedAt", ExtArgs["result"]["stream"]>
+  export type StreamInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    chatMessages?: boolean | Stream$chatMessagesArgs<ExtArgs>
+    chatSettings?: boolean | Stream$chatSettingsArgs<ExtArgs>
+    user?: boolean | Stream$userArgs<ExtArgs>
+    category?: boolean | Stream$categoryArgs<ExtArgs>
+    _count?: boolean | StreamCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type StreamIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | Stream$userArgs<ExtArgs>
+    category?: boolean | Stream$categoryArgs<ExtArgs>
+  }
+  export type StreamIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | Stream$userArgs<ExtArgs>
+    category?: boolean | Stream$categoryArgs<ExtArgs>
+  }
+
+  export type $StreamPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Stream"
+    objects: {
+      chatMessages: Prisma.$ChatMessagePayload<ExtArgs>[]
+      chatSettings: Prisma.$ChatSettingsPayload<ExtArgs> | null
+      user: Prisma.$UserPayload<ExtArgs> | null
+      category: Prisma.$CategoryPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      title: string
+      thumbnailUrl: string | null
+      ingressId: string | null
+      serverUrl: string | null
+      steamKey: string | null
+      isLive: boolean
+      userId: string
+      categoryId: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["stream"]>
+    composites: {}
+  }
+
+  type StreamGetPayload<S extends boolean | null | undefined | StreamDefaultArgs> = $Result.GetResult<Prisma.$StreamPayload, S>
+
+  type StreamCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<StreamFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: StreamCountAggregateInputType | true
+    }
+
+  export interface StreamDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Stream'], meta: { name: 'Stream' } }
+    /**
+     * Find zero or one Stream that matches the filter.
+     * @param {StreamFindUniqueArgs} args - Arguments to find a Stream
+     * @example
+     * // Get one Stream
+     * const stream = await prisma.stream.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends StreamFindUniqueArgs>(args: SelectSubset<T, StreamFindUniqueArgs<ExtArgs>>): Prisma__StreamClient<$Result.GetResult<Prisma.$StreamPayload<ExtArgs>, T, "findUnique", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find one Stream that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {StreamFindUniqueOrThrowArgs} args - Arguments to find a Stream
+     * @example
+     * // Get one Stream
+     * const stream = await prisma.stream.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends StreamFindUniqueOrThrowArgs>(args: SelectSubset<T, StreamFindUniqueOrThrowArgs<ExtArgs>>): Prisma__StreamClient<$Result.GetResult<Prisma.$StreamPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first Stream that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StreamFindFirstArgs} args - Arguments to find a Stream
+     * @example
+     * // Get one Stream
+     * const stream = await prisma.stream.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends StreamFindFirstArgs>(args?: SelectSubset<T, StreamFindFirstArgs<ExtArgs>>): Prisma__StreamClient<$Result.GetResult<Prisma.$StreamPayload<ExtArgs>, T, "findFirst", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first Stream that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StreamFindFirstOrThrowArgs} args - Arguments to find a Stream
+     * @example
+     * // Get one Stream
+     * const stream = await prisma.stream.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends StreamFindFirstOrThrowArgs>(args?: SelectSubset<T, StreamFindFirstOrThrowArgs<ExtArgs>>): Prisma__StreamClient<$Result.GetResult<Prisma.$StreamPayload<ExtArgs>, T, "findFirstOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find zero or more Streams that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StreamFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Streams
+     * const streams = await prisma.stream.findMany()
+     * 
+     * // Get first 10 Streams
+     * const streams = await prisma.stream.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const streamWithIdOnly = await prisma.stream.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends StreamFindManyArgs>(args?: SelectSubset<T, StreamFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StreamPayload<ExtArgs>, T, "findMany", ClientOptions>>
+
+    /**
+     * Create a Stream.
+     * @param {StreamCreateArgs} args - Arguments to create a Stream.
+     * @example
+     * // Create one Stream
+     * const Stream = await prisma.stream.create({
+     *   data: {
+     *     // ... data to create a Stream
+     *   }
+     * })
+     * 
+     */
+    create<T extends StreamCreateArgs>(args: SelectSubset<T, StreamCreateArgs<ExtArgs>>): Prisma__StreamClient<$Result.GetResult<Prisma.$StreamPayload<ExtArgs>, T, "create", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Create many Streams.
+     * @param {StreamCreateManyArgs} args - Arguments to create many Streams.
+     * @example
+     * // Create many Streams
+     * const stream = await prisma.stream.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends StreamCreateManyArgs>(args?: SelectSubset<T, StreamCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Streams and returns the data saved in the database.
+     * @param {StreamCreateManyAndReturnArgs} args - Arguments to create many Streams.
+     * @example
+     * // Create many Streams
+     * const stream = await prisma.stream.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Streams and only return the `id`
+     * const streamWithIdOnly = await prisma.stream.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends StreamCreateManyAndReturnArgs>(args?: SelectSubset<T, StreamCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StreamPayload<ExtArgs>, T, "createManyAndReturn", ClientOptions>>
+
+    /**
+     * Delete a Stream.
+     * @param {StreamDeleteArgs} args - Arguments to delete one Stream.
+     * @example
+     * // Delete one Stream
+     * const Stream = await prisma.stream.delete({
+     *   where: {
+     *     // ... filter to delete one Stream
+     *   }
+     * })
+     * 
+     */
+    delete<T extends StreamDeleteArgs>(args: SelectSubset<T, StreamDeleteArgs<ExtArgs>>): Prisma__StreamClient<$Result.GetResult<Prisma.$StreamPayload<ExtArgs>, T, "delete", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Update one Stream.
+     * @param {StreamUpdateArgs} args - Arguments to update one Stream.
+     * @example
+     * // Update one Stream
+     * const stream = await prisma.stream.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends StreamUpdateArgs>(args: SelectSubset<T, StreamUpdateArgs<ExtArgs>>): Prisma__StreamClient<$Result.GetResult<Prisma.$StreamPayload<ExtArgs>, T, "update", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Delete zero or more Streams.
+     * @param {StreamDeleteManyArgs} args - Arguments to filter Streams to delete.
+     * @example
+     * // Delete a few Streams
+     * const { count } = await prisma.stream.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends StreamDeleteManyArgs>(args?: SelectSubset<T, StreamDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Streams.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StreamUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Streams
+     * const stream = await prisma.stream.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends StreamUpdateManyArgs>(args: SelectSubset<T, StreamUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Streams and returns the data updated in the database.
+     * @param {StreamUpdateManyAndReturnArgs} args - Arguments to update many Streams.
+     * @example
+     * // Update many Streams
+     * const stream = await prisma.stream.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Streams and only return the `id`
+     * const streamWithIdOnly = await prisma.stream.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends StreamUpdateManyAndReturnArgs>(args: SelectSubset<T, StreamUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StreamPayload<ExtArgs>, T, "updateManyAndReturn", ClientOptions>>
+
+    /**
+     * Create or update one Stream.
+     * @param {StreamUpsertArgs} args - Arguments to update or create a Stream.
+     * @example
+     * // Update or create a Stream
+     * const stream = await prisma.stream.upsert({
+     *   create: {
+     *     // ... data to create a Stream
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Stream we want to update
+     *   }
+     * })
+     */
+    upsert<T extends StreamUpsertArgs>(args: SelectSubset<T, StreamUpsertArgs<ExtArgs>>): Prisma__StreamClient<$Result.GetResult<Prisma.$StreamPayload<ExtArgs>, T, "upsert", ClientOptions>, never, ExtArgs, ClientOptions>
+
+
+    /**
+     * Count the number of Streams.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StreamCountArgs} args - Arguments to filter Streams to count.
+     * @example
+     * // Count the number of Streams
+     * const count = await prisma.stream.count({
+     *   where: {
+     *     // ... the filter for the Streams we want to count
+     *   }
+     * })
+    **/
+    count<T extends StreamCountArgs>(
+      args?: Subset<T, StreamCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], StreamCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Stream.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StreamAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends StreamAggregateArgs>(args: Subset<T, StreamAggregateArgs>): Prisma.PrismaPromise<GetStreamAggregateType<T>>
+
+    /**
+     * Group by Stream.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {StreamGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends StreamGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: StreamGroupByArgs['orderBy'] }
+        : { orderBy?: StreamGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, StreamGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetStreamGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Stream model
+   */
+  readonly fields: StreamFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Stream.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__StreamClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    chatMessages<T extends Stream$chatMessagesArgs<ExtArgs> = {}>(args?: Subset<T, Stream$chatMessagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChatMessagePayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
+    chatSettings<T extends Stream$chatSettingsArgs<ExtArgs> = {}>(args?: Subset<T, Stream$chatSettingsArgs<ExtArgs>>): Prisma__ChatSettingsClient<$Result.GetResult<Prisma.$ChatSettingsPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | null, null, ExtArgs, ClientOptions>
+    user<T extends Stream$userArgs<ExtArgs> = {}>(args?: Subset<T, Stream$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | null, null, ExtArgs, ClientOptions>
+    category<T extends Stream$categoryArgs<ExtArgs> = {}>(args?: Subset<T, Stream$categoryArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | null, null, ExtArgs, ClientOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Stream model
+   */ 
+  interface StreamFieldRefs {
+    readonly id: FieldRef<"Stream", 'String'>
+    readonly title: FieldRef<"Stream", 'String'>
+    readonly thumbnailUrl: FieldRef<"Stream", 'String'>
+    readonly ingressId: FieldRef<"Stream", 'String'>
+    readonly serverUrl: FieldRef<"Stream", 'String'>
+    readonly steamKey: FieldRef<"Stream", 'String'>
+    readonly isLive: FieldRef<"Stream", 'Boolean'>
+    readonly userId: FieldRef<"Stream", 'String'>
+    readonly categoryId: FieldRef<"Stream", 'String'>
+    readonly createdAt: FieldRef<"Stream", 'DateTime'>
+    readonly updatedAt: FieldRef<"Stream", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Stream findUnique
+   */
+  export type StreamFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Stream
+     */
+    select?: StreamSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Stream
+     */
+    omit?: StreamOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StreamInclude<ExtArgs> | null
+    /**
+     * Filter, which Stream to fetch.
+     */
+    where: StreamWhereUniqueInput
+  }
+
+  /**
+   * Stream findUniqueOrThrow
+   */
+  export type StreamFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Stream
+     */
+    select?: StreamSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Stream
+     */
+    omit?: StreamOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StreamInclude<ExtArgs> | null
+    /**
+     * Filter, which Stream to fetch.
+     */
+    where: StreamWhereUniqueInput
+  }
+
+  /**
+   * Stream findFirst
+   */
+  export type StreamFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Stream
+     */
+    select?: StreamSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Stream
+     */
+    omit?: StreamOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StreamInclude<ExtArgs> | null
+    /**
+     * Filter, which Stream to fetch.
+     */
+    where?: StreamWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Streams to fetch.
+     */
+    orderBy?: StreamOrderByWithRelationInput | StreamOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Streams.
+     */
+    cursor?: StreamWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Streams from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Streams.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Streams.
+     */
+    distinct?: StreamScalarFieldEnum | StreamScalarFieldEnum[]
+  }
+
+  /**
+   * Stream findFirstOrThrow
+   */
+  export type StreamFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Stream
+     */
+    select?: StreamSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Stream
+     */
+    omit?: StreamOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StreamInclude<ExtArgs> | null
+    /**
+     * Filter, which Stream to fetch.
+     */
+    where?: StreamWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Streams to fetch.
+     */
+    orderBy?: StreamOrderByWithRelationInput | StreamOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Streams.
+     */
+    cursor?: StreamWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Streams from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Streams.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Streams.
+     */
+    distinct?: StreamScalarFieldEnum | StreamScalarFieldEnum[]
+  }
+
+  /**
+   * Stream findMany
+   */
+  export type StreamFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Stream
+     */
+    select?: StreamSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Stream
+     */
+    omit?: StreamOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StreamInclude<ExtArgs> | null
+    /**
+     * Filter, which Streams to fetch.
+     */
+    where?: StreamWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Streams to fetch.
+     */
+    orderBy?: StreamOrderByWithRelationInput | StreamOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Streams.
+     */
+    cursor?: StreamWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Streams from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Streams.
+     */
+    skip?: number
+    distinct?: StreamScalarFieldEnum | StreamScalarFieldEnum[]
+  }
+
+  /**
+   * Stream create
+   */
+  export type StreamCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Stream
+     */
+    select?: StreamSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Stream
+     */
+    omit?: StreamOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StreamInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Stream.
+     */
+    data: XOR<StreamCreateInput, StreamUncheckedCreateInput>
+  }
+
+  /**
+   * Stream createMany
+   */
+  export type StreamCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Streams.
+     */
+    data: StreamCreateManyInput | StreamCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Stream createManyAndReturn
+   */
+  export type StreamCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Stream
+     */
+    select?: StreamSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Stream
+     */
+    omit?: StreamOmit<ExtArgs> | null
+    /**
+     * The data used to create many Streams.
+     */
+    data: StreamCreateManyInput | StreamCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StreamIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Stream update
+   */
+  export type StreamUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Stream
+     */
+    select?: StreamSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Stream
+     */
+    omit?: StreamOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StreamInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Stream.
+     */
+    data: XOR<StreamUpdateInput, StreamUncheckedUpdateInput>
+    /**
+     * Choose, which Stream to update.
+     */
+    where: StreamWhereUniqueInput
+  }
+
+  /**
+   * Stream updateMany
+   */
+  export type StreamUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Streams.
+     */
+    data: XOR<StreamUpdateManyMutationInput, StreamUncheckedUpdateManyInput>
+    /**
+     * Filter which Streams to update
+     */
+    where?: StreamWhereInput
+  }
+
+  /**
+   * Stream updateManyAndReturn
+   */
+  export type StreamUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Stream
+     */
+    select?: StreamSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Stream
+     */
+    omit?: StreamOmit<ExtArgs> | null
+    /**
+     * The data used to update Streams.
+     */
+    data: XOR<StreamUpdateManyMutationInput, StreamUncheckedUpdateManyInput>
+    /**
+     * Filter which Streams to update
+     */
+    where?: StreamWhereInput
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StreamIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Stream upsert
+   */
+  export type StreamUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Stream
+     */
+    select?: StreamSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Stream
+     */
+    omit?: StreamOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StreamInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Stream to update in case it exists.
+     */
+    where: StreamWhereUniqueInput
+    /**
+     * In case the Stream found by the `where` argument doesn't exist, create a new Stream with this data.
+     */
+    create: XOR<StreamCreateInput, StreamUncheckedCreateInput>
+    /**
+     * In case the Stream was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<StreamUpdateInput, StreamUncheckedUpdateInput>
+  }
+
+  /**
+   * Stream delete
+   */
+  export type StreamDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Stream
+     */
+    select?: StreamSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Stream
+     */
+    omit?: StreamOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StreamInclude<ExtArgs> | null
+    /**
+     * Filter which Stream to delete.
+     */
+    where: StreamWhereUniqueInput
+  }
+
+  /**
+   * Stream deleteMany
+   */
+  export type StreamDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Streams to delete
+     */
+    where?: StreamWhereInput
+  }
+
+  /**
+   * Stream.chatMessages
+   */
+  export type Stream$chatMessagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChatMessage
+     */
+    select?: ChatMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChatMessage
+     */
+    omit?: ChatMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChatMessageInclude<ExtArgs> | null
+    where?: ChatMessageWhereInput
+    orderBy?: ChatMessageOrderByWithRelationInput | ChatMessageOrderByWithRelationInput[]
+    cursor?: ChatMessageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ChatMessageScalarFieldEnum | ChatMessageScalarFieldEnum[]
+  }
+
+  /**
+   * Stream.chatSettings
+   */
+  export type Stream$chatSettingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChatSettings
+     */
+    select?: ChatSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChatSettings
+     */
+    omit?: ChatSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChatSettingsInclude<ExtArgs> | null
+    where?: ChatSettingsWhereInput
+  }
+
+  /**
+   * Stream.user
+   */
+  export type Stream$userArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+  }
+
+  /**
+   * Stream.category
+   */
+  export type Stream$categoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    where?: CategoryWhereInput
+  }
+
+  /**
+   * Stream without action
+   */
+  export type StreamDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Stream
+     */
+    select?: StreamSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Stream
+     */
+    omit?: StreamOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StreamInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ChatMessage
+   */
+
+  export type AggregateChatMessage = {
+    _count: ChatMessageCountAggregateOutputType | null
+    _min: ChatMessageMinAggregateOutputType | null
+    _max: ChatMessageMaxAggregateOutputType | null
+  }
+
+  export type ChatMessageMinAggregateOutputType = {
+    id: string | null
+    text: string | null
+    streamid: string | null
+    userid: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ChatMessageMaxAggregateOutputType = {
+    id: string | null
+    text: string | null
+    streamid: string | null
+    userid: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ChatMessageCountAggregateOutputType = {
+    id: number
+    text: number
+    streamid: number
+    userid: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ChatMessageMinAggregateInputType = {
+    id?: true
+    text?: true
+    streamid?: true
+    userid?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ChatMessageMaxAggregateInputType = {
+    id?: true
+    text?: true
+    streamid?: true
+    userid?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ChatMessageCountAggregateInputType = {
+    id?: true
+    text?: true
+    streamid?: true
+    userid?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ChatMessageAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ChatMessage to aggregate.
+     */
+    where?: ChatMessageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ChatMessages to fetch.
+     */
+    orderBy?: ChatMessageOrderByWithRelationInput | ChatMessageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ChatMessageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ChatMessages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ChatMessages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ChatMessages
+    **/
+    _count?: true | ChatMessageCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ChatMessageMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ChatMessageMaxAggregateInputType
+  }
+
+  export type GetChatMessageAggregateType<T extends ChatMessageAggregateArgs> = {
+        [P in keyof T & keyof AggregateChatMessage]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateChatMessage[P]>
+      : GetScalarType<T[P], AggregateChatMessage[P]>
+  }
+
+
+
+
+  export type ChatMessageGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ChatMessageWhereInput
+    orderBy?: ChatMessageOrderByWithAggregationInput | ChatMessageOrderByWithAggregationInput[]
+    by: ChatMessageScalarFieldEnum[] | ChatMessageScalarFieldEnum
+    having?: ChatMessageScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ChatMessageCountAggregateInputType | true
+    _min?: ChatMessageMinAggregateInputType
+    _max?: ChatMessageMaxAggregateInputType
+  }
+
+  export type ChatMessageGroupByOutputType = {
+    id: string
+    text: string | null
+    streamid: string
+    userid: string
+    createdAt: Date
+    updatedAt: Date
+    _count: ChatMessageCountAggregateOutputType | null
+    _min: ChatMessageMinAggregateOutputType | null
+    _max: ChatMessageMaxAggregateOutputType | null
+  }
+
+  type GetChatMessageGroupByPayload<T extends ChatMessageGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ChatMessageGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ChatMessageGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ChatMessageGroupByOutputType[P]>
+            : GetScalarType<T[P], ChatMessageGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ChatMessageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    text?: boolean
+    streamid?: boolean
+    userid?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    stream?: boolean | StreamDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["chatMessage"]>
+
+  export type ChatMessageSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    text?: boolean
+    streamid?: boolean
+    userid?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    stream?: boolean | StreamDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["chatMessage"]>
+
+  export type ChatMessageSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    text?: boolean
+    streamid?: boolean
+    userid?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    stream?: boolean | StreamDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["chatMessage"]>
+
+  export type ChatMessageSelectScalar = {
+    id?: boolean
+    text?: boolean
+    streamid?: boolean
+    userid?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type ChatMessageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "text" | "streamid" | "userid" | "createdAt" | "updatedAt", ExtArgs["result"]["chatMessage"]>
+  export type ChatMessageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    stream?: boolean | StreamDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ChatMessageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    stream?: boolean | StreamDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type ChatMessageIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    stream?: boolean | StreamDefaultArgs<ExtArgs>
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $ChatMessagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ChatMessage"
+    objects: {
+      stream: Prisma.$StreamPayload<ExtArgs>
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      text: string | null
+      streamid: string
+      userid: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["chatMessage"]>
+    composites: {}
+  }
+
+  type ChatMessageGetPayload<S extends boolean | null | undefined | ChatMessageDefaultArgs> = $Result.GetResult<Prisma.$ChatMessagePayload, S>
+
+  type ChatMessageCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ChatMessageFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ChatMessageCountAggregateInputType | true
+    }
+
+  export interface ChatMessageDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ChatMessage'], meta: { name: 'ChatMessage' } }
+    /**
+     * Find zero or one ChatMessage that matches the filter.
+     * @param {ChatMessageFindUniqueArgs} args - Arguments to find a ChatMessage
+     * @example
+     * // Get one ChatMessage
+     * const chatMessage = await prisma.chatMessage.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ChatMessageFindUniqueArgs>(args: SelectSubset<T, ChatMessageFindUniqueArgs<ExtArgs>>): Prisma__ChatMessageClient<$Result.GetResult<Prisma.$ChatMessagePayload<ExtArgs>, T, "findUnique", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find one ChatMessage that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ChatMessageFindUniqueOrThrowArgs} args - Arguments to find a ChatMessage
+     * @example
+     * // Get one ChatMessage
+     * const chatMessage = await prisma.chatMessage.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ChatMessageFindUniqueOrThrowArgs>(args: SelectSubset<T, ChatMessageFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ChatMessageClient<$Result.GetResult<Prisma.$ChatMessagePayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first ChatMessage that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChatMessageFindFirstArgs} args - Arguments to find a ChatMessage
+     * @example
+     * // Get one ChatMessage
+     * const chatMessage = await prisma.chatMessage.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ChatMessageFindFirstArgs>(args?: SelectSubset<T, ChatMessageFindFirstArgs<ExtArgs>>): Prisma__ChatMessageClient<$Result.GetResult<Prisma.$ChatMessagePayload<ExtArgs>, T, "findFirst", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first ChatMessage that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChatMessageFindFirstOrThrowArgs} args - Arguments to find a ChatMessage
+     * @example
+     * // Get one ChatMessage
+     * const chatMessage = await prisma.chatMessage.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ChatMessageFindFirstOrThrowArgs>(args?: SelectSubset<T, ChatMessageFindFirstOrThrowArgs<ExtArgs>>): Prisma__ChatMessageClient<$Result.GetResult<Prisma.$ChatMessagePayload<ExtArgs>, T, "findFirstOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find zero or more ChatMessages that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChatMessageFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ChatMessages
+     * const chatMessages = await prisma.chatMessage.findMany()
+     * 
+     * // Get first 10 ChatMessages
+     * const chatMessages = await prisma.chatMessage.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const chatMessageWithIdOnly = await prisma.chatMessage.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ChatMessageFindManyArgs>(args?: SelectSubset<T, ChatMessageFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChatMessagePayload<ExtArgs>, T, "findMany", ClientOptions>>
+
+    /**
+     * Create a ChatMessage.
+     * @param {ChatMessageCreateArgs} args - Arguments to create a ChatMessage.
+     * @example
+     * // Create one ChatMessage
+     * const ChatMessage = await prisma.chatMessage.create({
+     *   data: {
+     *     // ... data to create a ChatMessage
+     *   }
+     * })
+     * 
+     */
+    create<T extends ChatMessageCreateArgs>(args: SelectSubset<T, ChatMessageCreateArgs<ExtArgs>>): Prisma__ChatMessageClient<$Result.GetResult<Prisma.$ChatMessagePayload<ExtArgs>, T, "create", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Create many ChatMessages.
+     * @param {ChatMessageCreateManyArgs} args - Arguments to create many ChatMessages.
+     * @example
+     * // Create many ChatMessages
+     * const chatMessage = await prisma.chatMessage.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ChatMessageCreateManyArgs>(args?: SelectSubset<T, ChatMessageCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ChatMessages and returns the data saved in the database.
+     * @param {ChatMessageCreateManyAndReturnArgs} args - Arguments to create many ChatMessages.
+     * @example
+     * // Create many ChatMessages
+     * const chatMessage = await prisma.chatMessage.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ChatMessages and only return the `id`
+     * const chatMessageWithIdOnly = await prisma.chatMessage.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ChatMessageCreateManyAndReturnArgs>(args?: SelectSubset<T, ChatMessageCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChatMessagePayload<ExtArgs>, T, "createManyAndReturn", ClientOptions>>
+
+    /**
+     * Delete a ChatMessage.
+     * @param {ChatMessageDeleteArgs} args - Arguments to delete one ChatMessage.
+     * @example
+     * // Delete one ChatMessage
+     * const ChatMessage = await prisma.chatMessage.delete({
+     *   where: {
+     *     // ... filter to delete one ChatMessage
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ChatMessageDeleteArgs>(args: SelectSubset<T, ChatMessageDeleteArgs<ExtArgs>>): Prisma__ChatMessageClient<$Result.GetResult<Prisma.$ChatMessagePayload<ExtArgs>, T, "delete", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Update one ChatMessage.
+     * @param {ChatMessageUpdateArgs} args - Arguments to update one ChatMessage.
+     * @example
+     * // Update one ChatMessage
+     * const chatMessage = await prisma.chatMessage.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ChatMessageUpdateArgs>(args: SelectSubset<T, ChatMessageUpdateArgs<ExtArgs>>): Prisma__ChatMessageClient<$Result.GetResult<Prisma.$ChatMessagePayload<ExtArgs>, T, "update", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Delete zero or more ChatMessages.
+     * @param {ChatMessageDeleteManyArgs} args - Arguments to filter ChatMessages to delete.
+     * @example
+     * // Delete a few ChatMessages
+     * const { count } = await prisma.chatMessage.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ChatMessageDeleteManyArgs>(args?: SelectSubset<T, ChatMessageDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ChatMessages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChatMessageUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ChatMessages
+     * const chatMessage = await prisma.chatMessage.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ChatMessageUpdateManyArgs>(args: SelectSubset<T, ChatMessageUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ChatMessages and returns the data updated in the database.
+     * @param {ChatMessageUpdateManyAndReturnArgs} args - Arguments to update many ChatMessages.
+     * @example
+     * // Update many ChatMessages
+     * const chatMessage = await prisma.chatMessage.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ChatMessages and only return the `id`
+     * const chatMessageWithIdOnly = await prisma.chatMessage.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ChatMessageUpdateManyAndReturnArgs>(args: SelectSubset<T, ChatMessageUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChatMessagePayload<ExtArgs>, T, "updateManyAndReturn", ClientOptions>>
+
+    /**
+     * Create or update one ChatMessage.
+     * @param {ChatMessageUpsertArgs} args - Arguments to update or create a ChatMessage.
+     * @example
+     * // Update or create a ChatMessage
+     * const chatMessage = await prisma.chatMessage.upsert({
+     *   create: {
+     *     // ... data to create a ChatMessage
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ChatMessage we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ChatMessageUpsertArgs>(args: SelectSubset<T, ChatMessageUpsertArgs<ExtArgs>>): Prisma__ChatMessageClient<$Result.GetResult<Prisma.$ChatMessagePayload<ExtArgs>, T, "upsert", ClientOptions>, never, ExtArgs, ClientOptions>
+
+
+    /**
+     * Count the number of ChatMessages.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChatMessageCountArgs} args - Arguments to filter ChatMessages to count.
+     * @example
+     * // Count the number of ChatMessages
+     * const count = await prisma.chatMessage.count({
+     *   where: {
+     *     // ... the filter for the ChatMessages we want to count
+     *   }
+     * })
+    **/
+    count<T extends ChatMessageCountArgs>(
+      args?: Subset<T, ChatMessageCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ChatMessageCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ChatMessage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChatMessageAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ChatMessageAggregateArgs>(args: Subset<T, ChatMessageAggregateArgs>): Prisma.PrismaPromise<GetChatMessageAggregateType<T>>
+
+    /**
+     * Group by ChatMessage.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChatMessageGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ChatMessageGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ChatMessageGroupByArgs['orderBy'] }
+        : { orderBy?: ChatMessageGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ChatMessageGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetChatMessageGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ChatMessage model
+   */
+  readonly fields: ChatMessageFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ChatMessage.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ChatMessageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    stream<T extends StreamDefaultArgs<ExtArgs> = {}>(args?: Subset<T, StreamDefaultArgs<ExtArgs>>): Prisma__StreamClient<$Result.GetResult<Prisma.$StreamPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ChatMessage model
+   */ 
+  interface ChatMessageFieldRefs {
+    readonly id: FieldRef<"ChatMessage", 'String'>
+    readonly text: FieldRef<"ChatMessage", 'String'>
+    readonly streamid: FieldRef<"ChatMessage", 'String'>
+    readonly userid: FieldRef<"ChatMessage", 'String'>
+    readonly createdAt: FieldRef<"ChatMessage", 'DateTime'>
+    readonly updatedAt: FieldRef<"ChatMessage", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ChatMessage findUnique
+   */
+  export type ChatMessageFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChatMessage
+     */
+    select?: ChatMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChatMessage
+     */
+    omit?: ChatMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChatMessageInclude<ExtArgs> | null
+    /**
+     * Filter, which ChatMessage to fetch.
+     */
+    where: ChatMessageWhereUniqueInput
+  }
+
+  /**
+   * ChatMessage findUniqueOrThrow
+   */
+  export type ChatMessageFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChatMessage
+     */
+    select?: ChatMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChatMessage
+     */
+    omit?: ChatMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChatMessageInclude<ExtArgs> | null
+    /**
+     * Filter, which ChatMessage to fetch.
+     */
+    where: ChatMessageWhereUniqueInput
+  }
+
+  /**
+   * ChatMessage findFirst
+   */
+  export type ChatMessageFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChatMessage
+     */
+    select?: ChatMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChatMessage
+     */
+    omit?: ChatMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChatMessageInclude<ExtArgs> | null
+    /**
+     * Filter, which ChatMessage to fetch.
+     */
+    where?: ChatMessageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ChatMessages to fetch.
+     */
+    orderBy?: ChatMessageOrderByWithRelationInput | ChatMessageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ChatMessages.
+     */
+    cursor?: ChatMessageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ChatMessages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ChatMessages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ChatMessages.
+     */
+    distinct?: ChatMessageScalarFieldEnum | ChatMessageScalarFieldEnum[]
+  }
+
+  /**
+   * ChatMessage findFirstOrThrow
+   */
+  export type ChatMessageFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChatMessage
+     */
+    select?: ChatMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChatMessage
+     */
+    omit?: ChatMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChatMessageInclude<ExtArgs> | null
+    /**
+     * Filter, which ChatMessage to fetch.
+     */
+    where?: ChatMessageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ChatMessages to fetch.
+     */
+    orderBy?: ChatMessageOrderByWithRelationInput | ChatMessageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ChatMessages.
+     */
+    cursor?: ChatMessageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ChatMessages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ChatMessages.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ChatMessages.
+     */
+    distinct?: ChatMessageScalarFieldEnum | ChatMessageScalarFieldEnum[]
+  }
+
+  /**
+   * ChatMessage findMany
+   */
+  export type ChatMessageFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChatMessage
+     */
+    select?: ChatMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChatMessage
+     */
+    omit?: ChatMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChatMessageInclude<ExtArgs> | null
+    /**
+     * Filter, which ChatMessages to fetch.
+     */
+    where?: ChatMessageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ChatMessages to fetch.
+     */
+    orderBy?: ChatMessageOrderByWithRelationInput | ChatMessageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ChatMessages.
+     */
+    cursor?: ChatMessageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ChatMessages from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ChatMessages.
+     */
+    skip?: number
+    distinct?: ChatMessageScalarFieldEnum | ChatMessageScalarFieldEnum[]
+  }
+
+  /**
+   * ChatMessage create
+   */
+  export type ChatMessageCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChatMessage
+     */
+    select?: ChatMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChatMessage
+     */
+    omit?: ChatMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChatMessageInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ChatMessage.
+     */
+    data: XOR<ChatMessageCreateInput, ChatMessageUncheckedCreateInput>
+  }
+
+  /**
+   * ChatMessage createMany
+   */
+  export type ChatMessageCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ChatMessages.
+     */
+    data: ChatMessageCreateManyInput | ChatMessageCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ChatMessage createManyAndReturn
+   */
+  export type ChatMessageCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChatMessage
+     */
+    select?: ChatMessageSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChatMessage
+     */
+    omit?: ChatMessageOmit<ExtArgs> | null
+    /**
+     * The data used to create many ChatMessages.
+     */
+    data: ChatMessageCreateManyInput | ChatMessageCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChatMessageIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ChatMessage update
+   */
+  export type ChatMessageUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChatMessage
+     */
+    select?: ChatMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChatMessage
+     */
+    omit?: ChatMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChatMessageInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ChatMessage.
+     */
+    data: XOR<ChatMessageUpdateInput, ChatMessageUncheckedUpdateInput>
+    /**
+     * Choose, which ChatMessage to update.
+     */
+    where: ChatMessageWhereUniqueInput
+  }
+
+  /**
+   * ChatMessage updateMany
+   */
+  export type ChatMessageUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ChatMessages.
+     */
+    data: XOR<ChatMessageUpdateManyMutationInput, ChatMessageUncheckedUpdateManyInput>
+    /**
+     * Filter which ChatMessages to update
+     */
+    where?: ChatMessageWhereInput
+  }
+
+  /**
+   * ChatMessage updateManyAndReturn
+   */
+  export type ChatMessageUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChatMessage
+     */
+    select?: ChatMessageSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChatMessage
+     */
+    omit?: ChatMessageOmit<ExtArgs> | null
+    /**
+     * The data used to update ChatMessages.
+     */
+    data: XOR<ChatMessageUpdateManyMutationInput, ChatMessageUncheckedUpdateManyInput>
+    /**
+     * Filter which ChatMessages to update
+     */
+    where?: ChatMessageWhereInput
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChatMessageIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ChatMessage upsert
+   */
+  export type ChatMessageUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChatMessage
+     */
+    select?: ChatMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChatMessage
+     */
+    omit?: ChatMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChatMessageInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ChatMessage to update in case it exists.
+     */
+    where: ChatMessageWhereUniqueInput
+    /**
+     * In case the ChatMessage found by the `where` argument doesn't exist, create a new ChatMessage with this data.
+     */
+    create: XOR<ChatMessageCreateInput, ChatMessageUncheckedCreateInput>
+    /**
+     * In case the ChatMessage was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ChatMessageUpdateInput, ChatMessageUncheckedUpdateInput>
+  }
+
+  /**
+   * ChatMessage delete
+   */
+  export type ChatMessageDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChatMessage
+     */
+    select?: ChatMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChatMessage
+     */
+    omit?: ChatMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChatMessageInclude<ExtArgs> | null
+    /**
+     * Filter which ChatMessage to delete.
+     */
+    where: ChatMessageWhereUniqueInput
+  }
+
+  /**
+   * ChatMessage deleteMany
+   */
+  export type ChatMessageDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ChatMessages to delete
+     */
+    where?: ChatMessageWhereInput
+  }
+
+  /**
+   * ChatMessage without action
+   */
+  export type ChatMessageDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChatMessage
+     */
+    select?: ChatMessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChatMessage
+     */
+    omit?: ChatMessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChatMessageInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ChatSettings
+   */
+
+  export type AggregateChatSettings = {
+    _count: ChatSettingsCountAggregateOutputType | null
+    _min: ChatSettingsMinAggregateOutputType | null
+    _max: ChatSettingsMaxAggregateOutputType | null
+  }
+
+  export type ChatSettingsMinAggregateOutputType = {
+    id: string | null
+    isChatEnabled: boolean | null
+    isChatFollowersOnly: boolean | null
+    isChatPremiumFollowersOnly: boolean | null
+    streamId: string | null
+  }
+
+  export type ChatSettingsMaxAggregateOutputType = {
+    id: string | null
+    isChatEnabled: boolean | null
+    isChatFollowersOnly: boolean | null
+    isChatPremiumFollowersOnly: boolean | null
+    streamId: string | null
+  }
+
+  export type ChatSettingsCountAggregateOutputType = {
+    id: number
+    isChatEnabled: number
+    isChatFollowersOnly: number
+    isChatPremiumFollowersOnly: number
+    streamId: number
+    _all: number
+  }
+
+
+  export type ChatSettingsMinAggregateInputType = {
+    id?: true
+    isChatEnabled?: true
+    isChatFollowersOnly?: true
+    isChatPremiumFollowersOnly?: true
+    streamId?: true
+  }
+
+  export type ChatSettingsMaxAggregateInputType = {
+    id?: true
+    isChatEnabled?: true
+    isChatFollowersOnly?: true
+    isChatPremiumFollowersOnly?: true
+    streamId?: true
+  }
+
+  export type ChatSettingsCountAggregateInputType = {
+    id?: true
+    isChatEnabled?: true
+    isChatFollowersOnly?: true
+    isChatPremiumFollowersOnly?: true
+    streamId?: true
+    _all?: true
+  }
+
+  export type ChatSettingsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ChatSettings to aggregate.
+     */
+    where?: ChatSettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ChatSettings to fetch.
+     */
+    orderBy?: ChatSettingsOrderByWithRelationInput | ChatSettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ChatSettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ChatSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ChatSettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ChatSettings
+    **/
+    _count?: true | ChatSettingsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ChatSettingsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ChatSettingsMaxAggregateInputType
+  }
+
+  export type GetChatSettingsAggregateType<T extends ChatSettingsAggregateArgs> = {
+        [P in keyof T & keyof AggregateChatSettings]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateChatSettings[P]>
+      : GetScalarType<T[P], AggregateChatSettings[P]>
+  }
+
+
+
+
+  export type ChatSettingsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ChatSettingsWhereInput
+    orderBy?: ChatSettingsOrderByWithAggregationInput | ChatSettingsOrderByWithAggregationInput[]
+    by: ChatSettingsScalarFieldEnum[] | ChatSettingsScalarFieldEnum
+    having?: ChatSettingsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ChatSettingsCountAggregateInputType | true
+    _min?: ChatSettingsMinAggregateInputType
+    _max?: ChatSettingsMaxAggregateInputType
+  }
+
+  export type ChatSettingsGroupByOutputType = {
+    id: string
+    isChatEnabled: boolean
+    isChatFollowersOnly: boolean
+    isChatPremiumFollowersOnly: boolean
+    streamId: string | null
+    _count: ChatSettingsCountAggregateOutputType | null
+    _min: ChatSettingsMinAggregateOutputType | null
+    _max: ChatSettingsMaxAggregateOutputType | null
+  }
+
+  type GetChatSettingsGroupByPayload<T extends ChatSettingsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ChatSettingsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ChatSettingsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ChatSettingsGroupByOutputType[P]>
+            : GetScalarType<T[P], ChatSettingsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ChatSettingsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    isChatEnabled?: boolean
+    isChatFollowersOnly?: boolean
+    isChatPremiumFollowersOnly?: boolean
+    streamId?: boolean
+    stream?: boolean | ChatSettings$streamArgs<ExtArgs>
+  }, ExtArgs["result"]["chatSettings"]>
+
+  export type ChatSettingsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    isChatEnabled?: boolean
+    isChatFollowersOnly?: boolean
+    isChatPremiumFollowersOnly?: boolean
+    streamId?: boolean
+    stream?: boolean | ChatSettings$streamArgs<ExtArgs>
+  }, ExtArgs["result"]["chatSettings"]>
+
+  export type ChatSettingsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    isChatEnabled?: boolean
+    isChatFollowersOnly?: boolean
+    isChatPremiumFollowersOnly?: boolean
+    streamId?: boolean
+    stream?: boolean | ChatSettings$streamArgs<ExtArgs>
+  }, ExtArgs["result"]["chatSettings"]>
+
+  export type ChatSettingsSelectScalar = {
+    id?: boolean
+    isChatEnabled?: boolean
+    isChatFollowersOnly?: boolean
+    isChatPremiumFollowersOnly?: boolean
+    streamId?: boolean
+  }
+
+  export type ChatSettingsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "isChatEnabled" | "isChatFollowersOnly" | "isChatPremiumFollowersOnly" | "streamId", ExtArgs["result"]["chatSettings"]>
+  export type ChatSettingsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    stream?: boolean | ChatSettings$streamArgs<ExtArgs>
+  }
+  export type ChatSettingsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    stream?: boolean | ChatSettings$streamArgs<ExtArgs>
+  }
+  export type ChatSettingsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    stream?: boolean | ChatSettings$streamArgs<ExtArgs>
+  }
+
+  export type $ChatSettingsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ChatSettings"
+    objects: {
+      stream: Prisma.$StreamPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      isChatEnabled: boolean
+      isChatFollowersOnly: boolean
+      isChatPremiumFollowersOnly: boolean
+      streamId: string | null
+    }, ExtArgs["result"]["chatSettings"]>
+    composites: {}
+  }
+
+  type ChatSettingsGetPayload<S extends boolean | null | undefined | ChatSettingsDefaultArgs> = $Result.GetResult<Prisma.$ChatSettingsPayload, S>
+
+  type ChatSettingsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ChatSettingsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ChatSettingsCountAggregateInputType | true
+    }
+
+  export interface ChatSettingsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ChatSettings'], meta: { name: 'ChatSettings' } }
+    /**
+     * Find zero or one ChatSettings that matches the filter.
+     * @param {ChatSettingsFindUniqueArgs} args - Arguments to find a ChatSettings
+     * @example
+     * // Get one ChatSettings
+     * const chatSettings = await prisma.chatSettings.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ChatSettingsFindUniqueArgs>(args: SelectSubset<T, ChatSettingsFindUniqueArgs<ExtArgs>>): Prisma__ChatSettingsClient<$Result.GetResult<Prisma.$ChatSettingsPayload<ExtArgs>, T, "findUnique", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find one ChatSettings that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ChatSettingsFindUniqueOrThrowArgs} args - Arguments to find a ChatSettings
+     * @example
+     * // Get one ChatSettings
+     * const chatSettings = await prisma.chatSettings.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ChatSettingsFindUniqueOrThrowArgs>(args: SelectSubset<T, ChatSettingsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ChatSettingsClient<$Result.GetResult<Prisma.$ChatSettingsPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first ChatSettings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChatSettingsFindFirstArgs} args - Arguments to find a ChatSettings
+     * @example
+     * // Get one ChatSettings
+     * const chatSettings = await prisma.chatSettings.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ChatSettingsFindFirstArgs>(args?: SelectSubset<T, ChatSettingsFindFirstArgs<ExtArgs>>): Prisma__ChatSettingsClient<$Result.GetResult<Prisma.$ChatSettingsPayload<ExtArgs>, T, "findFirst", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first ChatSettings that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChatSettingsFindFirstOrThrowArgs} args - Arguments to find a ChatSettings
+     * @example
+     * // Get one ChatSettings
+     * const chatSettings = await prisma.chatSettings.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ChatSettingsFindFirstOrThrowArgs>(args?: SelectSubset<T, ChatSettingsFindFirstOrThrowArgs<ExtArgs>>): Prisma__ChatSettingsClient<$Result.GetResult<Prisma.$ChatSettingsPayload<ExtArgs>, T, "findFirstOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find zero or more ChatSettings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChatSettingsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ChatSettings
+     * const chatSettings = await prisma.chatSettings.findMany()
+     * 
+     * // Get first 10 ChatSettings
+     * const chatSettings = await prisma.chatSettings.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const chatSettingsWithIdOnly = await prisma.chatSettings.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ChatSettingsFindManyArgs>(args?: SelectSubset<T, ChatSettingsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChatSettingsPayload<ExtArgs>, T, "findMany", ClientOptions>>
+
+    /**
+     * Create a ChatSettings.
+     * @param {ChatSettingsCreateArgs} args - Arguments to create a ChatSettings.
+     * @example
+     * // Create one ChatSettings
+     * const ChatSettings = await prisma.chatSettings.create({
+     *   data: {
+     *     // ... data to create a ChatSettings
+     *   }
+     * })
+     * 
+     */
+    create<T extends ChatSettingsCreateArgs>(args: SelectSubset<T, ChatSettingsCreateArgs<ExtArgs>>): Prisma__ChatSettingsClient<$Result.GetResult<Prisma.$ChatSettingsPayload<ExtArgs>, T, "create", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Create many ChatSettings.
+     * @param {ChatSettingsCreateManyArgs} args - Arguments to create many ChatSettings.
+     * @example
+     * // Create many ChatSettings
+     * const chatSettings = await prisma.chatSettings.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ChatSettingsCreateManyArgs>(args?: SelectSubset<T, ChatSettingsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ChatSettings and returns the data saved in the database.
+     * @param {ChatSettingsCreateManyAndReturnArgs} args - Arguments to create many ChatSettings.
+     * @example
+     * // Create many ChatSettings
+     * const chatSettings = await prisma.chatSettings.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ChatSettings and only return the `id`
+     * const chatSettingsWithIdOnly = await prisma.chatSettings.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ChatSettingsCreateManyAndReturnArgs>(args?: SelectSubset<T, ChatSettingsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChatSettingsPayload<ExtArgs>, T, "createManyAndReturn", ClientOptions>>
+
+    /**
+     * Delete a ChatSettings.
+     * @param {ChatSettingsDeleteArgs} args - Arguments to delete one ChatSettings.
+     * @example
+     * // Delete one ChatSettings
+     * const ChatSettings = await prisma.chatSettings.delete({
+     *   where: {
+     *     // ... filter to delete one ChatSettings
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ChatSettingsDeleteArgs>(args: SelectSubset<T, ChatSettingsDeleteArgs<ExtArgs>>): Prisma__ChatSettingsClient<$Result.GetResult<Prisma.$ChatSettingsPayload<ExtArgs>, T, "delete", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Update one ChatSettings.
+     * @param {ChatSettingsUpdateArgs} args - Arguments to update one ChatSettings.
+     * @example
+     * // Update one ChatSettings
+     * const chatSettings = await prisma.chatSettings.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ChatSettingsUpdateArgs>(args: SelectSubset<T, ChatSettingsUpdateArgs<ExtArgs>>): Prisma__ChatSettingsClient<$Result.GetResult<Prisma.$ChatSettingsPayload<ExtArgs>, T, "update", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Delete zero or more ChatSettings.
+     * @param {ChatSettingsDeleteManyArgs} args - Arguments to filter ChatSettings to delete.
+     * @example
+     * // Delete a few ChatSettings
+     * const { count } = await prisma.chatSettings.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ChatSettingsDeleteManyArgs>(args?: SelectSubset<T, ChatSettingsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ChatSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChatSettingsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ChatSettings
+     * const chatSettings = await prisma.chatSettings.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ChatSettingsUpdateManyArgs>(args: SelectSubset<T, ChatSettingsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ChatSettings and returns the data updated in the database.
+     * @param {ChatSettingsUpdateManyAndReturnArgs} args - Arguments to update many ChatSettings.
+     * @example
+     * // Update many ChatSettings
+     * const chatSettings = await prisma.chatSettings.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more ChatSettings and only return the `id`
+     * const chatSettingsWithIdOnly = await prisma.chatSettings.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ChatSettingsUpdateManyAndReturnArgs>(args: SelectSubset<T, ChatSettingsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChatSettingsPayload<ExtArgs>, T, "updateManyAndReturn", ClientOptions>>
+
+    /**
+     * Create or update one ChatSettings.
+     * @param {ChatSettingsUpsertArgs} args - Arguments to update or create a ChatSettings.
+     * @example
+     * // Update or create a ChatSettings
+     * const chatSettings = await prisma.chatSettings.upsert({
+     *   create: {
+     *     // ... data to create a ChatSettings
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ChatSettings we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ChatSettingsUpsertArgs>(args: SelectSubset<T, ChatSettingsUpsertArgs<ExtArgs>>): Prisma__ChatSettingsClient<$Result.GetResult<Prisma.$ChatSettingsPayload<ExtArgs>, T, "upsert", ClientOptions>, never, ExtArgs, ClientOptions>
+
+
+    /**
+     * Count the number of ChatSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChatSettingsCountArgs} args - Arguments to filter ChatSettings to count.
+     * @example
+     * // Count the number of ChatSettings
+     * const count = await prisma.chatSettings.count({
+     *   where: {
+     *     // ... the filter for the ChatSettings we want to count
+     *   }
+     * })
+    **/
+    count<T extends ChatSettingsCountArgs>(
+      args?: Subset<T, ChatSettingsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ChatSettingsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ChatSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChatSettingsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ChatSettingsAggregateArgs>(args: Subset<T, ChatSettingsAggregateArgs>): Prisma.PrismaPromise<GetChatSettingsAggregateType<T>>
+
+    /**
+     * Group by ChatSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChatSettingsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ChatSettingsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ChatSettingsGroupByArgs['orderBy'] }
+        : { orderBy?: ChatSettingsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ChatSettingsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetChatSettingsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ChatSettings model
+   */
+  readonly fields: ChatSettingsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ChatSettings.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ChatSettingsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    stream<T extends ChatSettings$streamArgs<ExtArgs> = {}>(args?: Subset<T, ChatSettings$streamArgs<ExtArgs>>): Prisma__StreamClient<$Result.GetResult<Prisma.$StreamPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | null, null, ExtArgs, ClientOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ChatSettings model
+   */ 
+  interface ChatSettingsFieldRefs {
+    readonly id: FieldRef<"ChatSettings", 'String'>
+    readonly isChatEnabled: FieldRef<"ChatSettings", 'Boolean'>
+    readonly isChatFollowersOnly: FieldRef<"ChatSettings", 'Boolean'>
+    readonly isChatPremiumFollowersOnly: FieldRef<"ChatSettings", 'Boolean'>
+    readonly streamId: FieldRef<"ChatSettings", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ChatSettings findUnique
+   */
+  export type ChatSettingsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChatSettings
+     */
+    select?: ChatSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChatSettings
+     */
+    omit?: ChatSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChatSettingsInclude<ExtArgs> | null
+    /**
+     * Filter, which ChatSettings to fetch.
+     */
+    where: ChatSettingsWhereUniqueInput
+  }
+
+  /**
+   * ChatSettings findUniqueOrThrow
+   */
+  export type ChatSettingsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChatSettings
+     */
+    select?: ChatSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChatSettings
+     */
+    omit?: ChatSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChatSettingsInclude<ExtArgs> | null
+    /**
+     * Filter, which ChatSettings to fetch.
+     */
+    where: ChatSettingsWhereUniqueInput
+  }
+
+  /**
+   * ChatSettings findFirst
+   */
+  export type ChatSettingsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChatSettings
+     */
+    select?: ChatSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChatSettings
+     */
+    omit?: ChatSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChatSettingsInclude<ExtArgs> | null
+    /**
+     * Filter, which ChatSettings to fetch.
+     */
+    where?: ChatSettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ChatSettings to fetch.
+     */
+    orderBy?: ChatSettingsOrderByWithRelationInput | ChatSettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ChatSettings.
+     */
+    cursor?: ChatSettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ChatSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ChatSettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ChatSettings.
+     */
+    distinct?: ChatSettingsScalarFieldEnum | ChatSettingsScalarFieldEnum[]
+  }
+
+  /**
+   * ChatSettings findFirstOrThrow
+   */
+  export type ChatSettingsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChatSettings
+     */
+    select?: ChatSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChatSettings
+     */
+    omit?: ChatSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChatSettingsInclude<ExtArgs> | null
+    /**
+     * Filter, which ChatSettings to fetch.
+     */
+    where?: ChatSettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ChatSettings to fetch.
+     */
+    orderBy?: ChatSettingsOrderByWithRelationInput | ChatSettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ChatSettings.
+     */
+    cursor?: ChatSettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ChatSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ChatSettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ChatSettings.
+     */
+    distinct?: ChatSettingsScalarFieldEnum | ChatSettingsScalarFieldEnum[]
+  }
+
+  /**
+   * ChatSettings findMany
+   */
+  export type ChatSettingsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChatSettings
+     */
+    select?: ChatSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChatSettings
+     */
+    omit?: ChatSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChatSettingsInclude<ExtArgs> | null
+    /**
+     * Filter, which ChatSettings to fetch.
+     */
+    where?: ChatSettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ChatSettings to fetch.
+     */
+    orderBy?: ChatSettingsOrderByWithRelationInput | ChatSettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ChatSettings.
+     */
+    cursor?: ChatSettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ChatSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ChatSettings.
+     */
+    skip?: number
+    distinct?: ChatSettingsScalarFieldEnum | ChatSettingsScalarFieldEnum[]
+  }
+
+  /**
+   * ChatSettings create
+   */
+  export type ChatSettingsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChatSettings
+     */
+    select?: ChatSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChatSettings
+     */
+    omit?: ChatSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChatSettingsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ChatSettings.
+     */
+    data?: XOR<ChatSettingsCreateInput, ChatSettingsUncheckedCreateInput>
+  }
+
+  /**
+   * ChatSettings createMany
+   */
+  export type ChatSettingsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ChatSettings.
+     */
+    data: ChatSettingsCreateManyInput | ChatSettingsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ChatSettings createManyAndReturn
+   */
+  export type ChatSettingsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChatSettings
+     */
+    select?: ChatSettingsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChatSettings
+     */
+    omit?: ChatSettingsOmit<ExtArgs> | null
+    /**
+     * The data used to create many ChatSettings.
+     */
+    data: ChatSettingsCreateManyInput | ChatSettingsCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChatSettingsIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ChatSettings update
+   */
+  export type ChatSettingsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChatSettings
+     */
+    select?: ChatSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChatSettings
+     */
+    omit?: ChatSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChatSettingsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ChatSettings.
+     */
+    data: XOR<ChatSettingsUpdateInput, ChatSettingsUncheckedUpdateInput>
+    /**
+     * Choose, which ChatSettings to update.
+     */
+    where: ChatSettingsWhereUniqueInput
+  }
+
+  /**
+   * ChatSettings updateMany
+   */
+  export type ChatSettingsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ChatSettings.
+     */
+    data: XOR<ChatSettingsUpdateManyMutationInput, ChatSettingsUncheckedUpdateManyInput>
+    /**
+     * Filter which ChatSettings to update
+     */
+    where?: ChatSettingsWhereInput
+  }
+
+  /**
+   * ChatSettings updateManyAndReturn
+   */
+  export type ChatSettingsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChatSettings
+     */
+    select?: ChatSettingsSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChatSettings
+     */
+    omit?: ChatSettingsOmit<ExtArgs> | null
+    /**
+     * The data used to update ChatSettings.
+     */
+    data: XOR<ChatSettingsUpdateManyMutationInput, ChatSettingsUncheckedUpdateManyInput>
+    /**
+     * Filter which ChatSettings to update
+     */
+    where?: ChatSettingsWhereInput
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChatSettingsIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * ChatSettings upsert
+   */
+  export type ChatSettingsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChatSettings
+     */
+    select?: ChatSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChatSettings
+     */
+    omit?: ChatSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChatSettingsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ChatSettings to update in case it exists.
+     */
+    where: ChatSettingsWhereUniqueInput
+    /**
+     * In case the ChatSettings found by the `where` argument doesn't exist, create a new ChatSettings with this data.
+     */
+    create: XOR<ChatSettingsCreateInput, ChatSettingsUncheckedCreateInput>
+    /**
+     * In case the ChatSettings was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ChatSettingsUpdateInput, ChatSettingsUncheckedUpdateInput>
+  }
+
+  /**
+   * ChatSettings delete
+   */
+  export type ChatSettingsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChatSettings
+     */
+    select?: ChatSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChatSettings
+     */
+    omit?: ChatSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChatSettingsInclude<ExtArgs> | null
+    /**
+     * Filter which ChatSettings to delete.
+     */
+    where: ChatSettingsWhereUniqueInput
+  }
+
+  /**
+   * ChatSettings deleteMany
+   */
+  export type ChatSettingsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ChatSettings to delete
+     */
+    where?: ChatSettingsWhereInput
+  }
+
+  /**
+   * ChatSettings.stream
+   */
+  export type ChatSettings$streamArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Stream
+     */
+    select?: StreamSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Stream
+     */
+    omit?: StreamOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StreamInclude<ExtArgs> | null
+    where?: StreamWhereInput
+  }
+
+  /**
+   * ChatSettings without action
+   */
+  export type ChatSettingsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChatSettings
+     */
+    select?: ChatSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ChatSettings
+     */
+    omit?: ChatSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChatSettingsInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Category
+   */
+
+  export type AggregateCategory = {
+    _count: CategoryCountAggregateOutputType | null
+    _min: CategoryMinAggregateOutputType | null
+    _max: CategoryMaxAggregateOutputType | null
+  }
+
+  export type CategoryMinAggregateOutputType = {
+    id: string | null
+    title: string | null
+    slug: string | null
+    description: string | null
+    thumbnailUrl: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CategoryMaxAggregateOutputType = {
+    id: string | null
+    title: string | null
+    slug: string | null
+    description: string | null
+    thumbnailUrl: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type CategoryCountAggregateOutputType = {
+    id: number
+    title: number
+    slug: number
+    description: number
+    thumbnailUrl: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type CategoryMinAggregateInputType = {
+    id?: true
+    title?: true
+    slug?: true
+    description?: true
+    thumbnailUrl?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CategoryMaxAggregateInputType = {
+    id?: true
+    title?: true
+    slug?: true
+    description?: true
+    thumbnailUrl?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type CategoryCountAggregateInputType = {
+    id?: true
+    title?: true
+    slug?: true
+    description?: true
+    thumbnailUrl?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type CategoryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Category to aggregate.
+     */
+    where?: CategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Categories to fetch.
+     */
+    orderBy?: CategoryOrderByWithRelationInput | CategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Categories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Categories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Categories
+    **/
+    _count?: true | CategoryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CategoryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CategoryMaxAggregateInputType
+  }
+
+  export type GetCategoryAggregateType<T extends CategoryAggregateArgs> = {
+        [P in keyof T & keyof AggregateCategory]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCategory[P]>
+      : GetScalarType<T[P], AggregateCategory[P]>
+  }
+
+
+
+
+  export type CategoryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CategoryWhereInput
+    orderBy?: CategoryOrderByWithAggregationInput | CategoryOrderByWithAggregationInput[]
+    by: CategoryScalarFieldEnum[] | CategoryScalarFieldEnum
+    having?: CategoryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CategoryCountAggregateInputType | true
+    _min?: CategoryMinAggregateInputType
+    _max?: CategoryMaxAggregateInputType
+  }
+
+  export type CategoryGroupByOutputType = {
+    id: string
+    title: string
+    slug: string
+    description: string | null
+    thumbnailUrl: string
+    createdAt: Date
+    updatedAt: Date
+    _count: CategoryCountAggregateOutputType | null
+    _min: CategoryMinAggregateOutputType | null
+    _max: CategoryMaxAggregateOutputType | null
+  }
+
+  type GetCategoryGroupByPayload<T extends CategoryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CategoryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CategoryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CategoryGroupByOutputType[P]>
+            : GetScalarType<T[P], CategoryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CategorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    slug?: boolean
+    description?: boolean
+    thumbnailUrl?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    streams?: boolean | Category$streamsArgs<ExtArgs>
+    _count?: boolean | CategoryCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["category"]>
+
+  export type CategorySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    slug?: boolean
+    description?: boolean
+    thumbnailUrl?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["category"]>
+
+  export type CategorySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    slug?: boolean
+    description?: boolean
+    thumbnailUrl?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["category"]>
+
+  export type CategorySelectScalar = {
+    id?: boolean
+    title?: boolean
+    slug?: boolean
+    description?: boolean
+    thumbnailUrl?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type CategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "slug" | "description" | "thumbnailUrl" | "createdAt" | "updatedAt", ExtArgs["result"]["category"]>
+  export type CategoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    streams?: boolean | Category$streamsArgs<ExtArgs>
+    _count?: boolean | CategoryCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type CategoryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type CategoryIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $CategoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Category"
+    objects: {
+      streams: Prisma.$StreamPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      title: string
+      slug: string
+      description: string | null
+      thumbnailUrl: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["category"]>
+    composites: {}
+  }
+
+  type CategoryGetPayload<S extends boolean | null | undefined | CategoryDefaultArgs> = $Result.GetResult<Prisma.$CategoryPayload, S>
+
+  type CategoryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CategoryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CategoryCountAggregateInputType | true
+    }
+
+  export interface CategoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Category'], meta: { name: 'Category' } }
+    /**
+     * Find zero or one Category that matches the filter.
+     * @param {CategoryFindUniqueArgs} args - Arguments to find a Category
+     * @example
+     * // Get one Category
+     * const category = await prisma.category.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CategoryFindUniqueArgs>(args: SelectSubset<T, CategoryFindUniqueArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUnique", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find one Category that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CategoryFindUniqueOrThrowArgs} args - Arguments to find a Category
+     * @example
+     * // Get one Category
+     * const category = await prisma.category.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CategoryFindUniqueOrThrowArgs>(args: SelectSubset<T, CategoryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first Category that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoryFindFirstArgs} args - Arguments to find a Category
+     * @example
+     * // Get one Category
+     * const category = await prisma.category.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CategoryFindFirstArgs>(args?: SelectSubset<T, CategoryFindFirstArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findFirst", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first Category that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoryFindFirstOrThrowArgs} args - Arguments to find a Category
+     * @example
+     * // Get one Category
+     * const category = await prisma.category.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CategoryFindFirstOrThrowArgs>(args?: SelectSubset<T, CategoryFindFirstOrThrowArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findFirstOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find zero or more Categories that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Categories
+     * const categories = await prisma.category.findMany()
+     * 
+     * // Get first 10 Categories
+     * const categories = await prisma.category.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const categoryWithIdOnly = await prisma.category.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CategoryFindManyArgs>(args?: SelectSubset<T, CategoryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findMany", ClientOptions>>
+
+    /**
+     * Create a Category.
+     * @param {CategoryCreateArgs} args - Arguments to create a Category.
+     * @example
+     * // Create one Category
+     * const Category = await prisma.category.create({
+     *   data: {
+     *     // ... data to create a Category
+     *   }
+     * })
+     * 
+     */
+    create<T extends CategoryCreateArgs>(args: SelectSubset<T, CategoryCreateArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "create", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Create many Categories.
+     * @param {CategoryCreateManyArgs} args - Arguments to create many Categories.
+     * @example
+     * // Create many Categories
+     * const category = await prisma.category.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CategoryCreateManyArgs>(args?: SelectSubset<T, CategoryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Categories and returns the data saved in the database.
+     * @param {CategoryCreateManyAndReturnArgs} args - Arguments to create many Categories.
+     * @example
+     * // Create many Categories
+     * const category = await prisma.category.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Categories and only return the `id`
+     * const categoryWithIdOnly = await prisma.category.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CategoryCreateManyAndReturnArgs>(args?: SelectSubset<T, CategoryCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "createManyAndReturn", ClientOptions>>
+
+    /**
+     * Delete a Category.
+     * @param {CategoryDeleteArgs} args - Arguments to delete one Category.
+     * @example
+     * // Delete one Category
+     * const Category = await prisma.category.delete({
+     *   where: {
+     *     // ... filter to delete one Category
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CategoryDeleteArgs>(args: SelectSubset<T, CategoryDeleteArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "delete", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Update one Category.
+     * @param {CategoryUpdateArgs} args - Arguments to update one Category.
+     * @example
+     * // Update one Category
+     * const category = await prisma.category.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CategoryUpdateArgs>(args: SelectSubset<T, CategoryUpdateArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "update", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Delete zero or more Categories.
+     * @param {CategoryDeleteManyArgs} args - Arguments to filter Categories to delete.
+     * @example
+     * // Delete a few Categories
+     * const { count } = await prisma.category.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CategoryDeleteManyArgs>(args?: SelectSubset<T, CategoryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Categories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Categories
+     * const category = await prisma.category.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CategoryUpdateManyArgs>(args: SelectSubset<T, CategoryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Categories and returns the data updated in the database.
+     * @param {CategoryUpdateManyAndReturnArgs} args - Arguments to update many Categories.
+     * @example
+     * // Update many Categories
+     * const category = await prisma.category.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Categories and only return the `id`
+     * const categoryWithIdOnly = await prisma.category.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CategoryUpdateManyAndReturnArgs>(args: SelectSubset<T, CategoryUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "updateManyAndReturn", ClientOptions>>
+
+    /**
+     * Create or update one Category.
+     * @param {CategoryUpsertArgs} args - Arguments to update or create a Category.
+     * @example
+     * // Update or create a Category
+     * const category = await prisma.category.upsert({
+     *   create: {
+     *     // ... data to create a Category
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Category we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CategoryUpsertArgs>(args: SelectSubset<T, CategoryUpsertArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "upsert", ClientOptions>, never, ExtArgs, ClientOptions>
+
+
+    /**
+     * Count the number of Categories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoryCountArgs} args - Arguments to filter Categories to count.
+     * @example
+     * // Count the number of Categories
+     * const count = await prisma.category.count({
+     *   where: {
+     *     // ... the filter for the Categories we want to count
+     *   }
+     * })
+    **/
+    count<T extends CategoryCountArgs>(
+      args?: Subset<T, CategoryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CategoryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Category.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CategoryAggregateArgs>(args: Subset<T, CategoryAggregateArgs>): Prisma.PrismaPromise<GetCategoryAggregateType<T>>
+
+    /**
+     * Group by Category.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CategoryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CategoryGroupByArgs['orderBy'] }
+        : { orderBy?: CategoryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CategoryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCategoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Category model
+   */
+  readonly fields: CategoryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Category.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CategoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    streams<T extends Category$streamsArgs<ExtArgs> = {}>(args?: Subset<T, Category$streamsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StreamPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Category model
+   */ 
+  interface CategoryFieldRefs {
+    readonly id: FieldRef<"Category", 'String'>
+    readonly title: FieldRef<"Category", 'String'>
+    readonly slug: FieldRef<"Category", 'String'>
+    readonly description: FieldRef<"Category", 'String'>
+    readonly thumbnailUrl: FieldRef<"Category", 'String'>
+    readonly createdAt: FieldRef<"Category", 'DateTime'>
+    readonly updatedAt: FieldRef<"Category", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Category findUnique
+   */
+  export type CategoryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which Category to fetch.
+     */
+    where: CategoryWhereUniqueInput
+  }
+
+  /**
+   * Category findUniqueOrThrow
+   */
+  export type CategoryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which Category to fetch.
+     */
+    where: CategoryWhereUniqueInput
+  }
+
+  /**
+   * Category findFirst
+   */
+  export type CategoryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which Category to fetch.
+     */
+    where?: CategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Categories to fetch.
+     */
+    orderBy?: CategoryOrderByWithRelationInput | CategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Categories.
+     */
+    cursor?: CategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Categories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Categories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Categories.
+     */
+    distinct?: CategoryScalarFieldEnum | CategoryScalarFieldEnum[]
+  }
+
+  /**
+   * Category findFirstOrThrow
+   */
+  export type CategoryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which Category to fetch.
+     */
+    where?: CategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Categories to fetch.
+     */
+    orderBy?: CategoryOrderByWithRelationInput | CategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Categories.
+     */
+    cursor?: CategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Categories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Categories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Categories.
+     */
+    distinct?: CategoryScalarFieldEnum | CategoryScalarFieldEnum[]
+  }
+
+  /**
+   * Category findMany
+   */
+  export type CategoryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which Categories to fetch.
+     */
+    where?: CategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Categories to fetch.
+     */
+    orderBy?: CategoryOrderByWithRelationInput | CategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Categories.
+     */
+    cursor?: CategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Categories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Categories.
+     */
+    skip?: number
+    distinct?: CategoryScalarFieldEnum | CategoryScalarFieldEnum[]
+  }
+
+  /**
+   * Category create
+   */
+  export type CategoryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Category.
+     */
+    data: XOR<CategoryCreateInput, CategoryUncheckedCreateInput>
+  }
+
+  /**
+   * Category createMany
+   */
+  export type CategoryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Categories.
+     */
+    data: CategoryCreateManyInput | CategoryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Category createManyAndReturn
+   */
+  export type CategoryCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * The data used to create many Categories.
+     */
+    data: CategoryCreateManyInput | CategoryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Category update
+   */
+  export type CategoryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Category.
+     */
+    data: XOR<CategoryUpdateInput, CategoryUncheckedUpdateInput>
+    /**
+     * Choose, which Category to update.
+     */
+    where: CategoryWhereUniqueInput
+  }
+
+  /**
+   * Category updateMany
+   */
+  export type CategoryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Categories.
+     */
+    data: XOR<CategoryUpdateManyMutationInput, CategoryUncheckedUpdateManyInput>
+    /**
+     * Filter which Categories to update
+     */
+    where?: CategoryWhereInput
+  }
+
+  /**
+   * Category updateManyAndReturn
+   */
+  export type CategoryUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * The data used to update Categories.
+     */
+    data: XOR<CategoryUpdateManyMutationInput, CategoryUncheckedUpdateManyInput>
+    /**
+     * Filter which Categories to update
+     */
+    where?: CategoryWhereInput
+  }
+
+  /**
+   * Category upsert
+   */
+  export type CategoryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Category to update in case it exists.
+     */
+    where: CategoryWhereUniqueInput
+    /**
+     * In case the Category found by the `where` argument doesn't exist, create a new Category with this data.
+     */
+    create: XOR<CategoryCreateInput, CategoryUncheckedCreateInput>
+    /**
+     * In case the Category was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CategoryUpdateInput, CategoryUncheckedUpdateInput>
+  }
+
+  /**
+   * Category delete
+   */
+  export type CategoryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * Filter which Category to delete.
+     */
+    where: CategoryWhereUniqueInput
+  }
+
+  /**
+   * Category deleteMany
+   */
+  export type CategoryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Categories to delete
+     */
+    where?: CategoryWhereInput
+  }
+
+  /**
+   * Category.streams
+   */
+  export type Category$streamsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Stream
+     */
+    select?: StreamSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Stream
+     */
+    omit?: StreamOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: StreamInclude<ExtArgs> | null
+    where?: StreamWhereInput
+    orderBy?: StreamOrderByWithRelationInput | StreamOrderByWithRelationInput[]
+    cursor?: StreamWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: StreamScalarFieldEnum | StreamScalarFieldEnum[]
+  }
+
+  /**
+   * Category without action
+   */
+  export type CategoryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Follow
+   */
+
+  export type AggregateFollow = {
+    _count: FollowCountAggregateOutputType | null
+    _min: FollowMinAggregateOutputType | null
+    _max: FollowMaxAggregateOutputType | null
+  }
+
+  export type FollowMinAggregateOutputType = {
+    id: string | null
+    followerId: string | null
+    followingId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type FollowMaxAggregateOutputType = {
+    id: string | null
+    followerId: string | null
+    followingId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type FollowCountAggregateOutputType = {
+    id: number
+    followerId: number
+    followingId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type FollowMinAggregateInputType = {
+    id?: true
+    followerId?: true
+    followingId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type FollowMaxAggregateInputType = {
+    id?: true
+    followerId?: true
+    followingId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type FollowCountAggregateInputType = {
+    id?: true
+    followerId?: true
+    followingId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type FollowAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Follow to aggregate.
+     */
+    where?: FollowWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Follows to fetch.
+     */
+    orderBy?: FollowOrderByWithRelationInput | FollowOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: FollowWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Follows from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Follows.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Follows
+    **/
+    _count?: true | FollowCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: FollowMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: FollowMaxAggregateInputType
+  }
+
+  export type GetFollowAggregateType<T extends FollowAggregateArgs> = {
+        [P in keyof T & keyof AggregateFollow]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateFollow[P]>
+      : GetScalarType<T[P], AggregateFollow[P]>
+  }
+
+
+
+
+  export type FollowGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: FollowWhereInput
+    orderBy?: FollowOrderByWithAggregationInput | FollowOrderByWithAggregationInput[]
+    by: FollowScalarFieldEnum[] | FollowScalarFieldEnum
+    having?: FollowScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: FollowCountAggregateInputType | true
+    _min?: FollowMinAggregateInputType
+    _max?: FollowMaxAggregateInputType
+  }
+
+  export type FollowGroupByOutputType = {
+    id: string
+    followerId: string
+    followingId: string
+    createdAt: Date
+    updatedAt: Date
+    _count: FollowCountAggregateOutputType | null
+    _min: FollowMinAggregateOutputType | null
+    _max: FollowMaxAggregateOutputType | null
+  }
+
+  type GetFollowGroupByPayload<T extends FollowGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<FollowGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof FollowGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], FollowGroupByOutputType[P]>
+            : GetScalarType<T[P], FollowGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type FollowSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    followerId?: boolean
+    followingId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    follower?: boolean | UserDefaultArgs<ExtArgs>
+    following?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["follow"]>
+
+  export type FollowSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    followerId?: boolean
+    followingId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    follower?: boolean | UserDefaultArgs<ExtArgs>
+    following?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["follow"]>
+
+  export type FollowSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    followerId?: boolean
+    followingId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    follower?: boolean | UserDefaultArgs<ExtArgs>
+    following?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["follow"]>
+
+  export type FollowSelectScalar = {
+    id?: boolean
+    followerId?: boolean
+    followingId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type FollowOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "followerId" | "followingId" | "createdAt" | "updatedAt", ExtArgs["result"]["follow"]>
+  export type FollowInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    follower?: boolean | UserDefaultArgs<ExtArgs>
+    following?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type FollowIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    follower?: boolean | UserDefaultArgs<ExtArgs>
+    following?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type FollowIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    follower?: boolean | UserDefaultArgs<ExtArgs>
+    following?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $FollowPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Follow"
+    objects: {
+      follower: Prisma.$UserPayload<ExtArgs>
+      following: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      followerId: string
+      followingId: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["follow"]>
+    composites: {}
+  }
+
+  type FollowGetPayload<S extends boolean | null | undefined | FollowDefaultArgs> = $Result.GetResult<Prisma.$FollowPayload, S>
+
+  type FollowCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<FollowFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: FollowCountAggregateInputType | true
+    }
+
+  export interface FollowDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Follow'], meta: { name: 'Follow' } }
+    /**
+     * Find zero or one Follow that matches the filter.
+     * @param {FollowFindUniqueArgs} args - Arguments to find a Follow
+     * @example
+     * // Get one Follow
+     * const follow = await prisma.follow.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends FollowFindUniqueArgs>(args: SelectSubset<T, FollowFindUniqueArgs<ExtArgs>>): Prisma__FollowClient<$Result.GetResult<Prisma.$FollowPayload<ExtArgs>, T, "findUnique", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find one Follow that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {FollowFindUniqueOrThrowArgs} args - Arguments to find a Follow
+     * @example
+     * // Get one Follow
+     * const follow = await prisma.follow.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends FollowFindUniqueOrThrowArgs>(args: SelectSubset<T, FollowFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FollowClient<$Result.GetResult<Prisma.$FollowPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first Follow that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FollowFindFirstArgs} args - Arguments to find a Follow
+     * @example
+     * // Get one Follow
+     * const follow = await prisma.follow.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends FollowFindFirstArgs>(args?: SelectSubset<T, FollowFindFirstArgs<ExtArgs>>): Prisma__FollowClient<$Result.GetResult<Prisma.$FollowPayload<ExtArgs>, T, "findFirst", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first Follow that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FollowFindFirstOrThrowArgs} args - Arguments to find a Follow
+     * @example
+     * // Get one Follow
+     * const follow = await prisma.follow.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends FollowFindFirstOrThrowArgs>(args?: SelectSubset<T, FollowFindFirstOrThrowArgs<ExtArgs>>): Prisma__FollowClient<$Result.GetResult<Prisma.$FollowPayload<ExtArgs>, T, "findFirstOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find zero or more Follows that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FollowFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Follows
+     * const follows = await prisma.follow.findMany()
+     * 
+     * // Get first 10 Follows
+     * const follows = await prisma.follow.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const followWithIdOnly = await prisma.follow.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends FollowFindManyArgs>(args?: SelectSubset<T, FollowFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FollowPayload<ExtArgs>, T, "findMany", ClientOptions>>
+
+    /**
+     * Create a Follow.
+     * @param {FollowCreateArgs} args - Arguments to create a Follow.
+     * @example
+     * // Create one Follow
+     * const Follow = await prisma.follow.create({
+     *   data: {
+     *     // ... data to create a Follow
+     *   }
+     * })
+     * 
+     */
+    create<T extends FollowCreateArgs>(args: SelectSubset<T, FollowCreateArgs<ExtArgs>>): Prisma__FollowClient<$Result.GetResult<Prisma.$FollowPayload<ExtArgs>, T, "create", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Create many Follows.
+     * @param {FollowCreateManyArgs} args - Arguments to create many Follows.
+     * @example
+     * // Create many Follows
+     * const follow = await prisma.follow.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends FollowCreateManyArgs>(args?: SelectSubset<T, FollowCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Follows and returns the data saved in the database.
+     * @param {FollowCreateManyAndReturnArgs} args - Arguments to create many Follows.
+     * @example
+     * // Create many Follows
+     * const follow = await prisma.follow.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Follows and only return the `id`
+     * const followWithIdOnly = await prisma.follow.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends FollowCreateManyAndReturnArgs>(args?: SelectSubset<T, FollowCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FollowPayload<ExtArgs>, T, "createManyAndReturn", ClientOptions>>
+
+    /**
+     * Delete a Follow.
+     * @param {FollowDeleteArgs} args - Arguments to delete one Follow.
+     * @example
+     * // Delete one Follow
+     * const Follow = await prisma.follow.delete({
+     *   where: {
+     *     // ... filter to delete one Follow
+     *   }
+     * })
+     * 
+     */
+    delete<T extends FollowDeleteArgs>(args: SelectSubset<T, FollowDeleteArgs<ExtArgs>>): Prisma__FollowClient<$Result.GetResult<Prisma.$FollowPayload<ExtArgs>, T, "delete", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Update one Follow.
+     * @param {FollowUpdateArgs} args - Arguments to update one Follow.
+     * @example
+     * // Update one Follow
+     * const follow = await prisma.follow.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends FollowUpdateArgs>(args: SelectSubset<T, FollowUpdateArgs<ExtArgs>>): Prisma__FollowClient<$Result.GetResult<Prisma.$FollowPayload<ExtArgs>, T, "update", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Delete zero or more Follows.
+     * @param {FollowDeleteManyArgs} args - Arguments to filter Follows to delete.
+     * @example
+     * // Delete a few Follows
+     * const { count } = await prisma.follow.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends FollowDeleteManyArgs>(args?: SelectSubset<T, FollowDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Follows.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FollowUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Follows
+     * const follow = await prisma.follow.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends FollowUpdateManyArgs>(args: SelectSubset<T, FollowUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Follows and returns the data updated in the database.
+     * @param {FollowUpdateManyAndReturnArgs} args - Arguments to update many Follows.
+     * @example
+     * // Update many Follows
+     * const follow = await prisma.follow.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Follows and only return the `id`
+     * const followWithIdOnly = await prisma.follow.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends FollowUpdateManyAndReturnArgs>(args: SelectSubset<T, FollowUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FollowPayload<ExtArgs>, T, "updateManyAndReturn", ClientOptions>>
+
+    /**
+     * Create or update one Follow.
+     * @param {FollowUpsertArgs} args - Arguments to update or create a Follow.
+     * @example
+     * // Update or create a Follow
+     * const follow = await prisma.follow.upsert({
+     *   create: {
+     *     // ... data to create a Follow
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Follow we want to update
+     *   }
+     * })
+     */
+    upsert<T extends FollowUpsertArgs>(args: SelectSubset<T, FollowUpsertArgs<ExtArgs>>): Prisma__FollowClient<$Result.GetResult<Prisma.$FollowPayload<ExtArgs>, T, "upsert", ClientOptions>, never, ExtArgs, ClientOptions>
+
+
+    /**
+     * Count the number of Follows.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FollowCountArgs} args - Arguments to filter Follows to count.
+     * @example
+     * // Count the number of Follows
+     * const count = await prisma.follow.count({
+     *   where: {
+     *     // ... the filter for the Follows we want to count
+     *   }
+     * })
+    **/
+    count<T extends FollowCountArgs>(
+      args?: Subset<T, FollowCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], FollowCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Follow.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FollowAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends FollowAggregateArgs>(args: Subset<T, FollowAggregateArgs>): Prisma.PrismaPromise<GetFollowAggregateType<T>>
+
+    /**
+     * Group by Follow.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {FollowGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends FollowGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: FollowGroupByArgs['orderBy'] }
+        : { orderBy?: FollowGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, FollowGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFollowGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Follow model
+   */
+  readonly fields: FollowFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Follow.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__FollowClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    follower<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
+    following<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Follow model
+   */ 
+  interface FollowFieldRefs {
+    readonly id: FieldRef<"Follow", 'String'>
+    readonly followerId: FieldRef<"Follow", 'String'>
+    readonly followingId: FieldRef<"Follow", 'String'>
+    readonly createdAt: FieldRef<"Follow", 'DateTime'>
+    readonly updatedAt: FieldRef<"Follow", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Follow findUnique
+   */
+  export type FollowFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Follow
+     */
+    select?: FollowSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Follow
+     */
+    omit?: FollowOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FollowInclude<ExtArgs> | null
+    /**
+     * Filter, which Follow to fetch.
+     */
+    where: FollowWhereUniqueInput
+  }
+
+  /**
+   * Follow findUniqueOrThrow
+   */
+  export type FollowFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Follow
+     */
+    select?: FollowSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Follow
+     */
+    omit?: FollowOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FollowInclude<ExtArgs> | null
+    /**
+     * Filter, which Follow to fetch.
+     */
+    where: FollowWhereUniqueInput
+  }
+
+  /**
+   * Follow findFirst
+   */
+  export type FollowFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Follow
+     */
+    select?: FollowSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Follow
+     */
+    omit?: FollowOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FollowInclude<ExtArgs> | null
+    /**
+     * Filter, which Follow to fetch.
+     */
+    where?: FollowWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Follows to fetch.
+     */
+    orderBy?: FollowOrderByWithRelationInput | FollowOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Follows.
+     */
+    cursor?: FollowWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Follows from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Follows.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Follows.
+     */
+    distinct?: FollowScalarFieldEnum | FollowScalarFieldEnum[]
+  }
+
+  /**
+   * Follow findFirstOrThrow
+   */
+  export type FollowFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Follow
+     */
+    select?: FollowSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Follow
+     */
+    omit?: FollowOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FollowInclude<ExtArgs> | null
+    /**
+     * Filter, which Follow to fetch.
+     */
+    where?: FollowWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Follows to fetch.
+     */
+    orderBy?: FollowOrderByWithRelationInput | FollowOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Follows.
+     */
+    cursor?: FollowWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Follows from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Follows.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Follows.
+     */
+    distinct?: FollowScalarFieldEnum | FollowScalarFieldEnum[]
+  }
+
+  /**
+   * Follow findMany
+   */
+  export type FollowFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Follow
+     */
+    select?: FollowSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Follow
+     */
+    omit?: FollowOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FollowInclude<ExtArgs> | null
+    /**
+     * Filter, which Follows to fetch.
+     */
+    where?: FollowWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Follows to fetch.
+     */
+    orderBy?: FollowOrderByWithRelationInput | FollowOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Follows.
+     */
+    cursor?: FollowWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Follows from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Follows.
+     */
+    skip?: number
+    distinct?: FollowScalarFieldEnum | FollowScalarFieldEnum[]
+  }
+
+  /**
+   * Follow create
+   */
+  export type FollowCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Follow
+     */
+    select?: FollowSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Follow
+     */
+    omit?: FollowOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FollowInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Follow.
+     */
+    data: XOR<FollowCreateInput, FollowUncheckedCreateInput>
+  }
+
+  /**
+   * Follow createMany
+   */
+  export type FollowCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Follows.
+     */
+    data: FollowCreateManyInput | FollowCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Follow createManyAndReturn
+   */
+  export type FollowCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Follow
+     */
+    select?: FollowSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Follow
+     */
+    omit?: FollowOmit<ExtArgs> | null
+    /**
+     * The data used to create many Follows.
+     */
+    data: FollowCreateManyInput | FollowCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FollowIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Follow update
+   */
+  export type FollowUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Follow
+     */
+    select?: FollowSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Follow
+     */
+    omit?: FollowOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FollowInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Follow.
+     */
+    data: XOR<FollowUpdateInput, FollowUncheckedUpdateInput>
+    /**
+     * Choose, which Follow to update.
+     */
+    where: FollowWhereUniqueInput
+  }
+
+  /**
+   * Follow updateMany
+   */
+  export type FollowUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Follows.
+     */
+    data: XOR<FollowUpdateManyMutationInput, FollowUncheckedUpdateManyInput>
+    /**
+     * Filter which Follows to update
+     */
+    where?: FollowWhereInput
+  }
+
+  /**
+   * Follow updateManyAndReturn
+   */
+  export type FollowUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Follow
+     */
+    select?: FollowSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Follow
+     */
+    omit?: FollowOmit<ExtArgs> | null
+    /**
+     * The data used to update Follows.
+     */
+    data: XOR<FollowUpdateManyMutationInput, FollowUncheckedUpdateManyInput>
+    /**
+     * Filter which Follows to update
+     */
+    where?: FollowWhereInput
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FollowIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Follow upsert
+   */
+  export type FollowUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Follow
+     */
+    select?: FollowSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Follow
+     */
+    omit?: FollowOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FollowInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Follow to update in case it exists.
+     */
+    where: FollowWhereUniqueInput
+    /**
+     * In case the Follow found by the `where` argument doesn't exist, create a new Follow with this data.
+     */
+    create: XOR<FollowCreateInput, FollowUncheckedCreateInput>
+    /**
+     * In case the Follow was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<FollowUpdateInput, FollowUncheckedUpdateInput>
+  }
+
+  /**
+   * Follow delete
+   */
+  export type FollowDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Follow
+     */
+    select?: FollowSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Follow
+     */
+    omit?: FollowOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FollowInclude<ExtArgs> | null
+    /**
+     * Filter which Follow to delete.
+     */
+    where: FollowWhereUniqueInput
+  }
+
+  /**
+   * Follow deleteMany
+   */
+  export type FollowDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Follows to delete
+     */
+    where?: FollowWhereInput
+  }
+
+  /**
+   * Follow without action
+   */
+  export type FollowDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Follow
+     */
+    select?: FollowSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Follow
+     */
+    omit?: FollowOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: FollowInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Notification
+   */
+
+  export type AggregateNotification = {
+    _count: NotificationCountAggregateOutputType | null
+    _min: NotificationMinAggregateOutputType | null
+    _max: NotificationMaxAggregateOutputType | null
+  }
+
+  export type NotificationMinAggregateOutputType = {
+    id: string | null
+    message: string | null
+    type: $Enums.NotificationType | null
+    isRead: boolean | null
+    userId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type NotificationMaxAggregateOutputType = {
+    id: string | null
+    message: string | null
+    type: $Enums.NotificationType | null
+    isRead: boolean | null
+    userId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type NotificationCountAggregateOutputType = {
+    id: number
+    message: number
+    type: number
+    isRead: number
+    userId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type NotificationMinAggregateInputType = {
+    id?: true
+    message?: true
+    type?: true
+    isRead?: true
+    userId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type NotificationMaxAggregateInputType = {
+    id?: true
+    message?: true
+    type?: true
+    isRead?: true
+    userId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type NotificationCountAggregateInputType = {
+    id?: true
+    message?: true
+    type?: true
+    isRead?: true
+    userId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type NotificationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Notification to aggregate.
+     */
+    where?: NotificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Notifications to fetch.
+     */
+    orderBy?: NotificationOrderByWithRelationInput | NotificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: NotificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Notifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Notifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Notifications
+    **/
+    _count?: true | NotificationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: NotificationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: NotificationMaxAggregateInputType
+  }
+
+  export type GetNotificationAggregateType<T extends NotificationAggregateArgs> = {
+        [P in keyof T & keyof AggregateNotification]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateNotification[P]>
+      : GetScalarType<T[P], AggregateNotification[P]>
+  }
+
+
+
+
+  export type NotificationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: NotificationWhereInput
+    orderBy?: NotificationOrderByWithAggregationInput | NotificationOrderByWithAggregationInput[]
+    by: NotificationScalarFieldEnum[] | NotificationScalarFieldEnum
+    having?: NotificationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: NotificationCountAggregateInputType | true
+    _min?: NotificationMinAggregateInputType
+    _max?: NotificationMaxAggregateInputType
+  }
+
+  export type NotificationGroupByOutputType = {
+    id: string
+    message: string
+    type: $Enums.NotificationType
+    isRead: boolean
+    userId: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: NotificationCountAggregateOutputType | null
+    _min: NotificationMinAggregateOutputType | null
+    _max: NotificationMaxAggregateOutputType | null
+  }
+
+  type GetNotificationGroupByPayload<T extends NotificationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<NotificationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof NotificationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], NotificationGroupByOutputType[P]>
+            : GetScalarType<T[P], NotificationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type NotificationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    message?: boolean
+    type?: boolean
+    isRead?: boolean
+    userId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | Notification$userArgs<ExtArgs>
+  }, ExtArgs["result"]["notification"]>
+
+  export type NotificationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    message?: boolean
+    type?: boolean
+    isRead?: boolean
+    userId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | Notification$userArgs<ExtArgs>
+  }, ExtArgs["result"]["notification"]>
+
+  export type NotificationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    message?: boolean
+    type?: boolean
+    isRead?: boolean
+    userId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | Notification$userArgs<ExtArgs>
+  }, ExtArgs["result"]["notification"]>
+
+  export type NotificationSelectScalar = {
+    id?: boolean
+    message?: boolean
+    type?: boolean
+    isRead?: boolean
+    userId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type NotificationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "message" | "type" | "isRead" | "userId" | "createdAt" | "updatedAt", ExtArgs["result"]["notification"]>
+  export type NotificationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | Notification$userArgs<ExtArgs>
+  }
+  export type NotificationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | Notification$userArgs<ExtArgs>
+  }
+  export type NotificationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | Notification$userArgs<ExtArgs>
+  }
+
+  export type $NotificationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Notification"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      message: string
+      type: $Enums.NotificationType
+      isRead: boolean
+      userId: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["notification"]>
+    composites: {}
+  }
+
+  type NotificationGetPayload<S extends boolean | null | undefined | NotificationDefaultArgs> = $Result.GetResult<Prisma.$NotificationPayload, S>
+
+  type NotificationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<NotificationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: NotificationCountAggregateInputType | true
+    }
+
+  export interface NotificationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Notification'], meta: { name: 'Notification' } }
+    /**
+     * Find zero or one Notification that matches the filter.
+     * @param {NotificationFindUniqueArgs} args - Arguments to find a Notification
+     * @example
+     * // Get one Notification
+     * const notification = await prisma.notification.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends NotificationFindUniqueArgs>(args: SelectSubset<T, NotificationFindUniqueArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findUnique", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find one Notification that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {NotificationFindUniqueOrThrowArgs} args - Arguments to find a Notification
+     * @example
+     * // Get one Notification
+     * const notification = await prisma.notification.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends NotificationFindUniqueOrThrowArgs>(args: SelectSubset<T, NotificationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first Notification that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationFindFirstArgs} args - Arguments to find a Notification
+     * @example
+     * // Get one Notification
+     * const notification = await prisma.notification.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends NotificationFindFirstArgs>(args?: SelectSubset<T, NotificationFindFirstArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findFirst", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first Notification that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationFindFirstOrThrowArgs} args - Arguments to find a Notification
+     * @example
+     * // Get one Notification
+     * const notification = await prisma.notification.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends NotificationFindFirstOrThrowArgs>(args?: SelectSubset<T, NotificationFindFirstOrThrowArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findFirstOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find zero or more Notifications that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Notifications
+     * const notifications = await prisma.notification.findMany()
+     * 
+     * // Get first 10 Notifications
+     * const notifications = await prisma.notification.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const notificationWithIdOnly = await prisma.notification.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends NotificationFindManyArgs>(args?: SelectSubset<T, NotificationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", ClientOptions>>
+
+    /**
+     * Create a Notification.
+     * @param {NotificationCreateArgs} args - Arguments to create a Notification.
+     * @example
+     * // Create one Notification
+     * const Notification = await prisma.notification.create({
+     *   data: {
+     *     // ... data to create a Notification
+     *   }
+     * })
+     * 
+     */
+    create<T extends NotificationCreateArgs>(args: SelectSubset<T, NotificationCreateArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "create", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Create many Notifications.
+     * @param {NotificationCreateManyArgs} args - Arguments to create many Notifications.
+     * @example
+     * // Create many Notifications
+     * const notification = await prisma.notification.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends NotificationCreateManyArgs>(args?: SelectSubset<T, NotificationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Notifications and returns the data saved in the database.
+     * @param {NotificationCreateManyAndReturnArgs} args - Arguments to create many Notifications.
+     * @example
+     * // Create many Notifications
+     * const notification = await prisma.notification.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Notifications and only return the `id`
+     * const notificationWithIdOnly = await prisma.notification.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends NotificationCreateManyAndReturnArgs>(args?: SelectSubset<T, NotificationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "createManyAndReturn", ClientOptions>>
+
+    /**
+     * Delete a Notification.
+     * @param {NotificationDeleteArgs} args - Arguments to delete one Notification.
+     * @example
+     * // Delete one Notification
+     * const Notification = await prisma.notification.delete({
+     *   where: {
+     *     // ... filter to delete one Notification
+     *   }
+     * })
+     * 
+     */
+    delete<T extends NotificationDeleteArgs>(args: SelectSubset<T, NotificationDeleteArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "delete", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Update one Notification.
+     * @param {NotificationUpdateArgs} args - Arguments to update one Notification.
+     * @example
+     * // Update one Notification
+     * const notification = await prisma.notification.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends NotificationUpdateArgs>(args: SelectSubset<T, NotificationUpdateArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "update", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Delete zero or more Notifications.
+     * @param {NotificationDeleteManyArgs} args - Arguments to filter Notifications to delete.
+     * @example
+     * // Delete a few Notifications
+     * const { count } = await prisma.notification.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends NotificationDeleteManyArgs>(args?: SelectSubset<T, NotificationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Notifications.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Notifications
+     * const notification = await prisma.notification.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends NotificationUpdateManyArgs>(args: SelectSubset<T, NotificationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Notifications and returns the data updated in the database.
+     * @param {NotificationUpdateManyAndReturnArgs} args - Arguments to update many Notifications.
+     * @example
+     * // Update many Notifications
+     * const notification = await prisma.notification.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Notifications and only return the `id`
+     * const notificationWithIdOnly = await prisma.notification.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends NotificationUpdateManyAndReturnArgs>(args: SelectSubset<T, NotificationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "updateManyAndReturn", ClientOptions>>
+
+    /**
+     * Create or update one Notification.
+     * @param {NotificationUpsertArgs} args - Arguments to update or create a Notification.
+     * @example
+     * // Update or create a Notification
+     * const notification = await prisma.notification.upsert({
+     *   create: {
+     *     // ... data to create a Notification
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Notification we want to update
+     *   }
+     * })
+     */
+    upsert<T extends NotificationUpsertArgs>(args: SelectSubset<T, NotificationUpsertArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "upsert", ClientOptions>, never, ExtArgs, ClientOptions>
+
+
+    /**
+     * Count the number of Notifications.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationCountArgs} args - Arguments to filter Notifications to count.
+     * @example
+     * // Count the number of Notifications
+     * const count = await prisma.notification.count({
+     *   where: {
+     *     // ... the filter for the Notifications we want to count
+     *   }
+     * })
+    **/
+    count<T extends NotificationCountArgs>(
+      args?: Subset<T, NotificationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], NotificationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Notification.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends NotificationAggregateArgs>(args: Subset<T, NotificationAggregateArgs>): Prisma.PrismaPromise<GetNotificationAggregateType<T>>
+
+    /**
+     * Group by Notification.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends NotificationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: NotificationGroupByArgs['orderBy'] }
+        : { orderBy?: NotificationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, NotificationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetNotificationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Notification model
+   */
+  readonly fields: NotificationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Notification.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__NotificationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends Notification$userArgs<ExtArgs> = {}>(args?: Subset<T, Notification$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | null, null, ExtArgs, ClientOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Notification model
+   */ 
+  interface NotificationFieldRefs {
+    readonly id: FieldRef<"Notification", 'String'>
+    readonly message: FieldRef<"Notification", 'String'>
+    readonly type: FieldRef<"Notification", 'NotificationType'>
+    readonly isRead: FieldRef<"Notification", 'Boolean'>
+    readonly userId: FieldRef<"Notification", 'String'>
+    readonly createdAt: FieldRef<"Notification", 'DateTime'>
+    readonly updatedAt: FieldRef<"Notification", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Notification findUnique
+   */
+  export type NotificationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+    /**
+     * Filter, which Notification to fetch.
+     */
+    where: NotificationWhereUniqueInput
+  }
+
+  /**
+   * Notification findUniqueOrThrow
+   */
+  export type NotificationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+    /**
+     * Filter, which Notification to fetch.
+     */
+    where: NotificationWhereUniqueInput
+  }
+
+  /**
+   * Notification findFirst
+   */
+  export type NotificationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+    /**
+     * Filter, which Notification to fetch.
+     */
+    where?: NotificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Notifications to fetch.
+     */
+    orderBy?: NotificationOrderByWithRelationInput | NotificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Notifications.
+     */
+    cursor?: NotificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Notifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Notifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Notifications.
+     */
+    distinct?: NotificationScalarFieldEnum | NotificationScalarFieldEnum[]
+  }
+
+  /**
+   * Notification findFirstOrThrow
+   */
+  export type NotificationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+    /**
+     * Filter, which Notification to fetch.
+     */
+    where?: NotificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Notifications to fetch.
+     */
+    orderBy?: NotificationOrderByWithRelationInput | NotificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Notifications.
+     */
+    cursor?: NotificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Notifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Notifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Notifications.
+     */
+    distinct?: NotificationScalarFieldEnum | NotificationScalarFieldEnum[]
+  }
+
+  /**
+   * Notification findMany
+   */
+  export type NotificationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+    /**
+     * Filter, which Notifications to fetch.
+     */
+    where?: NotificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Notifications to fetch.
+     */
+    orderBy?: NotificationOrderByWithRelationInput | NotificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Notifications.
+     */
+    cursor?: NotificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Notifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Notifications.
+     */
+    skip?: number
+    distinct?: NotificationScalarFieldEnum | NotificationScalarFieldEnum[]
+  }
+
+  /**
+   * Notification create
+   */
+  export type NotificationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Notification.
+     */
+    data: XOR<NotificationCreateInput, NotificationUncheckedCreateInput>
+  }
+
+  /**
+   * Notification createMany
+   */
+  export type NotificationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Notifications.
+     */
+    data: NotificationCreateManyInput | NotificationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Notification createManyAndReturn
+   */
+  export type NotificationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * The data used to create many Notifications.
+     */
+    data: NotificationCreateManyInput | NotificationCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Notification update
+   */
+  export type NotificationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Notification.
+     */
+    data: XOR<NotificationUpdateInput, NotificationUncheckedUpdateInput>
+    /**
+     * Choose, which Notification to update.
+     */
+    where: NotificationWhereUniqueInput
+  }
+
+  /**
+   * Notification updateMany
+   */
+  export type NotificationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Notifications.
+     */
+    data: XOR<NotificationUpdateManyMutationInput, NotificationUncheckedUpdateManyInput>
+    /**
+     * Filter which Notifications to update
+     */
+    where?: NotificationWhereInput
+  }
+
+  /**
+   * Notification updateManyAndReturn
+   */
+  export type NotificationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * The data used to update Notifications.
+     */
+    data: XOR<NotificationUpdateManyMutationInput, NotificationUncheckedUpdateManyInput>
+    /**
+     * Filter which Notifications to update
+     */
+    where?: NotificationWhereInput
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Notification upsert
+   */
+  export type NotificationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Notification to update in case it exists.
+     */
+    where: NotificationWhereUniqueInput
+    /**
+     * In case the Notification found by the `where` argument doesn't exist, create a new Notification with this data.
+     */
+    create: XOR<NotificationCreateInput, NotificationUncheckedCreateInput>
+    /**
+     * In case the Notification was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<NotificationUpdateInput, NotificationUncheckedUpdateInput>
+  }
+
+  /**
+   * Notification delete
+   */
+  export type NotificationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+    /**
+     * Filter which Notification to delete.
+     */
+    where: NotificationWhereUniqueInput
+  }
+
+  /**
+   * Notification deleteMany
+   */
+  export type NotificationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Notifications to delete
+     */
+    where?: NotificationWhereInput
+  }
+
+  /**
+   * Notification.user
+   */
+  export type Notification$userArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+  }
+
+  /**
+   * Notification without action
+   */
+  export type NotificationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model NotificationSettings
+   */
+
+  export type AggregateNotificationSettings = {
+    _count: NotificationSettingsCountAggregateOutputType | null
+    _min: NotificationSettingsMinAggregateOutputType | null
+    _max: NotificationSettingsMaxAggregateOutputType | null
+  }
+
+  export type NotificationSettingsMinAggregateOutputType = {
+    id: string | null
+    siteNotifications: boolean | null
+    telegramNotifications: boolean | null
+    userId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type NotificationSettingsMaxAggregateOutputType = {
+    id: string | null
+    siteNotifications: boolean | null
+    telegramNotifications: boolean | null
+    userId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type NotificationSettingsCountAggregateOutputType = {
+    id: number
+    siteNotifications: number
+    telegramNotifications: number
+    userId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type NotificationSettingsMinAggregateInputType = {
+    id?: true
+    siteNotifications?: true
+    telegramNotifications?: true
+    userId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type NotificationSettingsMaxAggregateInputType = {
+    id?: true
+    siteNotifications?: true
+    telegramNotifications?: true
+    userId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type NotificationSettingsCountAggregateInputType = {
+    id?: true
+    siteNotifications?: true
+    telegramNotifications?: true
+    userId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type NotificationSettingsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which NotificationSettings to aggregate.
+     */
+    where?: NotificationSettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of NotificationSettings to fetch.
+     */
+    orderBy?: NotificationSettingsOrderByWithRelationInput | NotificationSettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: NotificationSettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` NotificationSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` NotificationSettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned NotificationSettings
+    **/
+    _count?: true | NotificationSettingsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: NotificationSettingsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: NotificationSettingsMaxAggregateInputType
+  }
+
+  export type GetNotificationSettingsAggregateType<T extends NotificationSettingsAggregateArgs> = {
+        [P in keyof T & keyof AggregateNotificationSettings]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateNotificationSettings[P]>
+      : GetScalarType<T[P], AggregateNotificationSettings[P]>
+  }
+
+
+
+
+  export type NotificationSettingsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: NotificationSettingsWhereInput
+    orderBy?: NotificationSettingsOrderByWithAggregationInput | NotificationSettingsOrderByWithAggregationInput[]
+    by: NotificationSettingsScalarFieldEnum[] | NotificationSettingsScalarFieldEnum
+    having?: NotificationSettingsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: NotificationSettingsCountAggregateInputType | true
+    _min?: NotificationSettingsMinAggregateInputType
+    _max?: NotificationSettingsMaxAggregateInputType
+  }
+
+  export type NotificationSettingsGroupByOutputType = {
+    id: string
+    siteNotifications: boolean
+    telegramNotifications: boolean
+    userId: string
+    createdAt: Date
+    updatedAt: Date
+    _count: NotificationSettingsCountAggregateOutputType | null
+    _min: NotificationSettingsMinAggregateOutputType | null
+    _max: NotificationSettingsMaxAggregateOutputType | null
+  }
+
+  type GetNotificationSettingsGroupByPayload<T extends NotificationSettingsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<NotificationSettingsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof NotificationSettingsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], NotificationSettingsGroupByOutputType[P]>
+            : GetScalarType<T[P], NotificationSettingsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type NotificationSettingsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    siteNotifications?: boolean
+    telegramNotifications?: boolean
+    userId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["notificationSettings"]>
+
+  export type NotificationSettingsSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    siteNotifications?: boolean
+    telegramNotifications?: boolean
+    userId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["notificationSettings"]>
+
+  export type NotificationSettingsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    siteNotifications?: boolean
+    telegramNotifications?: boolean
+    userId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["notificationSettings"]>
+
+  export type NotificationSettingsSelectScalar = {
+    id?: boolean
+    siteNotifications?: boolean
+    telegramNotifications?: boolean
+    userId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type NotificationSettingsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "siteNotifications" | "telegramNotifications" | "userId" | "createdAt" | "updatedAt", ExtArgs["result"]["notificationSettings"]>
+  export type NotificationSettingsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type NotificationSettingsIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type NotificationSettingsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $NotificationSettingsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "NotificationSettings"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      siteNotifications: boolean
+      telegramNotifications: boolean
+      userId: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["notificationSettings"]>
+    composites: {}
+  }
+
+  type NotificationSettingsGetPayload<S extends boolean | null | undefined | NotificationSettingsDefaultArgs> = $Result.GetResult<Prisma.$NotificationSettingsPayload, S>
+
+  type NotificationSettingsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<NotificationSettingsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: NotificationSettingsCountAggregateInputType | true
+    }
+
+  export interface NotificationSettingsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['NotificationSettings'], meta: { name: 'NotificationSettings' } }
+    /**
+     * Find zero or one NotificationSettings that matches the filter.
+     * @param {NotificationSettingsFindUniqueArgs} args - Arguments to find a NotificationSettings
+     * @example
+     * // Get one NotificationSettings
+     * const notificationSettings = await prisma.notificationSettings.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends NotificationSettingsFindUniqueArgs>(args: SelectSubset<T, NotificationSettingsFindUniqueArgs<ExtArgs>>): Prisma__NotificationSettingsClient<$Result.GetResult<Prisma.$NotificationSettingsPayload<ExtArgs>, T, "findUnique", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find one NotificationSettings that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {NotificationSettingsFindUniqueOrThrowArgs} args - Arguments to find a NotificationSettings
+     * @example
+     * // Get one NotificationSettings
+     * const notificationSettings = await prisma.notificationSettings.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends NotificationSettingsFindUniqueOrThrowArgs>(args: SelectSubset<T, NotificationSettingsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__NotificationSettingsClient<$Result.GetResult<Prisma.$NotificationSettingsPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first NotificationSettings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationSettingsFindFirstArgs} args - Arguments to find a NotificationSettings
+     * @example
+     * // Get one NotificationSettings
+     * const notificationSettings = await prisma.notificationSettings.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends NotificationSettingsFindFirstArgs>(args?: SelectSubset<T, NotificationSettingsFindFirstArgs<ExtArgs>>): Prisma__NotificationSettingsClient<$Result.GetResult<Prisma.$NotificationSettingsPayload<ExtArgs>, T, "findFirst", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first NotificationSettings that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationSettingsFindFirstOrThrowArgs} args - Arguments to find a NotificationSettings
+     * @example
+     * // Get one NotificationSettings
+     * const notificationSettings = await prisma.notificationSettings.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends NotificationSettingsFindFirstOrThrowArgs>(args?: SelectSubset<T, NotificationSettingsFindFirstOrThrowArgs<ExtArgs>>): Prisma__NotificationSettingsClient<$Result.GetResult<Prisma.$NotificationSettingsPayload<ExtArgs>, T, "findFirstOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find zero or more NotificationSettings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationSettingsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all NotificationSettings
+     * const notificationSettings = await prisma.notificationSettings.findMany()
+     * 
+     * // Get first 10 NotificationSettings
+     * const notificationSettings = await prisma.notificationSettings.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const notificationSettingsWithIdOnly = await prisma.notificationSettings.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends NotificationSettingsFindManyArgs>(args?: SelectSubset<T, NotificationSettingsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationSettingsPayload<ExtArgs>, T, "findMany", ClientOptions>>
+
+    /**
+     * Create a NotificationSettings.
+     * @param {NotificationSettingsCreateArgs} args - Arguments to create a NotificationSettings.
+     * @example
+     * // Create one NotificationSettings
+     * const NotificationSettings = await prisma.notificationSettings.create({
+     *   data: {
+     *     // ... data to create a NotificationSettings
+     *   }
+     * })
+     * 
+     */
+    create<T extends NotificationSettingsCreateArgs>(args: SelectSubset<T, NotificationSettingsCreateArgs<ExtArgs>>): Prisma__NotificationSettingsClient<$Result.GetResult<Prisma.$NotificationSettingsPayload<ExtArgs>, T, "create", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Create many NotificationSettings.
+     * @param {NotificationSettingsCreateManyArgs} args - Arguments to create many NotificationSettings.
+     * @example
+     * // Create many NotificationSettings
+     * const notificationSettings = await prisma.notificationSettings.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends NotificationSettingsCreateManyArgs>(args?: SelectSubset<T, NotificationSettingsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many NotificationSettings and returns the data saved in the database.
+     * @param {NotificationSettingsCreateManyAndReturnArgs} args - Arguments to create many NotificationSettings.
+     * @example
+     * // Create many NotificationSettings
+     * const notificationSettings = await prisma.notificationSettings.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many NotificationSettings and only return the `id`
+     * const notificationSettingsWithIdOnly = await prisma.notificationSettings.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends NotificationSettingsCreateManyAndReturnArgs>(args?: SelectSubset<T, NotificationSettingsCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationSettingsPayload<ExtArgs>, T, "createManyAndReturn", ClientOptions>>
+
+    /**
+     * Delete a NotificationSettings.
+     * @param {NotificationSettingsDeleteArgs} args - Arguments to delete one NotificationSettings.
+     * @example
+     * // Delete one NotificationSettings
+     * const NotificationSettings = await prisma.notificationSettings.delete({
+     *   where: {
+     *     // ... filter to delete one NotificationSettings
+     *   }
+     * })
+     * 
+     */
+    delete<T extends NotificationSettingsDeleteArgs>(args: SelectSubset<T, NotificationSettingsDeleteArgs<ExtArgs>>): Prisma__NotificationSettingsClient<$Result.GetResult<Prisma.$NotificationSettingsPayload<ExtArgs>, T, "delete", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Update one NotificationSettings.
+     * @param {NotificationSettingsUpdateArgs} args - Arguments to update one NotificationSettings.
+     * @example
+     * // Update one NotificationSettings
+     * const notificationSettings = await prisma.notificationSettings.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends NotificationSettingsUpdateArgs>(args: SelectSubset<T, NotificationSettingsUpdateArgs<ExtArgs>>): Prisma__NotificationSettingsClient<$Result.GetResult<Prisma.$NotificationSettingsPayload<ExtArgs>, T, "update", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Delete zero or more NotificationSettings.
+     * @param {NotificationSettingsDeleteManyArgs} args - Arguments to filter NotificationSettings to delete.
+     * @example
+     * // Delete a few NotificationSettings
+     * const { count } = await prisma.notificationSettings.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends NotificationSettingsDeleteManyArgs>(args?: SelectSubset<T, NotificationSettingsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more NotificationSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationSettingsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many NotificationSettings
+     * const notificationSettings = await prisma.notificationSettings.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends NotificationSettingsUpdateManyArgs>(args: SelectSubset<T, NotificationSettingsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more NotificationSettings and returns the data updated in the database.
+     * @param {NotificationSettingsUpdateManyAndReturnArgs} args - Arguments to update many NotificationSettings.
+     * @example
+     * // Update many NotificationSettings
+     * const notificationSettings = await prisma.notificationSettings.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more NotificationSettings and only return the `id`
+     * const notificationSettingsWithIdOnly = await prisma.notificationSettings.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends NotificationSettingsUpdateManyAndReturnArgs>(args: SelectSubset<T, NotificationSettingsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationSettingsPayload<ExtArgs>, T, "updateManyAndReturn", ClientOptions>>
+
+    /**
+     * Create or update one NotificationSettings.
+     * @param {NotificationSettingsUpsertArgs} args - Arguments to update or create a NotificationSettings.
+     * @example
+     * // Update or create a NotificationSettings
+     * const notificationSettings = await prisma.notificationSettings.upsert({
+     *   create: {
+     *     // ... data to create a NotificationSettings
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the NotificationSettings we want to update
+     *   }
+     * })
+     */
+    upsert<T extends NotificationSettingsUpsertArgs>(args: SelectSubset<T, NotificationSettingsUpsertArgs<ExtArgs>>): Prisma__NotificationSettingsClient<$Result.GetResult<Prisma.$NotificationSettingsPayload<ExtArgs>, T, "upsert", ClientOptions>, never, ExtArgs, ClientOptions>
+
+
+    /**
+     * Count the number of NotificationSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationSettingsCountArgs} args - Arguments to filter NotificationSettings to count.
+     * @example
+     * // Count the number of NotificationSettings
+     * const count = await prisma.notificationSettings.count({
+     *   where: {
+     *     // ... the filter for the NotificationSettings we want to count
+     *   }
+     * })
+    **/
+    count<T extends NotificationSettingsCountArgs>(
+      args?: Subset<T, NotificationSettingsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], NotificationSettingsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a NotificationSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationSettingsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends NotificationSettingsAggregateArgs>(args: Subset<T, NotificationSettingsAggregateArgs>): Prisma.PrismaPromise<GetNotificationSettingsAggregateType<T>>
+
+    /**
+     * Group by NotificationSettings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationSettingsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends NotificationSettingsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: NotificationSettingsGroupByArgs['orderBy'] }
+        : { orderBy?: NotificationSettingsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, NotificationSettingsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetNotificationSettingsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the NotificationSettings model
+   */
+  readonly fields: NotificationSettingsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for NotificationSettings.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__NotificationSettingsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the NotificationSettings model
+   */ 
+  interface NotificationSettingsFieldRefs {
+    readonly id: FieldRef<"NotificationSettings", 'String'>
+    readonly siteNotifications: FieldRef<"NotificationSettings", 'Boolean'>
+    readonly telegramNotifications: FieldRef<"NotificationSettings", 'Boolean'>
+    readonly userId: FieldRef<"NotificationSettings", 'String'>
+    readonly createdAt: FieldRef<"NotificationSettings", 'DateTime'>
+    readonly updatedAt: FieldRef<"NotificationSettings", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * NotificationSettings findUnique
+   */
+  export type NotificationSettingsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationSettings
+     */
+    select?: NotificationSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationSettings
+     */
+    omit?: NotificationSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationSettingsInclude<ExtArgs> | null
+    /**
+     * Filter, which NotificationSettings to fetch.
+     */
+    where: NotificationSettingsWhereUniqueInput
+  }
+
+  /**
+   * NotificationSettings findUniqueOrThrow
+   */
+  export type NotificationSettingsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationSettings
+     */
+    select?: NotificationSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationSettings
+     */
+    omit?: NotificationSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationSettingsInclude<ExtArgs> | null
+    /**
+     * Filter, which NotificationSettings to fetch.
+     */
+    where: NotificationSettingsWhereUniqueInput
+  }
+
+  /**
+   * NotificationSettings findFirst
+   */
+  export type NotificationSettingsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationSettings
+     */
+    select?: NotificationSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationSettings
+     */
+    omit?: NotificationSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationSettingsInclude<ExtArgs> | null
+    /**
+     * Filter, which NotificationSettings to fetch.
+     */
+    where?: NotificationSettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of NotificationSettings to fetch.
+     */
+    orderBy?: NotificationSettingsOrderByWithRelationInput | NotificationSettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for NotificationSettings.
+     */
+    cursor?: NotificationSettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` NotificationSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` NotificationSettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of NotificationSettings.
+     */
+    distinct?: NotificationSettingsScalarFieldEnum | NotificationSettingsScalarFieldEnum[]
+  }
+
+  /**
+   * NotificationSettings findFirstOrThrow
+   */
+  export type NotificationSettingsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationSettings
+     */
+    select?: NotificationSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationSettings
+     */
+    omit?: NotificationSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationSettingsInclude<ExtArgs> | null
+    /**
+     * Filter, which NotificationSettings to fetch.
+     */
+    where?: NotificationSettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of NotificationSettings to fetch.
+     */
+    orderBy?: NotificationSettingsOrderByWithRelationInput | NotificationSettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for NotificationSettings.
+     */
+    cursor?: NotificationSettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` NotificationSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` NotificationSettings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of NotificationSettings.
+     */
+    distinct?: NotificationSettingsScalarFieldEnum | NotificationSettingsScalarFieldEnum[]
+  }
+
+  /**
+   * NotificationSettings findMany
+   */
+  export type NotificationSettingsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationSettings
+     */
+    select?: NotificationSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationSettings
+     */
+    omit?: NotificationSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationSettingsInclude<ExtArgs> | null
+    /**
+     * Filter, which NotificationSettings to fetch.
+     */
+    where?: NotificationSettingsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of NotificationSettings to fetch.
+     */
+    orderBy?: NotificationSettingsOrderByWithRelationInput | NotificationSettingsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing NotificationSettings.
+     */
+    cursor?: NotificationSettingsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` NotificationSettings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` NotificationSettings.
+     */
+    skip?: number
+    distinct?: NotificationSettingsScalarFieldEnum | NotificationSettingsScalarFieldEnum[]
+  }
+
+  /**
+   * NotificationSettings create
+   */
+  export type NotificationSettingsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationSettings
+     */
+    select?: NotificationSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationSettings
+     */
+    omit?: NotificationSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationSettingsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a NotificationSettings.
+     */
+    data: XOR<NotificationSettingsCreateInput, NotificationSettingsUncheckedCreateInput>
+  }
+
+  /**
+   * NotificationSettings createMany
+   */
+  export type NotificationSettingsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many NotificationSettings.
+     */
+    data: NotificationSettingsCreateManyInput | NotificationSettingsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * NotificationSettings createManyAndReturn
+   */
+  export type NotificationSettingsCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationSettings
+     */
+    select?: NotificationSettingsSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationSettings
+     */
+    omit?: NotificationSettingsOmit<ExtArgs> | null
+    /**
+     * The data used to create many NotificationSettings.
+     */
+    data: NotificationSettingsCreateManyInput | NotificationSettingsCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationSettingsIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * NotificationSettings update
+   */
+  export type NotificationSettingsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationSettings
+     */
+    select?: NotificationSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationSettings
+     */
+    omit?: NotificationSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationSettingsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a NotificationSettings.
+     */
+    data: XOR<NotificationSettingsUpdateInput, NotificationSettingsUncheckedUpdateInput>
+    /**
+     * Choose, which NotificationSettings to update.
+     */
+    where: NotificationSettingsWhereUniqueInput
+  }
+
+  /**
+   * NotificationSettings updateMany
+   */
+  export type NotificationSettingsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update NotificationSettings.
+     */
+    data: XOR<NotificationSettingsUpdateManyMutationInput, NotificationSettingsUncheckedUpdateManyInput>
+    /**
+     * Filter which NotificationSettings to update
+     */
+    where?: NotificationSettingsWhereInput
+  }
+
+  /**
+   * NotificationSettings updateManyAndReturn
+   */
+  export type NotificationSettingsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationSettings
+     */
+    select?: NotificationSettingsSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationSettings
+     */
+    omit?: NotificationSettingsOmit<ExtArgs> | null
+    /**
+     * The data used to update NotificationSettings.
+     */
+    data: XOR<NotificationSettingsUpdateManyMutationInput, NotificationSettingsUncheckedUpdateManyInput>
+    /**
+     * Filter which NotificationSettings to update
+     */
+    where?: NotificationSettingsWhereInput
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationSettingsIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * NotificationSettings upsert
+   */
+  export type NotificationSettingsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationSettings
+     */
+    select?: NotificationSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationSettings
+     */
+    omit?: NotificationSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationSettingsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the NotificationSettings to update in case it exists.
+     */
+    where: NotificationSettingsWhereUniqueInput
+    /**
+     * In case the NotificationSettings found by the `where` argument doesn't exist, create a new NotificationSettings with this data.
+     */
+    create: XOR<NotificationSettingsCreateInput, NotificationSettingsUncheckedCreateInput>
+    /**
+     * In case the NotificationSettings was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<NotificationSettingsUpdateInput, NotificationSettingsUncheckedUpdateInput>
+  }
+
+  /**
+   * NotificationSettings delete
+   */
+  export type NotificationSettingsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationSettings
+     */
+    select?: NotificationSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationSettings
+     */
+    omit?: NotificationSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationSettingsInclude<ExtArgs> | null
+    /**
+     * Filter which NotificationSettings to delete.
+     */
+    where: NotificationSettingsWhereUniqueInput
+  }
+
+  /**
+   * NotificationSettings deleteMany
+   */
+  export type NotificationSettingsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which NotificationSettings to delete
+     */
+    where?: NotificationSettingsWhereInput
+  }
+
+  /**
+   * NotificationSettings without action
+   */
+  export type NotificationSettingsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the NotificationSettings
+     */
+    select?: NotificationSettingsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the NotificationSettings
+     */
+    omit?: NotificationSettingsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationSettingsInclude<ExtArgs> | null
   }
 
 
@@ -3306,6 +13137,7 @@ export namespace Prisma {
     dispayName: 'dispayName',
     avatar: 'avatar',
     bio: 'bio',
+    telegramId: 'telegramId',
     isVerefied: 'isVerefied',
     isEmailVerefied: 'isEmailVerefied',
     isTotpEnabled: 'isTotpEnabled',
@@ -3317,6 +13149,108 @@ export namespace Prisma {
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+  export const SocialLinkScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    url: 'url',
+    position: 'position',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    userId: 'userId'
+  };
+
+  export type SocialLinkScalarFieldEnum = (typeof SocialLinkScalarFieldEnum)[keyof typeof SocialLinkScalarFieldEnum]
+
+
+  export const StreamScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    thumbnailUrl: 'thumbnailUrl',
+    ingressId: 'ingressId',
+    serverUrl: 'serverUrl',
+    steamKey: 'steamKey',
+    isLive: 'isLive',
+    userId: 'userId',
+    categoryId: 'categoryId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type StreamScalarFieldEnum = (typeof StreamScalarFieldEnum)[keyof typeof StreamScalarFieldEnum]
+
+
+  export const ChatMessageScalarFieldEnum: {
+    id: 'id',
+    text: 'text',
+    streamid: 'streamid',
+    userid: 'userid',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ChatMessageScalarFieldEnum = (typeof ChatMessageScalarFieldEnum)[keyof typeof ChatMessageScalarFieldEnum]
+
+
+  export const ChatSettingsScalarFieldEnum: {
+    id: 'id',
+    isChatEnabled: 'isChatEnabled',
+    isChatFollowersOnly: 'isChatFollowersOnly',
+    isChatPremiumFollowersOnly: 'isChatPremiumFollowersOnly',
+    streamId: 'streamId'
+  };
+
+  export type ChatSettingsScalarFieldEnum = (typeof ChatSettingsScalarFieldEnum)[keyof typeof ChatSettingsScalarFieldEnum]
+
+
+  export const CategoryScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    slug: 'slug',
+    description: 'description',
+    thumbnailUrl: 'thumbnailUrl',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
+
+
+  export const FollowScalarFieldEnum: {
+    id: 'id',
+    followerId: 'followerId',
+    followingId: 'followingId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type FollowScalarFieldEnum = (typeof FollowScalarFieldEnum)[keyof typeof FollowScalarFieldEnum]
+
+
+  export const NotificationScalarFieldEnum: {
+    id: 'id',
+    message: 'message',
+    type: 'type',
+    isRead: 'isRead',
+    userId: 'userId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
+
+
+  export const NotificationSettingsScalarFieldEnum: {
+    id: 'id',
+    siteNotifications: 'siteNotifications',
+    telegramNotifications: 'telegramNotifications',
+    userId: 'userId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type NotificationSettingsScalarFieldEnum = (typeof NotificationSettingsScalarFieldEnum)[keyof typeof NotificationSettingsScalarFieldEnum]
 
 
   export const TokenScalarFieldEnum: {
@@ -3397,6 +13331,34 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Int'
+   */
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int[]'
+   */
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'NotificationType'
+   */
+  export type EnumNotificationTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'NotificationType'>
+    
+
+
+  /**
+   * Reference to a field of type 'NotificationType[]'
+   */
+  export type ListEnumNotificationTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'NotificationType[]'>
+    
+
+
+  /**
    * Reference to a field of type 'TokenType'
    */
   export type EnumTokenTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TokenType'>
@@ -3411,16 +13373,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Int'
+   * Reference to a field of type 'Float'
    */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
     
 
 
   /**
-   * Reference to a field of type 'Int[]'
+   * Reference to a field of type 'Float[]'
    */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
   /**
    * Deep Input Types
@@ -3438,6 +13400,7 @@ export namespace Prisma {
     dispayName?: StringFilter<"User"> | string
     avatar?: StringNullableFilter<"User"> | string | null
     bio?: StringNullableFilter<"User"> | string | null
+    telegramId?: StringNullableFilter<"User"> | string | null
     isVerefied?: BoolFilter<"User"> | boolean
     isEmailVerefied?: BoolFilter<"User"> | boolean
     isTotpEnabled?: BoolFilter<"User"> | boolean
@@ -3447,6 +13410,13 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     tokens?: TokenListRelationFilter
+    socialLinks?: SocialLinkListRelationFilter
+    stream?: StreamListRelationFilter
+    chatMessages?: ChatMessageListRelationFilter
+    notifications?: NotificationListRelationFilter
+    notificationSettings?: XOR<NotificationSettingsNullableScalarRelationFilter, NotificationSettingsWhereInput> | null
+    followers?: FollowListRelationFilter
+    followings?: FollowListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -3457,6 +13427,7 @@ export namespace Prisma {
     dispayName?: SortOrder
     avatar?: SortOrderInput | SortOrder
     bio?: SortOrderInput | SortOrder
+    telegramId?: SortOrderInput | SortOrder
     isVerefied?: SortOrder
     isEmailVerefied?: SortOrder
     isTotpEnabled?: SortOrder
@@ -3466,6 +13437,13 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     tokens?: TokenOrderByRelationAggregateInput
+    socialLinks?: SocialLinkOrderByRelationAggregateInput
+    stream?: StreamOrderByRelationAggregateInput
+    chatMessages?: ChatMessageOrderByRelationAggregateInput
+    notifications?: NotificationOrderByRelationAggregateInput
+    notificationSettings?: NotificationSettingsOrderByWithRelationInput
+    followers?: FollowOrderByRelationAggregateInput
+    followings?: FollowOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -3479,6 +13457,7 @@ export namespace Prisma {
     dispayName?: StringFilter<"User"> | string
     avatar?: StringNullableFilter<"User"> | string | null
     bio?: StringNullableFilter<"User"> | string | null
+    telegramId?: StringNullableFilter<"User"> | string | null
     isVerefied?: BoolFilter<"User"> | boolean
     isEmailVerefied?: BoolFilter<"User"> | boolean
     isTotpEnabled?: BoolFilter<"User"> | boolean
@@ -3488,6 +13467,13 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     tokens?: TokenListRelationFilter
+    socialLinks?: SocialLinkListRelationFilter
+    stream?: StreamListRelationFilter
+    chatMessages?: ChatMessageListRelationFilter
+    notifications?: NotificationListRelationFilter
+    notificationSettings?: XOR<NotificationSettingsNullableScalarRelationFilter, NotificationSettingsWhereInput> | null
+    followers?: FollowListRelationFilter
+    followings?: FollowListRelationFilter
   }, "id" | "email" | "username">
 
   export type UserOrderByWithAggregationInput = {
@@ -3498,6 +13484,7 @@ export namespace Prisma {
     dispayName?: SortOrder
     avatar?: SortOrderInput | SortOrder
     bio?: SortOrderInput | SortOrder
+    telegramId?: SortOrderInput | SortOrder
     isVerefied?: SortOrder
     isEmailVerefied?: SortOrder
     isTotpEnabled?: SortOrder
@@ -3522,6 +13509,7 @@ export namespace Prisma {
     dispayName?: StringWithAggregatesFilter<"User"> | string
     avatar?: StringNullableWithAggregatesFilter<"User"> | string | null
     bio?: StringNullableWithAggregatesFilter<"User"> | string | null
+    telegramId?: StringNullableWithAggregatesFilter<"User"> | string | null
     isVerefied?: BoolWithAggregatesFilter<"User"> | boolean
     isEmailVerefied?: BoolWithAggregatesFilter<"User"> | boolean
     isTotpEnabled?: BoolWithAggregatesFilter<"User"> | boolean
@@ -3530,6 +13518,534 @@ export namespace Prisma {
     deactivatedAt?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+  }
+
+  export type SocialLinkWhereInput = {
+    AND?: SocialLinkWhereInput | SocialLinkWhereInput[]
+    OR?: SocialLinkWhereInput[]
+    NOT?: SocialLinkWhereInput | SocialLinkWhereInput[]
+    id?: StringFilter<"SocialLink"> | string
+    title?: StringFilter<"SocialLink"> | string
+    url?: StringFilter<"SocialLink"> | string
+    position?: IntFilter<"SocialLink"> | number
+    createdAt?: DateTimeFilter<"SocialLink"> | Date | string
+    updatedAt?: DateTimeFilter<"SocialLink"> | Date | string
+    userId?: StringFilter<"SocialLink"> | string
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+  }
+
+  export type SocialLinkOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    url?: SortOrder
+    position?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type SocialLinkWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: SocialLinkWhereInput | SocialLinkWhereInput[]
+    OR?: SocialLinkWhereInput[]
+    NOT?: SocialLinkWhereInput | SocialLinkWhereInput[]
+    title?: StringFilter<"SocialLink"> | string
+    url?: StringFilter<"SocialLink"> | string
+    position?: IntFilter<"SocialLink"> | number
+    createdAt?: DateTimeFilter<"SocialLink"> | Date | string
+    updatedAt?: DateTimeFilter<"SocialLink"> | Date | string
+    userId?: StringFilter<"SocialLink"> | string
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+  }, "id">
+
+  export type SocialLinkOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    url?: SortOrder
+    position?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+    _count?: SocialLinkCountOrderByAggregateInput
+    _avg?: SocialLinkAvgOrderByAggregateInput
+    _max?: SocialLinkMaxOrderByAggregateInput
+    _min?: SocialLinkMinOrderByAggregateInput
+    _sum?: SocialLinkSumOrderByAggregateInput
+  }
+
+  export type SocialLinkScalarWhereWithAggregatesInput = {
+    AND?: SocialLinkScalarWhereWithAggregatesInput | SocialLinkScalarWhereWithAggregatesInput[]
+    OR?: SocialLinkScalarWhereWithAggregatesInput[]
+    NOT?: SocialLinkScalarWhereWithAggregatesInput | SocialLinkScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"SocialLink"> | string
+    title?: StringWithAggregatesFilter<"SocialLink"> | string
+    url?: StringWithAggregatesFilter<"SocialLink"> | string
+    position?: IntWithAggregatesFilter<"SocialLink"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"SocialLink"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"SocialLink"> | Date | string
+    userId?: StringWithAggregatesFilter<"SocialLink"> | string
+  }
+
+  export type StreamWhereInput = {
+    AND?: StreamWhereInput | StreamWhereInput[]
+    OR?: StreamWhereInput[]
+    NOT?: StreamWhereInput | StreamWhereInput[]
+    id?: StringFilter<"Stream"> | string
+    title?: StringFilter<"Stream"> | string
+    thumbnailUrl?: StringNullableFilter<"Stream"> | string | null
+    ingressId?: StringNullableFilter<"Stream"> | string | null
+    serverUrl?: StringNullableFilter<"Stream"> | string | null
+    steamKey?: StringNullableFilter<"Stream"> | string | null
+    isLive?: BoolFilter<"Stream"> | boolean
+    userId?: StringFilter<"Stream"> | string
+    categoryId?: StringNullableFilter<"Stream"> | string | null
+    createdAt?: DateTimeFilter<"Stream"> | Date | string
+    updatedAt?: DateTimeFilter<"Stream"> | Date | string
+    chatMessages?: ChatMessageListRelationFilter
+    chatSettings?: XOR<ChatSettingsNullableScalarRelationFilter, ChatSettingsWhereInput> | null
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    category?: XOR<CategoryNullableScalarRelationFilter, CategoryWhereInput> | null
+  }
+
+  export type StreamOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    thumbnailUrl?: SortOrderInput | SortOrder
+    ingressId?: SortOrderInput | SortOrder
+    serverUrl?: SortOrderInput | SortOrder
+    steamKey?: SortOrderInput | SortOrder
+    isLive?: SortOrder
+    userId?: SortOrder
+    categoryId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    chatMessages?: ChatMessageOrderByRelationAggregateInput
+    chatSettings?: ChatSettingsOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
+    category?: CategoryOrderByWithRelationInput
+  }
+
+  export type StreamWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    ingressId?: string
+    AND?: StreamWhereInput | StreamWhereInput[]
+    OR?: StreamWhereInput[]
+    NOT?: StreamWhereInput | StreamWhereInput[]
+    title?: StringFilter<"Stream"> | string
+    thumbnailUrl?: StringNullableFilter<"Stream"> | string | null
+    serverUrl?: StringNullableFilter<"Stream"> | string | null
+    steamKey?: StringNullableFilter<"Stream"> | string | null
+    isLive?: BoolFilter<"Stream"> | boolean
+    userId?: StringFilter<"Stream"> | string
+    categoryId?: StringNullableFilter<"Stream"> | string | null
+    createdAt?: DateTimeFilter<"Stream"> | Date | string
+    updatedAt?: DateTimeFilter<"Stream"> | Date | string
+    chatMessages?: ChatMessageListRelationFilter
+    chatSettings?: XOR<ChatSettingsNullableScalarRelationFilter, ChatSettingsWhereInput> | null
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+    category?: XOR<CategoryNullableScalarRelationFilter, CategoryWhereInput> | null
+  }, "id" | "ingressId">
+
+  export type StreamOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    thumbnailUrl?: SortOrderInput | SortOrder
+    ingressId?: SortOrderInput | SortOrder
+    serverUrl?: SortOrderInput | SortOrder
+    steamKey?: SortOrderInput | SortOrder
+    isLive?: SortOrder
+    userId?: SortOrder
+    categoryId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: StreamCountOrderByAggregateInput
+    _max?: StreamMaxOrderByAggregateInput
+    _min?: StreamMinOrderByAggregateInput
+  }
+
+  export type StreamScalarWhereWithAggregatesInput = {
+    AND?: StreamScalarWhereWithAggregatesInput | StreamScalarWhereWithAggregatesInput[]
+    OR?: StreamScalarWhereWithAggregatesInput[]
+    NOT?: StreamScalarWhereWithAggregatesInput | StreamScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Stream"> | string
+    title?: StringWithAggregatesFilter<"Stream"> | string
+    thumbnailUrl?: StringNullableWithAggregatesFilter<"Stream"> | string | null
+    ingressId?: StringNullableWithAggregatesFilter<"Stream"> | string | null
+    serverUrl?: StringNullableWithAggregatesFilter<"Stream"> | string | null
+    steamKey?: StringNullableWithAggregatesFilter<"Stream"> | string | null
+    isLive?: BoolWithAggregatesFilter<"Stream"> | boolean
+    userId?: StringWithAggregatesFilter<"Stream"> | string
+    categoryId?: StringNullableWithAggregatesFilter<"Stream"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Stream"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Stream"> | Date | string
+  }
+
+  export type ChatMessageWhereInput = {
+    AND?: ChatMessageWhereInput | ChatMessageWhereInput[]
+    OR?: ChatMessageWhereInput[]
+    NOT?: ChatMessageWhereInput | ChatMessageWhereInput[]
+    id?: StringFilter<"ChatMessage"> | string
+    text?: StringNullableFilter<"ChatMessage"> | string | null
+    streamid?: StringFilter<"ChatMessage"> | string
+    userid?: StringFilter<"ChatMessage"> | string
+    createdAt?: DateTimeFilter<"ChatMessage"> | Date | string
+    updatedAt?: DateTimeFilter<"ChatMessage"> | Date | string
+    stream?: XOR<StreamScalarRelationFilter, StreamWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type ChatMessageOrderByWithRelationInput = {
+    id?: SortOrder
+    text?: SortOrderInput | SortOrder
+    streamid?: SortOrder
+    userid?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    stream?: StreamOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type ChatMessageWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ChatMessageWhereInput | ChatMessageWhereInput[]
+    OR?: ChatMessageWhereInput[]
+    NOT?: ChatMessageWhereInput | ChatMessageWhereInput[]
+    text?: StringNullableFilter<"ChatMessage"> | string | null
+    streamid?: StringFilter<"ChatMessage"> | string
+    userid?: StringFilter<"ChatMessage"> | string
+    createdAt?: DateTimeFilter<"ChatMessage"> | Date | string
+    updatedAt?: DateTimeFilter<"ChatMessage"> | Date | string
+    stream?: XOR<StreamScalarRelationFilter, StreamWhereInput>
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type ChatMessageOrderByWithAggregationInput = {
+    id?: SortOrder
+    text?: SortOrderInput | SortOrder
+    streamid?: SortOrder
+    userid?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ChatMessageCountOrderByAggregateInput
+    _max?: ChatMessageMaxOrderByAggregateInput
+    _min?: ChatMessageMinOrderByAggregateInput
+  }
+
+  export type ChatMessageScalarWhereWithAggregatesInput = {
+    AND?: ChatMessageScalarWhereWithAggregatesInput | ChatMessageScalarWhereWithAggregatesInput[]
+    OR?: ChatMessageScalarWhereWithAggregatesInput[]
+    NOT?: ChatMessageScalarWhereWithAggregatesInput | ChatMessageScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ChatMessage"> | string
+    text?: StringNullableWithAggregatesFilter<"ChatMessage"> | string | null
+    streamid?: StringWithAggregatesFilter<"ChatMessage"> | string
+    userid?: StringWithAggregatesFilter<"ChatMessage"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"ChatMessage"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ChatMessage"> | Date | string
+  }
+
+  export type ChatSettingsWhereInput = {
+    AND?: ChatSettingsWhereInput | ChatSettingsWhereInput[]
+    OR?: ChatSettingsWhereInput[]
+    NOT?: ChatSettingsWhereInput | ChatSettingsWhereInput[]
+    id?: StringFilter<"ChatSettings"> | string
+    isChatEnabled?: BoolFilter<"ChatSettings"> | boolean
+    isChatFollowersOnly?: BoolFilter<"ChatSettings"> | boolean
+    isChatPremiumFollowersOnly?: BoolFilter<"ChatSettings"> | boolean
+    streamId?: StringNullableFilter<"ChatSettings"> | string | null
+    stream?: XOR<StreamNullableScalarRelationFilter, StreamWhereInput> | null
+  }
+
+  export type ChatSettingsOrderByWithRelationInput = {
+    id?: SortOrder
+    isChatEnabled?: SortOrder
+    isChatFollowersOnly?: SortOrder
+    isChatPremiumFollowersOnly?: SortOrder
+    streamId?: SortOrderInput | SortOrder
+    stream?: StreamOrderByWithRelationInput
+  }
+
+  export type ChatSettingsWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    streamId?: string
+    AND?: ChatSettingsWhereInput | ChatSettingsWhereInput[]
+    OR?: ChatSettingsWhereInput[]
+    NOT?: ChatSettingsWhereInput | ChatSettingsWhereInput[]
+    isChatEnabled?: BoolFilter<"ChatSettings"> | boolean
+    isChatFollowersOnly?: BoolFilter<"ChatSettings"> | boolean
+    isChatPremiumFollowersOnly?: BoolFilter<"ChatSettings"> | boolean
+    stream?: XOR<StreamNullableScalarRelationFilter, StreamWhereInput> | null
+  }, "id" | "streamId">
+
+  export type ChatSettingsOrderByWithAggregationInput = {
+    id?: SortOrder
+    isChatEnabled?: SortOrder
+    isChatFollowersOnly?: SortOrder
+    isChatPremiumFollowersOnly?: SortOrder
+    streamId?: SortOrderInput | SortOrder
+    _count?: ChatSettingsCountOrderByAggregateInput
+    _max?: ChatSettingsMaxOrderByAggregateInput
+    _min?: ChatSettingsMinOrderByAggregateInput
+  }
+
+  export type ChatSettingsScalarWhereWithAggregatesInput = {
+    AND?: ChatSettingsScalarWhereWithAggregatesInput | ChatSettingsScalarWhereWithAggregatesInput[]
+    OR?: ChatSettingsScalarWhereWithAggregatesInput[]
+    NOT?: ChatSettingsScalarWhereWithAggregatesInput | ChatSettingsScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ChatSettings"> | string
+    isChatEnabled?: BoolWithAggregatesFilter<"ChatSettings"> | boolean
+    isChatFollowersOnly?: BoolWithAggregatesFilter<"ChatSettings"> | boolean
+    isChatPremiumFollowersOnly?: BoolWithAggregatesFilter<"ChatSettings"> | boolean
+    streamId?: StringNullableWithAggregatesFilter<"ChatSettings"> | string | null
+  }
+
+  export type CategoryWhereInput = {
+    AND?: CategoryWhereInput | CategoryWhereInput[]
+    OR?: CategoryWhereInput[]
+    NOT?: CategoryWhereInput | CategoryWhereInput[]
+    id?: StringFilter<"Category"> | string
+    title?: StringFilter<"Category"> | string
+    slug?: StringFilter<"Category"> | string
+    description?: StringNullableFilter<"Category"> | string | null
+    thumbnailUrl?: StringFilter<"Category"> | string
+    createdAt?: DateTimeFilter<"Category"> | Date | string
+    updatedAt?: DateTimeFilter<"Category"> | Date | string
+    streams?: StreamListRelationFilter
+  }
+
+  export type CategoryOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    slug?: SortOrder
+    description?: SortOrderInput | SortOrder
+    thumbnailUrl?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    streams?: StreamOrderByRelationAggregateInput
+  }
+
+  export type CategoryWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    slug?: string
+    AND?: CategoryWhereInput | CategoryWhereInput[]
+    OR?: CategoryWhereInput[]
+    NOT?: CategoryWhereInput | CategoryWhereInput[]
+    title?: StringFilter<"Category"> | string
+    description?: StringNullableFilter<"Category"> | string | null
+    thumbnailUrl?: StringFilter<"Category"> | string
+    createdAt?: DateTimeFilter<"Category"> | Date | string
+    updatedAt?: DateTimeFilter<"Category"> | Date | string
+    streams?: StreamListRelationFilter
+  }, "id" | "slug">
+
+  export type CategoryOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    slug?: SortOrder
+    description?: SortOrderInput | SortOrder
+    thumbnailUrl?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: CategoryCountOrderByAggregateInput
+    _max?: CategoryMaxOrderByAggregateInput
+    _min?: CategoryMinOrderByAggregateInput
+  }
+
+  export type CategoryScalarWhereWithAggregatesInput = {
+    AND?: CategoryScalarWhereWithAggregatesInput | CategoryScalarWhereWithAggregatesInput[]
+    OR?: CategoryScalarWhereWithAggregatesInput[]
+    NOT?: CategoryScalarWhereWithAggregatesInput | CategoryScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Category"> | string
+    title?: StringWithAggregatesFilter<"Category"> | string
+    slug?: StringWithAggregatesFilter<"Category"> | string
+    description?: StringNullableWithAggregatesFilter<"Category"> | string | null
+    thumbnailUrl?: StringWithAggregatesFilter<"Category"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Category"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Category"> | Date | string
+  }
+
+  export type FollowWhereInput = {
+    AND?: FollowWhereInput | FollowWhereInput[]
+    OR?: FollowWhereInput[]
+    NOT?: FollowWhereInput | FollowWhereInput[]
+    id?: StringFilter<"Follow"> | string
+    followerId?: StringFilter<"Follow"> | string
+    followingId?: StringFilter<"Follow"> | string
+    createdAt?: DateTimeFilter<"Follow"> | Date | string
+    updatedAt?: DateTimeFilter<"Follow"> | Date | string
+    follower?: XOR<UserScalarRelationFilter, UserWhereInput>
+    following?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type FollowOrderByWithRelationInput = {
+    id?: SortOrder
+    followerId?: SortOrder
+    followingId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    follower?: UserOrderByWithRelationInput
+    following?: UserOrderByWithRelationInput
+  }
+
+  export type FollowWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    followerId_followingId?: FollowFollowerIdFollowingIdCompoundUniqueInput
+    AND?: FollowWhereInput | FollowWhereInput[]
+    OR?: FollowWhereInput[]
+    NOT?: FollowWhereInput | FollowWhereInput[]
+    followerId?: StringFilter<"Follow"> | string
+    followingId?: StringFilter<"Follow"> | string
+    createdAt?: DateTimeFilter<"Follow"> | Date | string
+    updatedAt?: DateTimeFilter<"Follow"> | Date | string
+    follower?: XOR<UserScalarRelationFilter, UserWhereInput>
+    following?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "followerId_followingId">
+
+  export type FollowOrderByWithAggregationInput = {
+    id?: SortOrder
+    followerId?: SortOrder
+    followingId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: FollowCountOrderByAggregateInput
+    _max?: FollowMaxOrderByAggregateInput
+    _min?: FollowMinOrderByAggregateInput
+  }
+
+  export type FollowScalarWhereWithAggregatesInput = {
+    AND?: FollowScalarWhereWithAggregatesInput | FollowScalarWhereWithAggregatesInput[]
+    OR?: FollowScalarWhereWithAggregatesInput[]
+    NOT?: FollowScalarWhereWithAggregatesInput | FollowScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Follow"> | string
+    followerId?: StringWithAggregatesFilter<"Follow"> | string
+    followingId?: StringWithAggregatesFilter<"Follow"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Follow"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Follow"> | Date | string
+  }
+
+  export type NotificationWhereInput = {
+    AND?: NotificationWhereInput | NotificationWhereInput[]
+    OR?: NotificationWhereInput[]
+    NOT?: NotificationWhereInput | NotificationWhereInput[]
+    id?: StringFilter<"Notification"> | string
+    message?: StringFilter<"Notification"> | string
+    type?: EnumNotificationTypeFilter<"Notification"> | $Enums.NotificationType
+    isRead?: BoolFilter<"Notification"> | boolean
+    userId?: StringNullableFilter<"Notification"> | string | null
+    createdAt?: DateTimeFilter<"Notification"> | Date | string
+    updatedAt?: DateTimeFilter<"Notification"> | Date | string
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+  }
+
+  export type NotificationOrderByWithRelationInput = {
+    id?: SortOrder
+    message?: SortOrder
+    type?: SortOrder
+    isRead?: SortOrder
+    userId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type NotificationWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: NotificationWhereInput | NotificationWhereInput[]
+    OR?: NotificationWhereInput[]
+    NOT?: NotificationWhereInput | NotificationWhereInput[]
+    message?: StringFilter<"Notification"> | string
+    type?: EnumNotificationTypeFilter<"Notification"> | $Enums.NotificationType
+    isRead?: BoolFilter<"Notification"> | boolean
+    userId?: StringNullableFilter<"Notification"> | string | null
+    createdAt?: DateTimeFilter<"Notification"> | Date | string
+    updatedAt?: DateTimeFilter<"Notification"> | Date | string
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+  }, "id">
+
+  export type NotificationOrderByWithAggregationInput = {
+    id?: SortOrder
+    message?: SortOrder
+    type?: SortOrder
+    isRead?: SortOrder
+    userId?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: NotificationCountOrderByAggregateInput
+    _max?: NotificationMaxOrderByAggregateInput
+    _min?: NotificationMinOrderByAggregateInput
+  }
+
+  export type NotificationScalarWhereWithAggregatesInput = {
+    AND?: NotificationScalarWhereWithAggregatesInput | NotificationScalarWhereWithAggregatesInput[]
+    OR?: NotificationScalarWhereWithAggregatesInput[]
+    NOT?: NotificationScalarWhereWithAggregatesInput | NotificationScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Notification"> | string
+    message?: StringWithAggregatesFilter<"Notification"> | string
+    type?: EnumNotificationTypeWithAggregatesFilter<"Notification"> | $Enums.NotificationType
+    isRead?: BoolWithAggregatesFilter<"Notification"> | boolean
+    userId?: StringNullableWithAggregatesFilter<"Notification"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Notification"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Notification"> | Date | string
+  }
+
+  export type NotificationSettingsWhereInput = {
+    AND?: NotificationSettingsWhereInput | NotificationSettingsWhereInput[]
+    OR?: NotificationSettingsWhereInput[]
+    NOT?: NotificationSettingsWhereInput | NotificationSettingsWhereInput[]
+    id?: StringFilter<"NotificationSettings"> | string
+    siteNotifications?: BoolFilter<"NotificationSettings"> | boolean
+    telegramNotifications?: BoolFilter<"NotificationSettings"> | boolean
+    userId?: StringFilter<"NotificationSettings"> | string
+    createdAt?: DateTimeFilter<"NotificationSettings"> | Date | string
+    updatedAt?: DateTimeFilter<"NotificationSettings"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type NotificationSettingsOrderByWithRelationInput = {
+    id?: SortOrder
+    siteNotifications?: SortOrder
+    telegramNotifications?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type NotificationSettingsWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId?: string
+    AND?: NotificationSettingsWhereInput | NotificationSettingsWhereInput[]
+    OR?: NotificationSettingsWhereInput[]
+    NOT?: NotificationSettingsWhereInput | NotificationSettingsWhereInput[]
+    siteNotifications?: BoolFilter<"NotificationSettings"> | boolean
+    telegramNotifications?: BoolFilter<"NotificationSettings"> | boolean
+    createdAt?: DateTimeFilter<"NotificationSettings"> | Date | string
+    updatedAt?: DateTimeFilter<"NotificationSettings"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "userId">
+
+  export type NotificationSettingsOrderByWithAggregationInput = {
+    id?: SortOrder
+    siteNotifications?: SortOrder
+    telegramNotifications?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: NotificationSettingsCountOrderByAggregateInput
+    _max?: NotificationSettingsMaxOrderByAggregateInput
+    _min?: NotificationSettingsMinOrderByAggregateInput
+  }
+
+  export type NotificationSettingsScalarWhereWithAggregatesInput = {
+    AND?: NotificationSettingsScalarWhereWithAggregatesInput | NotificationSettingsScalarWhereWithAggregatesInput[]
+    OR?: NotificationSettingsScalarWhereWithAggregatesInput[]
+    NOT?: NotificationSettingsScalarWhereWithAggregatesInput | NotificationSettingsScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"NotificationSettings"> | string
+    siteNotifications?: BoolWithAggregatesFilter<"NotificationSettings"> | boolean
+    telegramNotifications?: BoolWithAggregatesFilter<"NotificationSettings"> | boolean
+    userId?: StringWithAggregatesFilter<"NotificationSettings"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"NotificationSettings"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"NotificationSettings"> | Date | string
   }
 
   export type TokenWhereInput = {
@@ -3605,6 +14121,7 @@ export namespace Prisma {
     dispayName: string
     avatar?: string | null
     bio?: string | null
+    telegramId?: string | null
     isVerefied?: boolean
     isEmailVerefied?: boolean
     isTotpEnabled?: boolean
@@ -3614,6 +14131,13 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     tokens?: TokenCreateNestedManyWithoutUserInput
+    socialLinks?: SocialLinkCreateNestedManyWithoutUserInput
+    stream?: StreamCreateNestedManyWithoutUserInput
+    chatMessages?: ChatMessageCreateNestedManyWithoutUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    notificationSettings?: NotificationSettingsCreateNestedOneWithoutUserInput
+    followers?: FollowCreateNestedManyWithoutFollowerInput
+    followings?: FollowCreateNestedManyWithoutFollowingInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -3624,6 +14148,7 @@ export namespace Prisma {
     dispayName: string
     avatar?: string | null
     bio?: string | null
+    telegramId?: string | null
     isVerefied?: boolean
     isEmailVerefied?: boolean
     isTotpEnabled?: boolean
@@ -3633,6 +14158,13 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     tokens?: TokenUncheckedCreateNestedManyWithoutUserInput
+    socialLinks?: SocialLinkUncheckedCreateNestedManyWithoutUserInput
+    stream?: StreamUncheckedCreateNestedManyWithoutUserInput
+    chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    notificationSettings?: NotificationSettingsUncheckedCreateNestedOneWithoutUserInput
+    followers?: FollowUncheckedCreateNestedManyWithoutFollowerInput
+    followings?: FollowUncheckedCreateNestedManyWithoutFollowingInput
   }
 
   export type UserUpdateInput = {
@@ -3643,6 +14175,7 @@ export namespace Prisma {
     dispayName?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
+    telegramId?: NullableStringFieldUpdateOperationsInput | string | null
     isVerefied?: BoolFieldUpdateOperationsInput | boolean
     isEmailVerefied?: BoolFieldUpdateOperationsInput | boolean
     isTotpEnabled?: BoolFieldUpdateOperationsInput | boolean
@@ -3652,6 +14185,13 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tokens?: TokenUpdateManyWithoutUserNestedInput
+    socialLinks?: SocialLinkUpdateManyWithoutUserNestedInput
+    stream?: StreamUpdateManyWithoutUserNestedInput
+    chatMessages?: ChatMessageUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    notificationSettings?: NotificationSettingsUpdateOneWithoutUserNestedInput
+    followers?: FollowUpdateManyWithoutFollowerNestedInput
+    followings?: FollowUpdateManyWithoutFollowingNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -3662,6 +14202,7 @@ export namespace Prisma {
     dispayName?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
+    telegramId?: NullableStringFieldUpdateOperationsInput | string | null
     isVerefied?: BoolFieldUpdateOperationsInput | boolean
     isEmailVerefied?: BoolFieldUpdateOperationsInput | boolean
     isTotpEnabled?: BoolFieldUpdateOperationsInput | boolean
@@ -3671,6 +14212,13 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tokens?: TokenUncheckedUpdateManyWithoutUserNestedInput
+    socialLinks?: SocialLinkUncheckedUpdateManyWithoutUserNestedInput
+    stream?: StreamUncheckedUpdateManyWithoutUserNestedInput
+    chatMessages?: ChatMessageUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    notificationSettings?: NotificationSettingsUncheckedUpdateOneWithoutUserNestedInput
+    followers?: FollowUncheckedUpdateManyWithoutFollowerNestedInput
+    followings?: FollowUncheckedUpdateManyWithoutFollowingNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -3681,6 +14229,7 @@ export namespace Prisma {
     dispayName: string
     avatar?: string | null
     bio?: string | null
+    telegramId?: string | null
     isVerefied?: boolean
     isEmailVerefied?: boolean
     isTotpEnabled?: boolean
@@ -3699,6 +14248,7 @@ export namespace Prisma {
     dispayName?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
+    telegramId?: NullableStringFieldUpdateOperationsInput | string | null
     isVerefied?: BoolFieldUpdateOperationsInput | boolean
     isEmailVerefied?: BoolFieldUpdateOperationsInput | boolean
     isTotpEnabled?: BoolFieldUpdateOperationsInput | boolean
@@ -3717,12 +14267,561 @@ export namespace Prisma {
     dispayName?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
+    telegramId?: NullableStringFieldUpdateOperationsInput | string | null
     isVerefied?: BoolFieldUpdateOperationsInput | boolean
     isEmailVerefied?: BoolFieldUpdateOperationsInput | boolean
     isTotpEnabled?: BoolFieldUpdateOperationsInput | boolean
     totpSecret?: NullableStringFieldUpdateOperationsInput | string | null
     isDeactivated?: BoolFieldUpdateOperationsInput | boolean
     deactivatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SocialLinkCreateInput = {
+    id?: string
+    title: string
+    url: string
+    position: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user?: UserCreateNestedOneWithoutSocialLinksInput
+  }
+
+  export type SocialLinkUncheckedCreateInput = {
+    id?: string
+    title: string
+    url: string
+    position: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId: string
+  }
+
+  export type SocialLinkUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    position?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneWithoutSocialLinksNestedInput
+  }
+
+  export type SocialLinkUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    position?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type SocialLinkCreateManyInput = {
+    id?: string
+    title: string
+    url: string
+    position: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    userId: string
+  }
+
+  export type SocialLinkUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    position?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SocialLinkUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    position?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type StreamCreateInput = {
+    id?: string
+    title: string
+    thumbnailUrl?: string | null
+    ingressId?: string | null
+    serverUrl?: string | null
+    steamKey?: string | null
+    isLive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    chatMessages?: ChatMessageCreateNestedManyWithoutStreamInput
+    chatSettings?: ChatSettingsCreateNestedOneWithoutStreamInput
+    user?: UserCreateNestedOneWithoutStreamInput
+    category?: CategoryCreateNestedOneWithoutStreamsInput
+  }
+
+  export type StreamUncheckedCreateInput = {
+    id?: string
+    title: string
+    thumbnailUrl?: string | null
+    ingressId?: string | null
+    serverUrl?: string | null
+    steamKey?: string | null
+    isLive?: boolean
+    userId: string
+    categoryId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutStreamInput
+    chatSettings?: ChatSettingsUncheckedCreateNestedOneWithoutStreamInput
+  }
+
+  export type StreamUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    ingressId?: NullableStringFieldUpdateOperationsInput | string | null
+    serverUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    steamKey?: NullableStringFieldUpdateOperationsInput | string | null
+    isLive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    chatMessages?: ChatMessageUpdateManyWithoutStreamNestedInput
+    chatSettings?: ChatSettingsUpdateOneWithoutStreamNestedInput
+    user?: UserUpdateOneWithoutStreamNestedInput
+    category?: CategoryUpdateOneWithoutStreamsNestedInput
+  }
+
+  export type StreamUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    ingressId?: NullableStringFieldUpdateOperationsInput | string | null
+    serverUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    steamKey?: NullableStringFieldUpdateOperationsInput | string | null
+    isLive?: BoolFieldUpdateOperationsInput | boolean
+    userId?: StringFieldUpdateOperationsInput | string
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    chatMessages?: ChatMessageUncheckedUpdateManyWithoutStreamNestedInput
+    chatSettings?: ChatSettingsUncheckedUpdateOneWithoutStreamNestedInput
+  }
+
+  export type StreamCreateManyInput = {
+    id?: string
+    title: string
+    thumbnailUrl?: string | null
+    ingressId?: string | null
+    serverUrl?: string | null
+    steamKey?: string | null
+    isLive?: boolean
+    userId: string
+    categoryId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type StreamUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    ingressId?: NullableStringFieldUpdateOperationsInput | string | null
+    serverUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    steamKey?: NullableStringFieldUpdateOperationsInput | string | null
+    isLive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StreamUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    ingressId?: NullableStringFieldUpdateOperationsInput | string | null
+    serverUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    steamKey?: NullableStringFieldUpdateOperationsInput | string | null
+    isLive?: BoolFieldUpdateOperationsInput | boolean
+    userId?: StringFieldUpdateOperationsInput | string
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ChatMessageCreateInput = {
+    id?: string
+    text?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    stream: StreamCreateNestedOneWithoutChatMessagesInput
+    user: UserCreateNestedOneWithoutChatMessagesInput
+  }
+
+  export type ChatMessageUncheckedCreateInput = {
+    id?: string
+    text?: string | null
+    streamid: string
+    userid: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ChatMessageUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    stream?: StreamUpdateOneRequiredWithoutChatMessagesNestedInput
+    user?: UserUpdateOneRequiredWithoutChatMessagesNestedInput
+  }
+
+  export type ChatMessageUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
+    streamid?: StringFieldUpdateOperationsInput | string
+    userid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ChatMessageCreateManyInput = {
+    id?: string
+    text?: string | null
+    streamid: string
+    userid: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ChatMessageUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ChatMessageUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
+    streamid?: StringFieldUpdateOperationsInput | string
+    userid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ChatSettingsCreateInput = {
+    id?: string
+    isChatEnabled?: boolean
+    isChatFollowersOnly?: boolean
+    isChatPremiumFollowersOnly?: boolean
+    stream?: StreamCreateNestedOneWithoutChatSettingsInput
+  }
+
+  export type ChatSettingsUncheckedCreateInput = {
+    id?: string
+    isChatEnabled?: boolean
+    isChatFollowersOnly?: boolean
+    isChatPremiumFollowersOnly?: boolean
+    streamId?: string | null
+  }
+
+  export type ChatSettingsUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    isChatEnabled?: BoolFieldUpdateOperationsInput | boolean
+    isChatFollowersOnly?: BoolFieldUpdateOperationsInput | boolean
+    isChatPremiumFollowersOnly?: BoolFieldUpdateOperationsInput | boolean
+    stream?: StreamUpdateOneWithoutChatSettingsNestedInput
+  }
+
+  export type ChatSettingsUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    isChatEnabled?: BoolFieldUpdateOperationsInput | boolean
+    isChatFollowersOnly?: BoolFieldUpdateOperationsInput | boolean
+    isChatPremiumFollowersOnly?: BoolFieldUpdateOperationsInput | boolean
+    streamId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type ChatSettingsCreateManyInput = {
+    id?: string
+    isChatEnabled?: boolean
+    isChatFollowersOnly?: boolean
+    isChatPremiumFollowersOnly?: boolean
+    streamId?: string | null
+  }
+
+  export type ChatSettingsUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    isChatEnabled?: BoolFieldUpdateOperationsInput | boolean
+    isChatFollowersOnly?: BoolFieldUpdateOperationsInput | boolean
+    isChatPremiumFollowersOnly?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type ChatSettingsUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    isChatEnabled?: BoolFieldUpdateOperationsInput | boolean
+    isChatFollowersOnly?: BoolFieldUpdateOperationsInput | boolean
+    isChatPremiumFollowersOnly?: BoolFieldUpdateOperationsInput | boolean
+    streamId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type CategoryCreateInput = {
+    id?: string
+    title: string
+    slug: string
+    description?: string | null
+    thumbnailUrl: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    streams?: StreamCreateNestedManyWithoutCategoryInput
+  }
+
+  export type CategoryUncheckedCreateInput = {
+    id?: string
+    title: string
+    slug: string
+    description?: string | null
+    thumbnailUrl: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    streams?: StreamUncheckedCreateNestedManyWithoutCategoryInput
+  }
+
+  export type CategoryUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnailUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    streams?: StreamUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type CategoryUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnailUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    streams?: StreamUncheckedUpdateManyWithoutCategoryNestedInput
+  }
+
+  export type CategoryCreateManyInput = {
+    id?: string
+    title: string
+    slug: string
+    description?: string | null
+    thumbnailUrl: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CategoryUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnailUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CategoryUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnailUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FollowCreateInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    follower: UserCreateNestedOneWithoutFollowersInput
+    following: UserCreateNestedOneWithoutFollowingsInput
+  }
+
+  export type FollowUncheckedCreateInput = {
+    id?: string
+    followerId: string
+    followingId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FollowUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    follower?: UserUpdateOneRequiredWithoutFollowersNestedInput
+    following?: UserUpdateOneRequiredWithoutFollowingsNestedInput
+  }
+
+  export type FollowUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    followerId?: StringFieldUpdateOperationsInput | string
+    followingId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FollowCreateManyInput = {
+    id?: string
+    followerId: string
+    followingId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FollowUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FollowUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    followerId?: StringFieldUpdateOperationsInput | string
+    followingId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationCreateInput = {
+    id?: string
+    message: string
+    type: $Enums.NotificationType
+    isRead?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user?: UserCreateNestedOneWithoutNotificationsInput
+  }
+
+  export type NotificationUncheckedCreateInput = {
+    id?: string
+    message: string
+    type: $Enums.NotificationType
+    isRead?: boolean
+    userId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type NotificationUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    type?: EnumNotificationTypeFieldUpdateOperationsInput | $Enums.NotificationType
+    isRead?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneWithoutNotificationsNestedInput
+  }
+
+  export type NotificationUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    type?: EnumNotificationTypeFieldUpdateOperationsInput | $Enums.NotificationType
+    isRead?: BoolFieldUpdateOperationsInput | boolean
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationCreateManyInput = {
+    id?: string
+    message: string
+    type: $Enums.NotificationType
+    isRead?: boolean
+    userId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type NotificationUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    type?: EnumNotificationTypeFieldUpdateOperationsInput | $Enums.NotificationType
+    isRead?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    type?: EnumNotificationTypeFieldUpdateOperationsInput | $Enums.NotificationType
+    isRead?: BoolFieldUpdateOperationsInput | boolean
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationSettingsCreateInput = {
+    id?: string
+    siteNotifications?: boolean
+    telegramNotifications?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutNotificationSettingsInput
+  }
+
+  export type NotificationSettingsUncheckedCreateInput = {
+    id?: string
+    siteNotifications?: boolean
+    telegramNotifications?: boolean
+    userId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type NotificationSettingsUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    siteNotifications?: BoolFieldUpdateOperationsInput | boolean
+    telegramNotifications?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutNotificationSettingsNestedInput
+  }
+
+  export type NotificationSettingsUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    siteNotifications?: BoolFieldUpdateOperationsInput | boolean
+    telegramNotifications?: BoolFieldUpdateOperationsInput | boolean
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationSettingsCreateManyInput = {
+    id?: string
+    siteNotifications?: boolean
+    telegramNotifications?: boolean
+    userId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type NotificationSettingsUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    siteNotifications?: BoolFieldUpdateOperationsInput | boolean
+    telegramNotifications?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationSettingsUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    siteNotifications?: BoolFieldUpdateOperationsInput | boolean
+    telegramNotifications?: BoolFieldUpdateOperationsInput | boolean
+    userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -3859,12 +14958,67 @@ export namespace Prisma {
     none?: TokenWhereInput
   }
 
+  export type SocialLinkListRelationFilter = {
+    every?: SocialLinkWhereInput
+    some?: SocialLinkWhereInput
+    none?: SocialLinkWhereInput
+  }
+
+  export type StreamListRelationFilter = {
+    every?: StreamWhereInput
+    some?: StreamWhereInput
+    none?: StreamWhereInput
+  }
+
+  export type ChatMessageListRelationFilter = {
+    every?: ChatMessageWhereInput
+    some?: ChatMessageWhereInput
+    none?: ChatMessageWhereInput
+  }
+
+  export type NotificationListRelationFilter = {
+    every?: NotificationWhereInput
+    some?: NotificationWhereInput
+    none?: NotificationWhereInput
+  }
+
+  export type NotificationSettingsNullableScalarRelationFilter = {
+    is?: NotificationSettingsWhereInput | null
+    isNot?: NotificationSettingsWhereInput | null
+  }
+
+  export type FollowListRelationFilter = {
+    every?: FollowWhereInput
+    some?: FollowWhereInput
+    none?: FollowWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
   }
 
   export type TokenOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SocialLinkOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type StreamOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ChatMessageOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type NotificationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type FollowOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -3876,6 +15030,7 @@ export namespace Prisma {
     dispayName?: SortOrder
     avatar?: SortOrder
     bio?: SortOrder
+    telegramId?: SortOrder
     isVerefied?: SortOrder
     isEmailVerefied?: SortOrder
     isTotpEnabled?: SortOrder
@@ -3894,6 +15049,7 @@ export namespace Prisma {
     dispayName?: SortOrder
     avatar?: SortOrder
     bio?: SortOrder
+    telegramId?: SortOrder
     isVerefied?: SortOrder
     isEmailVerefied?: SortOrder
     isTotpEnabled?: SortOrder
@@ -3912,6 +15068,7 @@ export namespace Prisma {
     dispayName?: SortOrder
     avatar?: SortOrder
     bio?: SortOrder
+    telegramId?: SortOrder
     isVerefied?: SortOrder
     isEmailVerefied?: SortOrder
     isTotpEnabled?: SortOrder
@@ -3994,16 +15151,332 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type EnumTokenTypeFilter<$PrismaModel = never> = {
-    equals?: $Enums.TokenType | EnumTokenTypeFieldRefInput<$PrismaModel>
-    in?: $Enums.TokenType[] | ListEnumTokenTypeFieldRefInput<$PrismaModel>
-    notIn?: $Enums.TokenType[] | ListEnumTokenTypeFieldRefInput<$PrismaModel>
-    not?: NestedEnumTokenTypeFilter<$PrismaModel> | $Enums.TokenType
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
   }
 
   export type UserNullableScalarRelationFilter = {
     is?: UserWhereInput | null
     isNot?: UserWhereInput | null
+  }
+
+  export type SocialLinkCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    url?: SortOrder
+    position?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type SocialLinkAvgOrderByAggregateInput = {
+    position?: SortOrder
+  }
+
+  export type SocialLinkMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    url?: SortOrder
+    position?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type SocialLinkMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    url?: SortOrder
+    position?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type SocialLinkSumOrderByAggregateInput = {
+    position?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type ChatSettingsNullableScalarRelationFilter = {
+    is?: ChatSettingsWhereInput | null
+    isNot?: ChatSettingsWhereInput | null
+  }
+
+  export type CategoryNullableScalarRelationFilter = {
+    is?: CategoryWhereInput | null
+    isNot?: CategoryWhereInput | null
+  }
+
+  export type StreamCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    thumbnailUrl?: SortOrder
+    ingressId?: SortOrder
+    serverUrl?: SortOrder
+    steamKey?: SortOrder
+    isLive?: SortOrder
+    userId?: SortOrder
+    categoryId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type StreamMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    thumbnailUrl?: SortOrder
+    ingressId?: SortOrder
+    serverUrl?: SortOrder
+    steamKey?: SortOrder
+    isLive?: SortOrder
+    userId?: SortOrder
+    categoryId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type StreamMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    thumbnailUrl?: SortOrder
+    ingressId?: SortOrder
+    serverUrl?: SortOrder
+    steamKey?: SortOrder
+    isLive?: SortOrder
+    userId?: SortOrder
+    categoryId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type StreamScalarRelationFilter = {
+    is?: StreamWhereInput
+    isNot?: StreamWhereInput
+  }
+
+  export type UserScalarRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
+  }
+
+  export type ChatMessageCountOrderByAggregateInput = {
+    id?: SortOrder
+    text?: SortOrder
+    streamid?: SortOrder
+    userid?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ChatMessageMaxOrderByAggregateInput = {
+    id?: SortOrder
+    text?: SortOrder
+    streamid?: SortOrder
+    userid?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ChatMessageMinOrderByAggregateInput = {
+    id?: SortOrder
+    text?: SortOrder
+    streamid?: SortOrder
+    userid?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type StreamNullableScalarRelationFilter = {
+    is?: StreamWhereInput | null
+    isNot?: StreamWhereInput | null
+  }
+
+  export type ChatSettingsCountOrderByAggregateInput = {
+    id?: SortOrder
+    isChatEnabled?: SortOrder
+    isChatFollowersOnly?: SortOrder
+    isChatPremiumFollowersOnly?: SortOrder
+    streamId?: SortOrder
+  }
+
+  export type ChatSettingsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    isChatEnabled?: SortOrder
+    isChatFollowersOnly?: SortOrder
+    isChatPremiumFollowersOnly?: SortOrder
+    streamId?: SortOrder
+  }
+
+  export type ChatSettingsMinOrderByAggregateInput = {
+    id?: SortOrder
+    isChatEnabled?: SortOrder
+    isChatFollowersOnly?: SortOrder
+    isChatPremiumFollowersOnly?: SortOrder
+    streamId?: SortOrder
+  }
+
+  export type CategoryCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    slug?: SortOrder
+    description?: SortOrder
+    thumbnailUrl?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CategoryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    slug?: SortOrder
+    description?: SortOrder
+    thumbnailUrl?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type CategoryMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    slug?: SortOrder
+    description?: SortOrder
+    thumbnailUrl?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type FollowFollowerIdFollowingIdCompoundUniqueInput = {
+    followerId: string
+    followingId: string
+  }
+
+  export type FollowCountOrderByAggregateInput = {
+    id?: SortOrder
+    followerId?: SortOrder
+    followingId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type FollowMaxOrderByAggregateInput = {
+    id?: SortOrder
+    followerId?: SortOrder
+    followingId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type FollowMinOrderByAggregateInput = {
+    id?: SortOrder
+    followerId?: SortOrder
+    followingId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EnumNotificationTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.NotificationType | EnumNotificationTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.NotificationType[] | ListEnumNotificationTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.NotificationType[] | ListEnumNotificationTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumNotificationTypeFilter<$PrismaModel> | $Enums.NotificationType
+  }
+
+  export type NotificationCountOrderByAggregateInput = {
+    id?: SortOrder
+    message?: SortOrder
+    type?: SortOrder
+    isRead?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type NotificationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    message?: SortOrder
+    type?: SortOrder
+    isRead?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type NotificationMinOrderByAggregateInput = {
+    id?: SortOrder
+    message?: SortOrder
+    type?: SortOrder
+    isRead?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EnumNotificationTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.NotificationType | EnumNotificationTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.NotificationType[] | ListEnumNotificationTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.NotificationType[] | ListEnumNotificationTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumNotificationTypeWithAggregatesFilter<$PrismaModel> | $Enums.NotificationType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumNotificationTypeFilter<$PrismaModel>
+    _max?: NestedEnumNotificationTypeFilter<$PrismaModel>
+  }
+
+  export type NotificationSettingsCountOrderByAggregateInput = {
+    id?: SortOrder
+    siteNotifications?: SortOrder
+    telegramNotifications?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type NotificationSettingsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    siteNotifications?: SortOrder
+    telegramNotifications?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type NotificationSettingsMinOrderByAggregateInput = {
+    id?: SortOrder
+    siteNotifications?: SortOrder
+    telegramNotifications?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EnumTokenTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.TokenType | EnumTokenTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.TokenType[] | ListEnumTokenTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TokenType[] | ListEnumTokenTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumTokenTypeFilter<$PrismaModel> | $Enums.TokenType
   }
 
   export type TokenCountOrderByAggregateInput = {
@@ -4053,11 +15526,107 @@ export namespace Prisma {
     connect?: TokenWhereUniqueInput | TokenWhereUniqueInput[]
   }
 
+  export type SocialLinkCreateNestedManyWithoutUserInput = {
+    create?: XOR<SocialLinkCreateWithoutUserInput, SocialLinkUncheckedCreateWithoutUserInput> | SocialLinkCreateWithoutUserInput[] | SocialLinkUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SocialLinkCreateOrConnectWithoutUserInput | SocialLinkCreateOrConnectWithoutUserInput[]
+    createMany?: SocialLinkCreateManyUserInputEnvelope
+    connect?: SocialLinkWhereUniqueInput | SocialLinkWhereUniqueInput[]
+  }
+
+  export type StreamCreateNestedManyWithoutUserInput = {
+    create?: XOR<StreamCreateWithoutUserInput, StreamUncheckedCreateWithoutUserInput> | StreamCreateWithoutUserInput[] | StreamUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: StreamCreateOrConnectWithoutUserInput | StreamCreateOrConnectWithoutUserInput[]
+    createMany?: StreamCreateManyUserInputEnvelope
+    connect?: StreamWhereUniqueInput | StreamWhereUniqueInput[]
+  }
+
+  export type ChatMessageCreateNestedManyWithoutUserInput = {
+    create?: XOR<ChatMessageCreateWithoutUserInput, ChatMessageUncheckedCreateWithoutUserInput> | ChatMessageCreateWithoutUserInput[] | ChatMessageUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ChatMessageCreateOrConnectWithoutUserInput | ChatMessageCreateOrConnectWithoutUserInput[]
+    createMany?: ChatMessageCreateManyUserInputEnvelope
+    connect?: ChatMessageWhereUniqueInput | ChatMessageWhereUniqueInput[]
+  }
+
+  export type NotificationCreateNestedManyWithoutUserInput = {
+    create?: XOR<NotificationCreateWithoutUserInput, NotificationUncheckedCreateWithoutUserInput> | NotificationCreateWithoutUserInput[] | NotificationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: NotificationCreateOrConnectWithoutUserInput | NotificationCreateOrConnectWithoutUserInput[]
+    createMany?: NotificationCreateManyUserInputEnvelope
+    connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+  }
+
+  export type NotificationSettingsCreateNestedOneWithoutUserInput = {
+    create?: XOR<NotificationSettingsCreateWithoutUserInput, NotificationSettingsUncheckedCreateWithoutUserInput>
+    connectOrCreate?: NotificationSettingsCreateOrConnectWithoutUserInput
+    connect?: NotificationSettingsWhereUniqueInput
+  }
+
+  export type FollowCreateNestedManyWithoutFollowerInput = {
+    create?: XOR<FollowCreateWithoutFollowerInput, FollowUncheckedCreateWithoutFollowerInput> | FollowCreateWithoutFollowerInput[] | FollowUncheckedCreateWithoutFollowerInput[]
+    connectOrCreate?: FollowCreateOrConnectWithoutFollowerInput | FollowCreateOrConnectWithoutFollowerInput[]
+    createMany?: FollowCreateManyFollowerInputEnvelope
+    connect?: FollowWhereUniqueInput | FollowWhereUniqueInput[]
+  }
+
+  export type FollowCreateNestedManyWithoutFollowingInput = {
+    create?: XOR<FollowCreateWithoutFollowingInput, FollowUncheckedCreateWithoutFollowingInput> | FollowCreateWithoutFollowingInput[] | FollowUncheckedCreateWithoutFollowingInput[]
+    connectOrCreate?: FollowCreateOrConnectWithoutFollowingInput | FollowCreateOrConnectWithoutFollowingInput[]
+    createMany?: FollowCreateManyFollowingInputEnvelope
+    connect?: FollowWhereUniqueInput | FollowWhereUniqueInput[]
+  }
+
   export type TokenUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<TokenCreateWithoutUserInput, TokenUncheckedCreateWithoutUserInput> | TokenCreateWithoutUserInput[] | TokenUncheckedCreateWithoutUserInput[]
     connectOrCreate?: TokenCreateOrConnectWithoutUserInput | TokenCreateOrConnectWithoutUserInput[]
     createMany?: TokenCreateManyUserInputEnvelope
     connect?: TokenWhereUniqueInput | TokenWhereUniqueInput[]
+  }
+
+  export type SocialLinkUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<SocialLinkCreateWithoutUserInput, SocialLinkUncheckedCreateWithoutUserInput> | SocialLinkCreateWithoutUserInput[] | SocialLinkUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SocialLinkCreateOrConnectWithoutUserInput | SocialLinkCreateOrConnectWithoutUserInput[]
+    createMany?: SocialLinkCreateManyUserInputEnvelope
+    connect?: SocialLinkWhereUniqueInput | SocialLinkWhereUniqueInput[]
+  }
+
+  export type StreamUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<StreamCreateWithoutUserInput, StreamUncheckedCreateWithoutUserInput> | StreamCreateWithoutUserInput[] | StreamUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: StreamCreateOrConnectWithoutUserInput | StreamCreateOrConnectWithoutUserInput[]
+    createMany?: StreamCreateManyUserInputEnvelope
+    connect?: StreamWhereUniqueInput | StreamWhereUniqueInput[]
+  }
+
+  export type ChatMessageUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ChatMessageCreateWithoutUserInput, ChatMessageUncheckedCreateWithoutUserInput> | ChatMessageCreateWithoutUserInput[] | ChatMessageUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ChatMessageCreateOrConnectWithoutUserInput | ChatMessageCreateOrConnectWithoutUserInput[]
+    createMany?: ChatMessageCreateManyUserInputEnvelope
+    connect?: ChatMessageWhereUniqueInput | ChatMessageWhereUniqueInput[]
+  }
+
+  export type NotificationUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<NotificationCreateWithoutUserInput, NotificationUncheckedCreateWithoutUserInput> | NotificationCreateWithoutUserInput[] | NotificationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: NotificationCreateOrConnectWithoutUserInput | NotificationCreateOrConnectWithoutUserInput[]
+    createMany?: NotificationCreateManyUserInputEnvelope
+    connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+  }
+
+  export type NotificationSettingsUncheckedCreateNestedOneWithoutUserInput = {
+    create?: XOR<NotificationSettingsCreateWithoutUserInput, NotificationSettingsUncheckedCreateWithoutUserInput>
+    connectOrCreate?: NotificationSettingsCreateOrConnectWithoutUserInput
+    connect?: NotificationSettingsWhereUniqueInput
+  }
+
+  export type FollowUncheckedCreateNestedManyWithoutFollowerInput = {
+    create?: XOR<FollowCreateWithoutFollowerInput, FollowUncheckedCreateWithoutFollowerInput> | FollowCreateWithoutFollowerInput[] | FollowUncheckedCreateWithoutFollowerInput[]
+    connectOrCreate?: FollowCreateOrConnectWithoutFollowerInput | FollowCreateOrConnectWithoutFollowerInput[]
+    createMany?: FollowCreateManyFollowerInputEnvelope
+    connect?: FollowWhereUniqueInput | FollowWhereUniqueInput[]
+  }
+
+  export type FollowUncheckedCreateNestedManyWithoutFollowingInput = {
+    create?: XOR<FollowCreateWithoutFollowingInput, FollowUncheckedCreateWithoutFollowingInput> | FollowCreateWithoutFollowingInput[] | FollowUncheckedCreateWithoutFollowingInput[]
+    connectOrCreate?: FollowCreateOrConnectWithoutFollowingInput | FollowCreateOrConnectWithoutFollowingInput[]
+    createMany?: FollowCreateManyFollowingInputEnvelope
+    connect?: FollowWhereUniqueInput | FollowWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -4094,6 +15663,100 @@ export namespace Prisma {
     deleteMany?: TokenScalarWhereInput | TokenScalarWhereInput[]
   }
 
+  export type SocialLinkUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SocialLinkCreateWithoutUserInput, SocialLinkUncheckedCreateWithoutUserInput> | SocialLinkCreateWithoutUserInput[] | SocialLinkUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SocialLinkCreateOrConnectWithoutUserInput | SocialLinkCreateOrConnectWithoutUserInput[]
+    upsert?: SocialLinkUpsertWithWhereUniqueWithoutUserInput | SocialLinkUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SocialLinkCreateManyUserInputEnvelope
+    set?: SocialLinkWhereUniqueInput | SocialLinkWhereUniqueInput[]
+    disconnect?: SocialLinkWhereUniqueInput | SocialLinkWhereUniqueInput[]
+    delete?: SocialLinkWhereUniqueInput | SocialLinkWhereUniqueInput[]
+    connect?: SocialLinkWhereUniqueInput | SocialLinkWhereUniqueInput[]
+    update?: SocialLinkUpdateWithWhereUniqueWithoutUserInput | SocialLinkUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SocialLinkUpdateManyWithWhereWithoutUserInput | SocialLinkUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SocialLinkScalarWhereInput | SocialLinkScalarWhereInput[]
+  }
+
+  export type StreamUpdateManyWithoutUserNestedInput = {
+    create?: XOR<StreamCreateWithoutUserInput, StreamUncheckedCreateWithoutUserInput> | StreamCreateWithoutUserInput[] | StreamUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: StreamCreateOrConnectWithoutUserInput | StreamCreateOrConnectWithoutUserInput[]
+    upsert?: StreamUpsertWithWhereUniqueWithoutUserInput | StreamUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: StreamCreateManyUserInputEnvelope
+    set?: StreamWhereUniqueInput | StreamWhereUniqueInput[]
+    disconnect?: StreamWhereUniqueInput | StreamWhereUniqueInput[]
+    delete?: StreamWhereUniqueInput | StreamWhereUniqueInput[]
+    connect?: StreamWhereUniqueInput | StreamWhereUniqueInput[]
+    update?: StreamUpdateWithWhereUniqueWithoutUserInput | StreamUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: StreamUpdateManyWithWhereWithoutUserInput | StreamUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: StreamScalarWhereInput | StreamScalarWhereInput[]
+  }
+
+  export type ChatMessageUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ChatMessageCreateWithoutUserInput, ChatMessageUncheckedCreateWithoutUserInput> | ChatMessageCreateWithoutUserInput[] | ChatMessageUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ChatMessageCreateOrConnectWithoutUserInput | ChatMessageCreateOrConnectWithoutUserInput[]
+    upsert?: ChatMessageUpsertWithWhereUniqueWithoutUserInput | ChatMessageUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ChatMessageCreateManyUserInputEnvelope
+    set?: ChatMessageWhereUniqueInput | ChatMessageWhereUniqueInput[]
+    disconnect?: ChatMessageWhereUniqueInput | ChatMessageWhereUniqueInput[]
+    delete?: ChatMessageWhereUniqueInput | ChatMessageWhereUniqueInput[]
+    connect?: ChatMessageWhereUniqueInput | ChatMessageWhereUniqueInput[]
+    update?: ChatMessageUpdateWithWhereUniqueWithoutUserInput | ChatMessageUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ChatMessageUpdateManyWithWhereWithoutUserInput | ChatMessageUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ChatMessageScalarWhereInput | ChatMessageScalarWhereInput[]
+  }
+
+  export type NotificationUpdateManyWithoutUserNestedInput = {
+    create?: XOR<NotificationCreateWithoutUserInput, NotificationUncheckedCreateWithoutUserInput> | NotificationCreateWithoutUserInput[] | NotificationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: NotificationCreateOrConnectWithoutUserInput | NotificationCreateOrConnectWithoutUserInput[]
+    upsert?: NotificationUpsertWithWhereUniqueWithoutUserInput | NotificationUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: NotificationCreateManyUserInputEnvelope
+    set?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    disconnect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    delete?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    update?: NotificationUpdateWithWhereUniqueWithoutUserInput | NotificationUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: NotificationUpdateManyWithWhereWithoutUserInput | NotificationUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
+  }
+
+  export type NotificationSettingsUpdateOneWithoutUserNestedInput = {
+    create?: XOR<NotificationSettingsCreateWithoutUserInput, NotificationSettingsUncheckedCreateWithoutUserInput>
+    connectOrCreate?: NotificationSettingsCreateOrConnectWithoutUserInput
+    upsert?: NotificationSettingsUpsertWithoutUserInput
+    disconnect?: NotificationSettingsWhereInput | boolean
+    delete?: NotificationSettingsWhereInput | boolean
+    connect?: NotificationSettingsWhereUniqueInput
+    update?: XOR<XOR<NotificationSettingsUpdateToOneWithWhereWithoutUserInput, NotificationSettingsUpdateWithoutUserInput>, NotificationSettingsUncheckedUpdateWithoutUserInput>
+  }
+
+  export type FollowUpdateManyWithoutFollowerNestedInput = {
+    create?: XOR<FollowCreateWithoutFollowerInput, FollowUncheckedCreateWithoutFollowerInput> | FollowCreateWithoutFollowerInput[] | FollowUncheckedCreateWithoutFollowerInput[]
+    connectOrCreate?: FollowCreateOrConnectWithoutFollowerInput | FollowCreateOrConnectWithoutFollowerInput[]
+    upsert?: FollowUpsertWithWhereUniqueWithoutFollowerInput | FollowUpsertWithWhereUniqueWithoutFollowerInput[]
+    createMany?: FollowCreateManyFollowerInputEnvelope
+    set?: FollowWhereUniqueInput | FollowWhereUniqueInput[]
+    disconnect?: FollowWhereUniqueInput | FollowWhereUniqueInput[]
+    delete?: FollowWhereUniqueInput | FollowWhereUniqueInput[]
+    connect?: FollowWhereUniqueInput | FollowWhereUniqueInput[]
+    update?: FollowUpdateWithWhereUniqueWithoutFollowerInput | FollowUpdateWithWhereUniqueWithoutFollowerInput[]
+    updateMany?: FollowUpdateManyWithWhereWithoutFollowerInput | FollowUpdateManyWithWhereWithoutFollowerInput[]
+    deleteMany?: FollowScalarWhereInput | FollowScalarWhereInput[]
+  }
+
+  export type FollowUpdateManyWithoutFollowingNestedInput = {
+    create?: XOR<FollowCreateWithoutFollowingInput, FollowUncheckedCreateWithoutFollowingInput> | FollowCreateWithoutFollowingInput[] | FollowUncheckedCreateWithoutFollowingInput[]
+    connectOrCreate?: FollowCreateOrConnectWithoutFollowingInput | FollowCreateOrConnectWithoutFollowingInput[]
+    upsert?: FollowUpsertWithWhereUniqueWithoutFollowingInput | FollowUpsertWithWhereUniqueWithoutFollowingInput[]
+    createMany?: FollowCreateManyFollowingInputEnvelope
+    set?: FollowWhereUniqueInput | FollowWhereUniqueInput[]
+    disconnect?: FollowWhereUniqueInput | FollowWhereUniqueInput[]
+    delete?: FollowWhereUniqueInput | FollowWhereUniqueInput[]
+    connect?: FollowWhereUniqueInput | FollowWhereUniqueInput[]
+    update?: FollowUpdateWithWhereUniqueWithoutFollowingInput | FollowUpdateWithWhereUniqueWithoutFollowingInput[]
+    updateMany?: FollowUpdateManyWithWhereWithoutFollowingInput | FollowUpdateManyWithWhereWithoutFollowingInput[]
+    deleteMany?: FollowScalarWhereInput | FollowScalarWhereInput[]
+  }
+
   export type TokenUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<TokenCreateWithoutUserInput, TokenUncheckedCreateWithoutUserInput> | TokenCreateWithoutUserInput[] | TokenUncheckedCreateWithoutUserInput[]
     connectOrCreate?: TokenCreateOrConnectWithoutUserInput | TokenCreateOrConnectWithoutUserInput[]
@@ -4106,6 +15769,378 @@ export namespace Prisma {
     update?: TokenUpdateWithWhereUniqueWithoutUserInput | TokenUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: TokenUpdateManyWithWhereWithoutUserInput | TokenUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: TokenScalarWhereInput | TokenScalarWhereInput[]
+  }
+
+  export type SocialLinkUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<SocialLinkCreateWithoutUserInput, SocialLinkUncheckedCreateWithoutUserInput> | SocialLinkCreateWithoutUserInput[] | SocialLinkUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: SocialLinkCreateOrConnectWithoutUserInput | SocialLinkCreateOrConnectWithoutUserInput[]
+    upsert?: SocialLinkUpsertWithWhereUniqueWithoutUserInput | SocialLinkUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: SocialLinkCreateManyUserInputEnvelope
+    set?: SocialLinkWhereUniqueInput | SocialLinkWhereUniqueInput[]
+    disconnect?: SocialLinkWhereUniqueInput | SocialLinkWhereUniqueInput[]
+    delete?: SocialLinkWhereUniqueInput | SocialLinkWhereUniqueInput[]
+    connect?: SocialLinkWhereUniqueInput | SocialLinkWhereUniqueInput[]
+    update?: SocialLinkUpdateWithWhereUniqueWithoutUserInput | SocialLinkUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: SocialLinkUpdateManyWithWhereWithoutUserInput | SocialLinkUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: SocialLinkScalarWhereInput | SocialLinkScalarWhereInput[]
+  }
+
+  export type StreamUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<StreamCreateWithoutUserInput, StreamUncheckedCreateWithoutUserInput> | StreamCreateWithoutUserInput[] | StreamUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: StreamCreateOrConnectWithoutUserInput | StreamCreateOrConnectWithoutUserInput[]
+    upsert?: StreamUpsertWithWhereUniqueWithoutUserInput | StreamUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: StreamCreateManyUserInputEnvelope
+    set?: StreamWhereUniqueInput | StreamWhereUniqueInput[]
+    disconnect?: StreamWhereUniqueInput | StreamWhereUniqueInput[]
+    delete?: StreamWhereUniqueInput | StreamWhereUniqueInput[]
+    connect?: StreamWhereUniqueInput | StreamWhereUniqueInput[]
+    update?: StreamUpdateWithWhereUniqueWithoutUserInput | StreamUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: StreamUpdateManyWithWhereWithoutUserInput | StreamUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: StreamScalarWhereInput | StreamScalarWhereInput[]
+  }
+
+  export type ChatMessageUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ChatMessageCreateWithoutUserInput, ChatMessageUncheckedCreateWithoutUserInput> | ChatMessageCreateWithoutUserInput[] | ChatMessageUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ChatMessageCreateOrConnectWithoutUserInput | ChatMessageCreateOrConnectWithoutUserInput[]
+    upsert?: ChatMessageUpsertWithWhereUniqueWithoutUserInput | ChatMessageUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ChatMessageCreateManyUserInputEnvelope
+    set?: ChatMessageWhereUniqueInput | ChatMessageWhereUniqueInput[]
+    disconnect?: ChatMessageWhereUniqueInput | ChatMessageWhereUniqueInput[]
+    delete?: ChatMessageWhereUniqueInput | ChatMessageWhereUniqueInput[]
+    connect?: ChatMessageWhereUniqueInput | ChatMessageWhereUniqueInput[]
+    update?: ChatMessageUpdateWithWhereUniqueWithoutUserInput | ChatMessageUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ChatMessageUpdateManyWithWhereWithoutUserInput | ChatMessageUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ChatMessageScalarWhereInput | ChatMessageScalarWhereInput[]
+  }
+
+  export type NotificationUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<NotificationCreateWithoutUserInput, NotificationUncheckedCreateWithoutUserInput> | NotificationCreateWithoutUserInput[] | NotificationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: NotificationCreateOrConnectWithoutUserInput | NotificationCreateOrConnectWithoutUserInput[]
+    upsert?: NotificationUpsertWithWhereUniqueWithoutUserInput | NotificationUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: NotificationCreateManyUserInputEnvelope
+    set?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    disconnect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    delete?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    update?: NotificationUpdateWithWhereUniqueWithoutUserInput | NotificationUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: NotificationUpdateManyWithWhereWithoutUserInput | NotificationUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
+  }
+
+  export type NotificationSettingsUncheckedUpdateOneWithoutUserNestedInput = {
+    create?: XOR<NotificationSettingsCreateWithoutUserInput, NotificationSettingsUncheckedCreateWithoutUserInput>
+    connectOrCreate?: NotificationSettingsCreateOrConnectWithoutUserInput
+    upsert?: NotificationSettingsUpsertWithoutUserInput
+    disconnect?: NotificationSettingsWhereInput | boolean
+    delete?: NotificationSettingsWhereInput | boolean
+    connect?: NotificationSettingsWhereUniqueInput
+    update?: XOR<XOR<NotificationSettingsUpdateToOneWithWhereWithoutUserInput, NotificationSettingsUpdateWithoutUserInput>, NotificationSettingsUncheckedUpdateWithoutUserInput>
+  }
+
+  export type FollowUncheckedUpdateManyWithoutFollowerNestedInput = {
+    create?: XOR<FollowCreateWithoutFollowerInput, FollowUncheckedCreateWithoutFollowerInput> | FollowCreateWithoutFollowerInput[] | FollowUncheckedCreateWithoutFollowerInput[]
+    connectOrCreate?: FollowCreateOrConnectWithoutFollowerInput | FollowCreateOrConnectWithoutFollowerInput[]
+    upsert?: FollowUpsertWithWhereUniqueWithoutFollowerInput | FollowUpsertWithWhereUniqueWithoutFollowerInput[]
+    createMany?: FollowCreateManyFollowerInputEnvelope
+    set?: FollowWhereUniqueInput | FollowWhereUniqueInput[]
+    disconnect?: FollowWhereUniqueInput | FollowWhereUniqueInput[]
+    delete?: FollowWhereUniqueInput | FollowWhereUniqueInput[]
+    connect?: FollowWhereUniqueInput | FollowWhereUniqueInput[]
+    update?: FollowUpdateWithWhereUniqueWithoutFollowerInput | FollowUpdateWithWhereUniqueWithoutFollowerInput[]
+    updateMany?: FollowUpdateManyWithWhereWithoutFollowerInput | FollowUpdateManyWithWhereWithoutFollowerInput[]
+    deleteMany?: FollowScalarWhereInput | FollowScalarWhereInput[]
+  }
+
+  export type FollowUncheckedUpdateManyWithoutFollowingNestedInput = {
+    create?: XOR<FollowCreateWithoutFollowingInput, FollowUncheckedCreateWithoutFollowingInput> | FollowCreateWithoutFollowingInput[] | FollowUncheckedCreateWithoutFollowingInput[]
+    connectOrCreate?: FollowCreateOrConnectWithoutFollowingInput | FollowCreateOrConnectWithoutFollowingInput[]
+    upsert?: FollowUpsertWithWhereUniqueWithoutFollowingInput | FollowUpsertWithWhereUniqueWithoutFollowingInput[]
+    createMany?: FollowCreateManyFollowingInputEnvelope
+    set?: FollowWhereUniqueInput | FollowWhereUniqueInput[]
+    disconnect?: FollowWhereUniqueInput | FollowWhereUniqueInput[]
+    delete?: FollowWhereUniqueInput | FollowWhereUniqueInput[]
+    connect?: FollowWhereUniqueInput | FollowWhereUniqueInput[]
+    update?: FollowUpdateWithWhereUniqueWithoutFollowingInput | FollowUpdateWithWhereUniqueWithoutFollowingInput[]
+    updateMany?: FollowUpdateManyWithWhereWithoutFollowingInput | FollowUpdateManyWithWhereWithoutFollowingInput[]
+    deleteMany?: FollowScalarWhereInput | FollowScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutSocialLinksInput = {
+    create?: XOR<UserCreateWithoutSocialLinksInput, UserUncheckedCreateWithoutSocialLinksInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSocialLinksInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type UserUpdateOneWithoutSocialLinksNestedInput = {
+    create?: XOR<UserCreateWithoutSocialLinksInput, UserUncheckedCreateWithoutSocialLinksInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSocialLinksInput
+    upsert?: UserUpsertWithoutSocialLinksInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSocialLinksInput, UserUpdateWithoutSocialLinksInput>, UserUncheckedUpdateWithoutSocialLinksInput>
+  }
+
+  export type ChatMessageCreateNestedManyWithoutStreamInput = {
+    create?: XOR<ChatMessageCreateWithoutStreamInput, ChatMessageUncheckedCreateWithoutStreamInput> | ChatMessageCreateWithoutStreamInput[] | ChatMessageUncheckedCreateWithoutStreamInput[]
+    connectOrCreate?: ChatMessageCreateOrConnectWithoutStreamInput | ChatMessageCreateOrConnectWithoutStreamInput[]
+    createMany?: ChatMessageCreateManyStreamInputEnvelope
+    connect?: ChatMessageWhereUniqueInput | ChatMessageWhereUniqueInput[]
+  }
+
+  export type ChatSettingsCreateNestedOneWithoutStreamInput = {
+    create?: XOR<ChatSettingsCreateWithoutStreamInput, ChatSettingsUncheckedCreateWithoutStreamInput>
+    connectOrCreate?: ChatSettingsCreateOrConnectWithoutStreamInput
+    connect?: ChatSettingsWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutStreamInput = {
+    create?: XOR<UserCreateWithoutStreamInput, UserUncheckedCreateWithoutStreamInput>
+    connectOrCreate?: UserCreateOrConnectWithoutStreamInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type CategoryCreateNestedOneWithoutStreamsInput = {
+    create?: XOR<CategoryCreateWithoutStreamsInput, CategoryUncheckedCreateWithoutStreamsInput>
+    connectOrCreate?: CategoryCreateOrConnectWithoutStreamsInput
+    connect?: CategoryWhereUniqueInput
+  }
+
+  export type ChatMessageUncheckedCreateNestedManyWithoutStreamInput = {
+    create?: XOR<ChatMessageCreateWithoutStreamInput, ChatMessageUncheckedCreateWithoutStreamInput> | ChatMessageCreateWithoutStreamInput[] | ChatMessageUncheckedCreateWithoutStreamInput[]
+    connectOrCreate?: ChatMessageCreateOrConnectWithoutStreamInput | ChatMessageCreateOrConnectWithoutStreamInput[]
+    createMany?: ChatMessageCreateManyStreamInputEnvelope
+    connect?: ChatMessageWhereUniqueInput | ChatMessageWhereUniqueInput[]
+  }
+
+  export type ChatSettingsUncheckedCreateNestedOneWithoutStreamInput = {
+    create?: XOR<ChatSettingsCreateWithoutStreamInput, ChatSettingsUncheckedCreateWithoutStreamInput>
+    connectOrCreate?: ChatSettingsCreateOrConnectWithoutStreamInput
+    connect?: ChatSettingsWhereUniqueInput
+  }
+
+  export type ChatMessageUpdateManyWithoutStreamNestedInput = {
+    create?: XOR<ChatMessageCreateWithoutStreamInput, ChatMessageUncheckedCreateWithoutStreamInput> | ChatMessageCreateWithoutStreamInput[] | ChatMessageUncheckedCreateWithoutStreamInput[]
+    connectOrCreate?: ChatMessageCreateOrConnectWithoutStreamInput | ChatMessageCreateOrConnectWithoutStreamInput[]
+    upsert?: ChatMessageUpsertWithWhereUniqueWithoutStreamInput | ChatMessageUpsertWithWhereUniqueWithoutStreamInput[]
+    createMany?: ChatMessageCreateManyStreamInputEnvelope
+    set?: ChatMessageWhereUniqueInput | ChatMessageWhereUniqueInput[]
+    disconnect?: ChatMessageWhereUniqueInput | ChatMessageWhereUniqueInput[]
+    delete?: ChatMessageWhereUniqueInput | ChatMessageWhereUniqueInput[]
+    connect?: ChatMessageWhereUniqueInput | ChatMessageWhereUniqueInput[]
+    update?: ChatMessageUpdateWithWhereUniqueWithoutStreamInput | ChatMessageUpdateWithWhereUniqueWithoutStreamInput[]
+    updateMany?: ChatMessageUpdateManyWithWhereWithoutStreamInput | ChatMessageUpdateManyWithWhereWithoutStreamInput[]
+    deleteMany?: ChatMessageScalarWhereInput | ChatMessageScalarWhereInput[]
+  }
+
+  export type ChatSettingsUpdateOneWithoutStreamNestedInput = {
+    create?: XOR<ChatSettingsCreateWithoutStreamInput, ChatSettingsUncheckedCreateWithoutStreamInput>
+    connectOrCreate?: ChatSettingsCreateOrConnectWithoutStreamInput
+    upsert?: ChatSettingsUpsertWithoutStreamInput
+    disconnect?: ChatSettingsWhereInput | boolean
+    delete?: ChatSettingsWhereInput | boolean
+    connect?: ChatSettingsWhereUniqueInput
+    update?: XOR<XOR<ChatSettingsUpdateToOneWithWhereWithoutStreamInput, ChatSettingsUpdateWithoutStreamInput>, ChatSettingsUncheckedUpdateWithoutStreamInput>
+  }
+
+  export type UserUpdateOneWithoutStreamNestedInput = {
+    create?: XOR<UserCreateWithoutStreamInput, UserUncheckedCreateWithoutStreamInput>
+    connectOrCreate?: UserCreateOrConnectWithoutStreamInput
+    upsert?: UserUpsertWithoutStreamInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutStreamInput, UserUpdateWithoutStreamInput>, UserUncheckedUpdateWithoutStreamInput>
+  }
+
+  export type CategoryUpdateOneWithoutStreamsNestedInput = {
+    create?: XOR<CategoryCreateWithoutStreamsInput, CategoryUncheckedCreateWithoutStreamsInput>
+    connectOrCreate?: CategoryCreateOrConnectWithoutStreamsInput
+    upsert?: CategoryUpsertWithoutStreamsInput
+    disconnect?: CategoryWhereInput | boolean
+    delete?: CategoryWhereInput | boolean
+    connect?: CategoryWhereUniqueInput
+    update?: XOR<XOR<CategoryUpdateToOneWithWhereWithoutStreamsInput, CategoryUpdateWithoutStreamsInput>, CategoryUncheckedUpdateWithoutStreamsInput>
+  }
+
+  export type ChatMessageUncheckedUpdateManyWithoutStreamNestedInput = {
+    create?: XOR<ChatMessageCreateWithoutStreamInput, ChatMessageUncheckedCreateWithoutStreamInput> | ChatMessageCreateWithoutStreamInput[] | ChatMessageUncheckedCreateWithoutStreamInput[]
+    connectOrCreate?: ChatMessageCreateOrConnectWithoutStreamInput | ChatMessageCreateOrConnectWithoutStreamInput[]
+    upsert?: ChatMessageUpsertWithWhereUniqueWithoutStreamInput | ChatMessageUpsertWithWhereUniqueWithoutStreamInput[]
+    createMany?: ChatMessageCreateManyStreamInputEnvelope
+    set?: ChatMessageWhereUniqueInput | ChatMessageWhereUniqueInput[]
+    disconnect?: ChatMessageWhereUniqueInput | ChatMessageWhereUniqueInput[]
+    delete?: ChatMessageWhereUniqueInput | ChatMessageWhereUniqueInput[]
+    connect?: ChatMessageWhereUniqueInput | ChatMessageWhereUniqueInput[]
+    update?: ChatMessageUpdateWithWhereUniqueWithoutStreamInput | ChatMessageUpdateWithWhereUniqueWithoutStreamInput[]
+    updateMany?: ChatMessageUpdateManyWithWhereWithoutStreamInput | ChatMessageUpdateManyWithWhereWithoutStreamInput[]
+    deleteMany?: ChatMessageScalarWhereInput | ChatMessageScalarWhereInput[]
+  }
+
+  export type ChatSettingsUncheckedUpdateOneWithoutStreamNestedInput = {
+    create?: XOR<ChatSettingsCreateWithoutStreamInput, ChatSettingsUncheckedCreateWithoutStreamInput>
+    connectOrCreate?: ChatSettingsCreateOrConnectWithoutStreamInput
+    upsert?: ChatSettingsUpsertWithoutStreamInput
+    disconnect?: ChatSettingsWhereInput | boolean
+    delete?: ChatSettingsWhereInput | boolean
+    connect?: ChatSettingsWhereUniqueInput
+    update?: XOR<XOR<ChatSettingsUpdateToOneWithWhereWithoutStreamInput, ChatSettingsUpdateWithoutStreamInput>, ChatSettingsUncheckedUpdateWithoutStreamInput>
+  }
+
+  export type StreamCreateNestedOneWithoutChatMessagesInput = {
+    create?: XOR<StreamCreateWithoutChatMessagesInput, StreamUncheckedCreateWithoutChatMessagesInput>
+    connectOrCreate?: StreamCreateOrConnectWithoutChatMessagesInput
+    connect?: StreamWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutChatMessagesInput = {
+    create?: XOR<UserCreateWithoutChatMessagesInput, UserUncheckedCreateWithoutChatMessagesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutChatMessagesInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type StreamUpdateOneRequiredWithoutChatMessagesNestedInput = {
+    create?: XOR<StreamCreateWithoutChatMessagesInput, StreamUncheckedCreateWithoutChatMessagesInput>
+    connectOrCreate?: StreamCreateOrConnectWithoutChatMessagesInput
+    upsert?: StreamUpsertWithoutChatMessagesInput
+    connect?: StreamWhereUniqueInput
+    update?: XOR<XOR<StreamUpdateToOneWithWhereWithoutChatMessagesInput, StreamUpdateWithoutChatMessagesInput>, StreamUncheckedUpdateWithoutChatMessagesInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutChatMessagesNestedInput = {
+    create?: XOR<UserCreateWithoutChatMessagesInput, UserUncheckedCreateWithoutChatMessagesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutChatMessagesInput
+    upsert?: UserUpsertWithoutChatMessagesInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutChatMessagesInput, UserUpdateWithoutChatMessagesInput>, UserUncheckedUpdateWithoutChatMessagesInput>
+  }
+
+  export type StreamCreateNestedOneWithoutChatSettingsInput = {
+    create?: XOR<StreamCreateWithoutChatSettingsInput, StreamUncheckedCreateWithoutChatSettingsInput>
+    connectOrCreate?: StreamCreateOrConnectWithoutChatSettingsInput
+    connect?: StreamWhereUniqueInput
+  }
+
+  export type StreamUpdateOneWithoutChatSettingsNestedInput = {
+    create?: XOR<StreamCreateWithoutChatSettingsInput, StreamUncheckedCreateWithoutChatSettingsInput>
+    connectOrCreate?: StreamCreateOrConnectWithoutChatSettingsInput
+    upsert?: StreamUpsertWithoutChatSettingsInput
+    disconnect?: StreamWhereInput | boolean
+    delete?: StreamWhereInput | boolean
+    connect?: StreamWhereUniqueInput
+    update?: XOR<XOR<StreamUpdateToOneWithWhereWithoutChatSettingsInput, StreamUpdateWithoutChatSettingsInput>, StreamUncheckedUpdateWithoutChatSettingsInput>
+  }
+
+  export type StreamCreateNestedManyWithoutCategoryInput = {
+    create?: XOR<StreamCreateWithoutCategoryInput, StreamUncheckedCreateWithoutCategoryInput> | StreamCreateWithoutCategoryInput[] | StreamUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: StreamCreateOrConnectWithoutCategoryInput | StreamCreateOrConnectWithoutCategoryInput[]
+    createMany?: StreamCreateManyCategoryInputEnvelope
+    connect?: StreamWhereUniqueInput | StreamWhereUniqueInput[]
+  }
+
+  export type StreamUncheckedCreateNestedManyWithoutCategoryInput = {
+    create?: XOR<StreamCreateWithoutCategoryInput, StreamUncheckedCreateWithoutCategoryInput> | StreamCreateWithoutCategoryInput[] | StreamUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: StreamCreateOrConnectWithoutCategoryInput | StreamCreateOrConnectWithoutCategoryInput[]
+    createMany?: StreamCreateManyCategoryInputEnvelope
+    connect?: StreamWhereUniqueInput | StreamWhereUniqueInput[]
+  }
+
+  export type StreamUpdateManyWithoutCategoryNestedInput = {
+    create?: XOR<StreamCreateWithoutCategoryInput, StreamUncheckedCreateWithoutCategoryInput> | StreamCreateWithoutCategoryInput[] | StreamUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: StreamCreateOrConnectWithoutCategoryInput | StreamCreateOrConnectWithoutCategoryInput[]
+    upsert?: StreamUpsertWithWhereUniqueWithoutCategoryInput | StreamUpsertWithWhereUniqueWithoutCategoryInput[]
+    createMany?: StreamCreateManyCategoryInputEnvelope
+    set?: StreamWhereUniqueInput | StreamWhereUniqueInput[]
+    disconnect?: StreamWhereUniqueInput | StreamWhereUniqueInput[]
+    delete?: StreamWhereUniqueInput | StreamWhereUniqueInput[]
+    connect?: StreamWhereUniqueInput | StreamWhereUniqueInput[]
+    update?: StreamUpdateWithWhereUniqueWithoutCategoryInput | StreamUpdateWithWhereUniqueWithoutCategoryInput[]
+    updateMany?: StreamUpdateManyWithWhereWithoutCategoryInput | StreamUpdateManyWithWhereWithoutCategoryInput[]
+    deleteMany?: StreamScalarWhereInput | StreamScalarWhereInput[]
+  }
+
+  export type StreamUncheckedUpdateManyWithoutCategoryNestedInput = {
+    create?: XOR<StreamCreateWithoutCategoryInput, StreamUncheckedCreateWithoutCategoryInput> | StreamCreateWithoutCategoryInput[] | StreamUncheckedCreateWithoutCategoryInput[]
+    connectOrCreate?: StreamCreateOrConnectWithoutCategoryInput | StreamCreateOrConnectWithoutCategoryInput[]
+    upsert?: StreamUpsertWithWhereUniqueWithoutCategoryInput | StreamUpsertWithWhereUniqueWithoutCategoryInput[]
+    createMany?: StreamCreateManyCategoryInputEnvelope
+    set?: StreamWhereUniqueInput | StreamWhereUniqueInput[]
+    disconnect?: StreamWhereUniqueInput | StreamWhereUniqueInput[]
+    delete?: StreamWhereUniqueInput | StreamWhereUniqueInput[]
+    connect?: StreamWhereUniqueInput | StreamWhereUniqueInput[]
+    update?: StreamUpdateWithWhereUniqueWithoutCategoryInput | StreamUpdateWithWhereUniqueWithoutCategoryInput[]
+    updateMany?: StreamUpdateManyWithWhereWithoutCategoryInput | StreamUpdateManyWithWhereWithoutCategoryInput[]
+    deleteMany?: StreamScalarWhereInput | StreamScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutFollowersInput = {
+    create?: XOR<UserCreateWithoutFollowersInput, UserUncheckedCreateWithoutFollowersInput>
+    connectOrCreate?: UserCreateOrConnectWithoutFollowersInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserCreateNestedOneWithoutFollowingsInput = {
+    create?: XOR<UserCreateWithoutFollowingsInput, UserUncheckedCreateWithoutFollowingsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutFollowingsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutFollowersNestedInput = {
+    create?: XOR<UserCreateWithoutFollowersInput, UserUncheckedCreateWithoutFollowersInput>
+    connectOrCreate?: UserCreateOrConnectWithoutFollowersInput
+    upsert?: UserUpsertWithoutFollowersInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutFollowersInput, UserUpdateWithoutFollowersInput>, UserUncheckedUpdateWithoutFollowersInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutFollowingsNestedInput = {
+    create?: XOR<UserCreateWithoutFollowingsInput, UserUncheckedCreateWithoutFollowingsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutFollowingsInput
+    upsert?: UserUpsertWithoutFollowingsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutFollowingsInput, UserUpdateWithoutFollowingsInput>, UserUncheckedUpdateWithoutFollowingsInput>
+  }
+
+  export type UserCreateNestedOneWithoutNotificationsInput = {
+    create?: XOR<UserCreateWithoutNotificationsInput, UserUncheckedCreateWithoutNotificationsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutNotificationsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type EnumNotificationTypeFieldUpdateOperationsInput = {
+    set?: $Enums.NotificationType
+  }
+
+  export type UserUpdateOneWithoutNotificationsNestedInput = {
+    create?: XOR<UserCreateWithoutNotificationsInput, UserUncheckedCreateWithoutNotificationsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutNotificationsInput
+    upsert?: UserUpsertWithoutNotificationsInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutNotificationsInput, UserUpdateWithoutNotificationsInput>, UserUncheckedUpdateWithoutNotificationsInput>
+  }
+
+  export type UserCreateNestedOneWithoutNotificationSettingsInput = {
+    create?: XOR<UserCreateWithoutNotificationSettingsInput, UserUncheckedCreateWithoutNotificationSettingsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutNotificationSettingsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutNotificationSettingsNestedInput = {
+    create?: XOR<UserCreateWithoutNotificationSettingsInput, UserUncheckedCreateWithoutNotificationSettingsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutNotificationSettingsInput
+    upsert?: UserUpsertWithoutNotificationSettingsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutNotificationSettingsInput, UserUpdateWithoutNotificationSettingsInput>, UserUncheckedUpdateWithoutNotificationSettingsInput>
   }
 
   export type UserCreateNestedOneWithoutTokensInput = {
@@ -4275,6 +16310,50 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedEnumNotificationTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.NotificationType | EnumNotificationTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.NotificationType[] | ListEnumNotificationTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.NotificationType[] | ListEnumNotificationTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumNotificationTypeFilter<$PrismaModel> | $Enums.NotificationType
+  }
+
+  export type NestedEnumNotificationTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.NotificationType | EnumNotificationTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.NotificationType[] | ListEnumNotificationTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.NotificationType[] | ListEnumNotificationTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumNotificationTypeWithAggregatesFilter<$PrismaModel> | $Enums.NotificationType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumNotificationTypeFilter<$PrismaModel>
+    _max?: NestedEnumNotificationTypeFilter<$PrismaModel>
+  }
+
   export type NestedEnumTokenTypeFilter<$PrismaModel = never> = {
     equals?: $Enums.TokenType | EnumTokenTypeFieldRefInput<$PrismaModel>
     in?: $Enums.TokenType[] | ListEnumTokenTypeFieldRefInput<$PrismaModel>
@@ -4320,6 +16399,197 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type SocialLinkCreateWithoutUserInput = {
+    id?: string
+    title: string
+    url: string
+    position: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SocialLinkUncheckedCreateWithoutUserInput = {
+    id?: string
+    title: string
+    url: string
+    position: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SocialLinkCreateOrConnectWithoutUserInput = {
+    where: SocialLinkWhereUniqueInput
+    create: XOR<SocialLinkCreateWithoutUserInput, SocialLinkUncheckedCreateWithoutUserInput>
+  }
+
+  export type SocialLinkCreateManyUserInputEnvelope = {
+    data: SocialLinkCreateManyUserInput | SocialLinkCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type StreamCreateWithoutUserInput = {
+    id?: string
+    title: string
+    thumbnailUrl?: string | null
+    ingressId?: string | null
+    serverUrl?: string | null
+    steamKey?: string | null
+    isLive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    chatMessages?: ChatMessageCreateNestedManyWithoutStreamInput
+    chatSettings?: ChatSettingsCreateNestedOneWithoutStreamInput
+    category?: CategoryCreateNestedOneWithoutStreamsInput
+  }
+
+  export type StreamUncheckedCreateWithoutUserInput = {
+    id?: string
+    title: string
+    thumbnailUrl?: string | null
+    ingressId?: string | null
+    serverUrl?: string | null
+    steamKey?: string | null
+    isLive?: boolean
+    categoryId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutStreamInput
+    chatSettings?: ChatSettingsUncheckedCreateNestedOneWithoutStreamInput
+  }
+
+  export type StreamCreateOrConnectWithoutUserInput = {
+    where: StreamWhereUniqueInput
+    create: XOR<StreamCreateWithoutUserInput, StreamUncheckedCreateWithoutUserInput>
+  }
+
+  export type StreamCreateManyUserInputEnvelope = {
+    data: StreamCreateManyUserInput | StreamCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ChatMessageCreateWithoutUserInput = {
+    id?: string
+    text?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    stream: StreamCreateNestedOneWithoutChatMessagesInput
+  }
+
+  export type ChatMessageUncheckedCreateWithoutUserInput = {
+    id?: string
+    text?: string | null
+    streamid: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ChatMessageCreateOrConnectWithoutUserInput = {
+    where: ChatMessageWhereUniqueInput
+    create: XOR<ChatMessageCreateWithoutUserInput, ChatMessageUncheckedCreateWithoutUserInput>
+  }
+
+  export type ChatMessageCreateManyUserInputEnvelope = {
+    data: ChatMessageCreateManyUserInput | ChatMessageCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type NotificationCreateWithoutUserInput = {
+    id?: string
+    message: string
+    type: $Enums.NotificationType
+    isRead?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type NotificationUncheckedCreateWithoutUserInput = {
+    id?: string
+    message: string
+    type: $Enums.NotificationType
+    isRead?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type NotificationCreateOrConnectWithoutUserInput = {
+    where: NotificationWhereUniqueInput
+    create: XOR<NotificationCreateWithoutUserInput, NotificationUncheckedCreateWithoutUserInput>
+  }
+
+  export type NotificationCreateManyUserInputEnvelope = {
+    data: NotificationCreateManyUserInput | NotificationCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type NotificationSettingsCreateWithoutUserInput = {
+    id?: string
+    siteNotifications?: boolean
+    telegramNotifications?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type NotificationSettingsUncheckedCreateWithoutUserInput = {
+    id?: string
+    siteNotifications?: boolean
+    telegramNotifications?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type NotificationSettingsCreateOrConnectWithoutUserInput = {
+    where: NotificationSettingsWhereUniqueInput
+    create: XOR<NotificationSettingsCreateWithoutUserInput, NotificationSettingsUncheckedCreateWithoutUserInput>
+  }
+
+  export type FollowCreateWithoutFollowerInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    following: UserCreateNestedOneWithoutFollowingsInput
+  }
+
+  export type FollowUncheckedCreateWithoutFollowerInput = {
+    id?: string
+    followingId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FollowCreateOrConnectWithoutFollowerInput = {
+    where: FollowWhereUniqueInput
+    create: XOR<FollowCreateWithoutFollowerInput, FollowUncheckedCreateWithoutFollowerInput>
+  }
+
+  export type FollowCreateManyFollowerInputEnvelope = {
+    data: FollowCreateManyFollowerInput | FollowCreateManyFollowerInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type FollowCreateWithoutFollowingInput = {
+    id?: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    follower: UserCreateNestedOneWithoutFollowersInput
+  }
+
+  export type FollowUncheckedCreateWithoutFollowingInput = {
+    id?: string
+    followerId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FollowCreateOrConnectWithoutFollowingInput = {
+    where: FollowWhereUniqueInput
+    create: XOR<FollowCreateWithoutFollowingInput, FollowUncheckedCreateWithoutFollowingInput>
+  }
+
+  export type FollowCreateManyFollowingInputEnvelope = {
+    data: FollowCreateManyFollowingInput | FollowCreateManyFollowingInput[]
+    skipDuplicates?: boolean
+  }
+
   export type TokenUpsertWithWhereUniqueWithoutUserInput = {
     where: TokenWhereUniqueInput
     update: XOR<TokenUpdateWithoutUserInput, TokenUncheckedUpdateWithoutUserInput>
@@ -4349,7 +16619,196 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Token"> | Date | string
   }
 
-  export type UserCreateWithoutTokensInput = {
+  export type SocialLinkUpsertWithWhereUniqueWithoutUserInput = {
+    where: SocialLinkWhereUniqueInput
+    update: XOR<SocialLinkUpdateWithoutUserInput, SocialLinkUncheckedUpdateWithoutUserInput>
+    create: XOR<SocialLinkCreateWithoutUserInput, SocialLinkUncheckedCreateWithoutUserInput>
+  }
+
+  export type SocialLinkUpdateWithWhereUniqueWithoutUserInput = {
+    where: SocialLinkWhereUniqueInput
+    data: XOR<SocialLinkUpdateWithoutUserInput, SocialLinkUncheckedUpdateWithoutUserInput>
+  }
+
+  export type SocialLinkUpdateManyWithWhereWithoutUserInput = {
+    where: SocialLinkScalarWhereInput
+    data: XOR<SocialLinkUpdateManyMutationInput, SocialLinkUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type SocialLinkScalarWhereInput = {
+    AND?: SocialLinkScalarWhereInput | SocialLinkScalarWhereInput[]
+    OR?: SocialLinkScalarWhereInput[]
+    NOT?: SocialLinkScalarWhereInput | SocialLinkScalarWhereInput[]
+    id?: StringFilter<"SocialLink"> | string
+    title?: StringFilter<"SocialLink"> | string
+    url?: StringFilter<"SocialLink"> | string
+    position?: IntFilter<"SocialLink"> | number
+    createdAt?: DateTimeFilter<"SocialLink"> | Date | string
+    updatedAt?: DateTimeFilter<"SocialLink"> | Date | string
+    userId?: StringFilter<"SocialLink"> | string
+  }
+
+  export type StreamUpsertWithWhereUniqueWithoutUserInput = {
+    where: StreamWhereUniqueInput
+    update: XOR<StreamUpdateWithoutUserInput, StreamUncheckedUpdateWithoutUserInput>
+    create: XOR<StreamCreateWithoutUserInput, StreamUncheckedCreateWithoutUserInput>
+  }
+
+  export type StreamUpdateWithWhereUniqueWithoutUserInput = {
+    where: StreamWhereUniqueInput
+    data: XOR<StreamUpdateWithoutUserInput, StreamUncheckedUpdateWithoutUserInput>
+  }
+
+  export type StreamUpdateManyWithWhereWithoutUserInput = {
+    where: StreamScalarWhereInput
+    data: XOR<StreamUpdateManyMutationInput, StreamUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type StreamScalarWhereInput = {
+    AND?: StreamScalarWhereInput | StreamScalarWhereInput[]
+    OR?: StreamScalarWhereInput[]
+    NOT?: StreamScalarWhereInput | StreamScalarWhereInput[]
+    id?: StringFilter<"Stream"> | string
+    title?: StringFilter<"Stream"> | string
+    thumbnailUrl?: StringNullableFilter<"Stream"> | string | null
+    ingressId?: StringNullableFilter<"Stream"> | string | null
+    serverUrl?: StringNullableFilter<"Stream"> | string | null
+    steamKey?: StringNullableFilter<"Stream"> | string | null
+    isLive?: BoolFilter<"Stream"> | boolean
+    userId?: StringFilter<"Stream"> | string
+    categoryId?: StringNullableFilter<"Stream"> | string | null
+    createdAt?: DateTimeFilter<"Stream"> | Date | string
+    updatedAt?: DateTimeFilter<"Stream"> | Date | string
+  }
+
+  export type ChatMessageUpsertWithWhereUniqueWithoutUserInput = {
+    where: ChatMessageWhereUniqueInput
+    update: XOR<ChatMessageUpdateWithoutUserInput, ChatMessageUncheckedUpdateWithoutUserInput>
+    create: XOR<ChatMessageCreateWithoutUserInput, ChatMessageUncheckedCreateWithoutUserInput>
+  }
+
+  export type ChatMessageUpdateWithWhereUniqueWithoutUserInput = {
+    where: ChatMessageWhereUniqueInput
+    data: XOR<ChatMessageUpdateWithoutUserInput, ChatMessageUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ChatMessageUpdateManyWithWhereWithoutUserInput = {
+    where: ChatMessageScalarWhereInput
+    data: XOR<ChatMessageUpdateManyMutationInput, ChatMessageUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type ChatMessageScalarWhereInput = {
+    AND?: ChatMessageScalarWhereInput | ChatMessageScalarWhereInput[]
+    OR?: ChatMessageScalarWhereInput[]
+    NOT?: ChatMessageScalarWhereInput | ChatMessageScalarWhereInput[]
+    id?: StringFilter<"ChatMessage"> | string
+    text?: StringNullableFilter<"ChatMessage"> | string | null
+    streamid?: StringFilter<"ChatMessage"> | string
+    userid?: StringFilter<"ChatMessage"> | string
+    createdAt?: DateTimeFilter<"ChatMessage"> | Date | string
+    updatedAt?: DateTimeFilter<"ChatMessage"> | Date | string
+  }
+
+  export type NotificationUpsertWithWhereUniqueWithoutUserInput = {
+    where: NotificationWhereUniqueInput
+    update: XOR<NotificationUpdateWithoutUserInput, NotificationUncheckedUpdateWithoutUserInput>
+    create: XOR<NotificationCreateWithoutUserInput, NotificationUncheckedCreateWithoutUserInput>
+  }
+
+  export type NotificationUpdateWithWhereUniqueWithoutUserInput = {
+    where: NotificationWhereUniqueInput
+    data: XOR<NotificationUpdateWithoutUserInput, NotificationUncheckedUpdateWithoutUserInput>
+  }
+
+  export type NotificationUpdateManyWithWhereWithoutUserInput = {
+    where: NotificationScalarWhereInput
+    data: XOR<NotificationUpdateManyMutationInput, NotificationUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type NotificationScalarWhereInput = {
+    AND?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
+    OR?: NotificationScalarWhereInput[]
+    NOT?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
+    id?: StringFilter<"Notification"> | string
+    message?: StringFilter<"Notification"> | string
+    type?: EnumNotificationTypeFilter<"Notification"> | $Enums.NotificationType
+    isRead?: BoolFilter<"Notification"> | boolean
+    userId?: StringNullableFilter<"Notification"> | string | null
+    createdAt?: DateTimeFilter<"Notification"> | Date | string
+    updatedAt?: DateTimeFilter<"Notification"> | Date | string
+  }
+
+  export type NotificationSettingsUpsertWithoutUserInput = {
+    update: XOR<NotificationSettingsUpdateWithoutUserInput, NotificationSettingsUncheckedUpdateWithoutUserInput>
+    create: XOR<NotificationSettingsCreateWithoutUserInput, NotificationSettingsUncheckedCreateWithoutUserInput>
+    where?: NotificationSettingsWhereInput
+  }
+
+  export type NotificationSettingsUpdateToOneWithWhereWithoutUserInput = {
+    where?: NotificationSettingsWhereInput
+    data: XOR<NotificationSettingsUpdateWithoutUserInput, NotificationSettingsUncheckedUpdateWithoutUserInput>
+  }
+
+  export type NotificationSettingsUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    siteNotifications?: BoolFieldUpdateOperationsInput | boolean
+    telegramNotifications?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationSettingsUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    siteNotifications?: BoolFieldUpdateOperationsInput | boolean
+    telegramNotifications?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FollowUpsertWithWhereUniqueWithoutFollowerInput = {
+    where: FollowWhereUniqueInput
+    update: XOR<FollowUpdateWithoutFollowerInput, FollowUncheckedUpdateWithoutFollowerInput>
+    create: XOR<FollowCreateWithoutFollowerInput, FollowUncheckedCreateWithoutFollowerInput>
+  }
+
+  export type FollowUpdateWithWhereUniqueWithoutFollowerInput = {
+    where: FollowWhereUniqueInput
+    data: XOR<FollowUpdateWithoutFollowerInput, FollowUncheckedUpdateWithoutFollowerInput>
+  }
+
+  export type FollowUpdateManyWithWhereWithoutFollowerInput = {
+    where: FollowScalarWhereInput
+    data: XOR<FollowUpdateManyMutationInput, FollowUncheckedUpdateManyWithoutFollowerInput>
+  }
+
+  export type FollowScalarWhereInput = {
+    AND?: FollowScalarWhereInput | FollowScalarWhereInput[]
+    OR?: FollowScalarWhereInput[]
+    NOT?: FollowScalarWhereInput | FollowScalarWhereInput[]
+    id?: StringFilter<"Follow"> | string
+    followerId?: StringFilter<"Follow"> | string
+    followingId?: StringFilter<"Follow"> | string
+    createdAt?: DateTimeFilter<"Follow"> | Date | string
+    updatedAt?: DateTimeFilter<"Follow"> | Date | string
+  }
+
+  export type FollowUpsertWithWhereUniqueWithoutFollowingInput = {
+    where: FollowWhereUniqueInput
+    update: XOR<FollowUpdateWithoutFollowingInput, FollowUncheckedUpdateWithoutFollowingInput>
+    create: XOR<FollowCreateWithoutFollowingInput, FollowUncheckedCreateWithoutFollowingInput>
+  }
+
+  export type FollowUpdateWithWhereUniqueWithoutFollowingInput = {
+    where: FollowWhereUniqueInput
+    data: XOR<FollowUpdateWithoutFollowingInput, FollowUncheckedUpdateWithoutFollowingInput>
+  }
+
+  export type FollowUpdateManyWithWhereWithoutFollowingInput = {
+    where: FollowScalarWhereInput
+    data: XOR<FollowUpdateManyMutationInput, FollowUncheckedUpdateManyWithoutFollowingInput>
+  }
+
+  export type UserCreateWithoutSocialLinksInput = {
     id?: string
     email: string
     password: string
@@ -4357,6 +16816,7 @@ export namespace Prisma {
     dispayName: string
     avatar?: string | null
     bio?: string | null
+    telegramId?: string | null
     isVerefied?: boolean
     isEmailVerefied?: boolean
     isTotpEnabled?: boolean
@@ -4365,6 +16825,1203 @@ export namespace Prisma {
     deactivatedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    tokens?: TokenCreateNestedManyWithoutUserInput
+    stream?: StreamCreateNestedManyWithoutUserInput
+    chatMessages?: ChatMessageCreateNestedManyWithoutUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    notificationSettings?: NotificationSettingsCreateNestedOneWithoutUserInput
+    followers?: FollowCreateNestedManyWithoutFollowerInput
+    followings?: FollowCreateNestedManyWithoutFollowingInput
+  }
+
+  export type UserUncheckedCreateWithoutSocialLinksInput = {
+    id?: string
+    email: string
+    password: string
+    username: string
+    dispayName: string
+    avatar?: string | null
+    bio?: string | null
+    telegramId?: string | null
+    isVerefied?: boolean
+    isEmailVerefied?: boolean
+    isTotpEnabled?: boolean
+    totpSecret?: string | null
+    isDeactivated?: boolean
+    deactivatedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tokens?: TokenUncheckedCreateNestedManyWithoutUserInput
+    stream?: StreamUncheckedCreateNestedManyWithoutUserInput
+    chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    notificationSettings?: NotificationSettingsUncheckedCreateNestedOneWithoutUserInput
+    followers?: FollowUncheckedCreateNestedManyWithoutFollowerInput
+    followings?: FollowUncheckedCreateNestedManyWithoutFollowingInput
+  }
+
+  export type UserCreateOrConnectWithoutSocialLinksInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutSocialLinksInput, UserUncheckedCreateWithoutSocialLinksInput>
+  }
+
+  export type UserUpsertWithoutSocialLinksInput = {
+    update: XOR<UserUpdateWithoutSocialLinksInput, UserUncheckedUpdateWithoutSocialLinksInput>
+    create: XOR<UserCreateWithoutSocialLinksInput, UserUncheckedCreateWithoutSocialLinksInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutSocialLinksInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutSocialLinksInput, UserUncheckedUpdateWithoutSocialLinksInput>
+  }
+
+  export type UserUpdateWithoutSocialLinksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    dispayName?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    telegramId?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerefied?: BoolFieldUpdateOperationsInput | boolean
+    isEmailVerefied?: BoolFieldUpdateOperationsInput | boolean
+    isTotpEnabled?: BoolFieldUpdateOperationsInput | boolean
+    totpSecret?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeactivated?: BoolFieldUpdateOperationsInput | boolean
+    deactivatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tokens?: TokenUpdateManyWithoutUserNestedInput
+    stream?: StreamUpdateManyWithoutUserNestedInput
+    chatMessages?: ChatMessageUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    notificationSettings?: NotificationSettingsUpdateOneWithoutUserNestedInput
+    followers?: FollowUpdateManyWithoutFollowerNestedInput
+    followings?: FollowUpdateManyWithoutFollowingNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutSocialLinksInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    dispayName?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    telegramId?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerefied?: BoolFieldUpdateOperationsInput | boolean
+    isEmailVerefied?: BoolFieldUpdateOperationsInput | boolean
+    isTotpEnabled?: BoolFieldUpdateOperationsInput | boolean
+    totpSecret?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeactivated?: BoolFieldUpdateOperationsInput | boolean
+    deactivatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tokens?: TokenUncheckedUpdateManyWithoutUserNestedInput
+    stream?: StreamUncheckedUpdateManyWithoutUserNestedInput
+    chatMessages?: ChatMessageUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    notificationSettings?: NotificationSettingsUncheckedUpdateOneWithoutUserNestedInput
+    followers?: FollowUncheckedUpdateManyWithoutFollowerNestedInput
+    followings?: FollowUncheckedUpdateManyWithoutFollowingNestedInput
+  }
+
+  export type ChatMessageCreateWithoutStreamInput = {
+    id?: string
+    text?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutChatMessagesInput
+  }
+
+  export type ChatMessageUncheckedCreateWithoutStreamInput = {
+    id?: string
+    text?: string | null
+    userid: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ChatMessageCreateOrConnectWithoutStreamInput = {
+    where: ChatMessageWhereUniqueInput
+    create: XOR<ChatMessageCreateWithoutStreamInput, ChatMessageUncheckedCreateWithoutStreamInput>
+  }
+
+  export type ChatMessageCreateManyStreamInputEnvelope = {
+    data: ChatMessageCreateManyStreamInput | ChatMessageCreateManyStreamInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ChatSettingsCreateWithoutStreamInput = {
+    id?: string
+    isChatEnabled?: boolean
+    isChatFollowersOnly?: boolean
+    isChatPremiumFollowersOnly?: boolean
+  }
+
+  export type ChatSettingsUncheckedCreateWithoutStreamInput = {
+    id?: string
+    isChatEnabled?: boolean
+    isChatFollowersOnly?: boolean
+    isChatPremiumFollowersOnly?: boolean
+  }
+
+  export type ChatSettingsCreateOrConnectWithoutStreamInput = {
+    where: ChatSettingsWhereUniqueInput
+    create: XOR<ChatSettingsCreateWithoutStreamInput, ChatSettingsUncheckedCreateWithoutStreamInput>
+  }
+
+  export type UserCreateWithoutStreamInput = {
+    id?: string
+    email: string
+    password: string
+    username: string
+    dispayName: string
+    avatar?: string | null
+    bio?: string | null
+    telegramId?: string | null
+    isVerefied?: boolean
+    isEmailVerefied?: boolean
+    isTotpEnabled?: boolean
+    totpSecret?: string | null
+    isDeactivated?: boolean
+    deactivatedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tokens?: TokenCreateNestedManyWithoutUserInput
+    socialLinks?: SocialLinkCreateNestedManyWithoutUserInput
+    chatMessages?: ChatMessageCreateNestedManyWithoutUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    notificationSettings?: NotificationSettingsCreateNestedOneWithoutUserInput
+    followers?: FollowCreateNestedManyWithoutFollowerInput
+    followings?: FollowCreateNestedManyWithoutFollowingInput
+  }
+
+  export type UserUncheckedCreateWithoutStreamInput = {
+    id?: string
+    email: string
+    password: string
+    username: string
+    dispayName: string
+    avatar?: string | null
+    bio?: string | null
+    telegramId?: string | null
+    isVerefied?: boolean
+    isEmailVerefied?: boolean
+    isTotpEnabled?: boolean
+    totpSecret?: string | null
+    isDeactivated?: boolean
+    deactivatedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tokens?: TokenUncheckedCreateNestedManyWithoutUserInput
+    socialLinks?: SocialLinkUncheckedCreateNestedManyWithoutUserInput
+    chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    notificationSettings?: NotificationSettingsUncheckedCreateNestedOneWithoutUserInput
+    followers?: FollowUncheckedCreateNestedManyWithoutFollowerInput
+    followings?: FollowUncheckedCreateNestedManyWithoutFollowingInput
+  }
+
+  export type UserCreateOrConnectWithoutStreamInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutStreamInput, UserUncheckedCreateWithoutStreamInput>
+  }
+
+  export type CategoryCreateWithoutStreamsInput = {
+    id?: string
+    title: string
+    slug: string
+    description?: string | null
+    thumbnailUrl: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CategoryUncheckedCreateWithoutStreamsInput = {
+    id?: string
+    title: string
+    slug: string
+    description?: string | null
+    thumbnailUrl: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CategoryCreateOrConnectWithoutStreamsInput = {
+    where: CategoryWhereUniqueInput
+    create: XOR<CategoryCreateWithoutStreamsInput, CategoryUncheckedCreateWithoutStreamsInput>
+  }
+
+  export type ChatMessageUpsertWithWhereUniqueWithoutStreamInput = {
+    where: ChatMessageWhereUniqueInput
+    update: XOR<ChatMessageUpdateWithoutStreamInput, ChatMessageUncheckedUpdateWithoutStreamInput>
+    create: XOR<ChatMessageCreateWithoutStreamInput, ChatMessageUncheckedCreateWithoutStreamInput>
+  }
+
+  export type ChatMessageUpdateWithWhereUniqueWithoutStreamInput = {
+    where: ChatMessageWhereUniqueInput
+    data: XOR<ChatMessageUpdateWithoutStreamInput, ChatMessageUncheckedUpdateWithoutStreamInput>
+  }
+
+  export type ChatMessageUpdateManyWithWhereWithoutStreamInput = {
+    where: ChatMessageScalarWhereInput
+    data: XOR<ChatMessageUpdateManyMutationInput, ChatMessageUncheckedUpdateManyWithoutStreamInput>
+  }
+
+  export type ChatSettingsUpsertWithoutStreamInput = {
+    update: XOR<ChatSettingsUpdateWithoutStreamInput, ChatSettingsUncheckedUpdateWithoutStreamInput>
+    create: XOR<ChatSettingsCreateWithoutStreamInput, ChatSettingsUncheckedCreateWithoutStreamInput>
+    where?: ChatSettingsWhereInput
+  }
+
+  export type ChatSettingsUpdateToOneWithWhereWithoutStreamInput = {
+    where?: ChatSettingsWhereInput
+    data: XOR<ChatSettingsUpdateWithoutStreamInput, ChatSettingsUncheckedUpdateWithoutStreamInput>
+  }
+
+  export type ChatSettingsUpdateWithoutStreamInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    isChatEnabled?: BoolFieldUpdateOperationsInput | boolean
+    isChatFollowersOnly?: BoolFieldUpdateOperationsInput | boolean
+    isChatPremiumFollowersOnly?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type ChatSettingsUncheckedUpdateWithoutStreamInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    isChatEnabled?: BoolFieldUpdateOperationsInput | boolean
+    isChatFollowersOnly?: BoolFieldUpdateOperationsInput | boolean
+    isChatPremiumFollowersOnly?: BoolFieldUpdateOperationsInput | boolean
+  }
+
+  export type UserUpsertWithoutStreamInput = {
+    update: XOR<UserUpdateWithoutStreamInput, UserUncheckedUpdateWithoutStreamInput>
+    create: XOR<UserCreateWithoutStreamInput, UserUncheckedCreateWithoutStreamInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutStreamInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutStreamInput, UserUncheckedUpdateWithoutStreamInput>
+  }
+
+  export type UserUpdateWithoutStreamInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    dispayName?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    telegramId?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerefied?: BoolFieldUpdateOperationsInput | boolean
+    isEmailVerefied?: BoolFieldUpdateOperationsInput | boolean
+    isTotpEnabled?: BoolFieldUpdateOperationsInput | boolean
+    totpSecret?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeactivated?: BoolFieldUpdateOperationsInput | boolean
+    deactivatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tokens?: TokenUpdateManyWithoutUserNestedInput
+    socialLinks?: SocialLinkUpdateManyWithoutUserNestedInput
+    chatMessages?: ChatMessageUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    notificationSettings?: NotificationSettingsUpdateOneWithoutUserNestedInput
+    followers?: FollowUpdateManyWithoutFollowerNestedInput
+    followings?: FollowUpdateManyWithoutFollowingNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutStreamInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    dispayName?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    telegramId?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerefied?: BoolFieldUpdateOperationsInput | boolean
+    isEmailVerefied?: BoolFieldUpdateOperationsInput | boolean
+    isTotpEnabled?: BoolFieldUpdateOperationsInput | boolean
+    totpSecret?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeactivated?: BoolFieldUpdateOperationsInput | boolean
+    deactivatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tokens?: TokenUncheckedUpdateManyWithoutUserNestedInput
+    socialLinks?: SocialLinkUncheckedUpdateManyWithoutUserNestedInput
+    chatMessages?: ChatMessageUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    notificationSettings?: NotificationSettingsUncheckedUpdateOneWithoutUserNestedInput
+    followers?: FollowUncheckedUpdateManyWithoutFollowerNestedInput
+    followings?: FollowUncheckedUpdateManyWithoutFollowingNestedInput
+  }
+
+  export type CategoryUpsertWithoutStreamsInput = {
+    update: XOR<CategoryUpdateWithoutStreamsInput, CategoryUncheckedUpdateWithoutStreamsInput>
+    create: XOR<CategoryCreateWithoutStreamsInput, CategoryUncheckedCreateWithoutStreamsInput>
+    where?: CategoryWhereInput
+  }
+
+  export type CategoryUpdateToOneWithWhereWithoutStreamsInput = {
+    where?: CategoryWhereInput
+    data: XOR<CategoryUpdateWithoutStreamsInput, CategoryUncheckedUpdateWithoutStreamsInput>
+  }
+
+  export type CategoryUpdateWithoutStreamsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnailUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CategoryUncheckedUpdateWithoutStreamsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnailUrl?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StreamCreateWithoutChatMessagesInput = {
+    id?: string
+    title: string
+    thumbnailUrl?: string | null
+    ingressId?: string | null
+    serverUrl?: string | null
+    steamKey?: string | null
+    isLive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    chatSettings?: ChatSettingsCreateNestedOneWithoutStreamInput
+    user?: UserCreateNestedOneWithoutStreamInput
+    category?: CategoryCreateNestedOneWithoutStreamsInput
+  }
+
+  export type StreamUncheckedCreateWithoutChatMessagesInput = {
+    id?: string
+    title: string
+    thumbnailUrl?: string | null
+    ingressId?: string | null
+    serverUrl?: string | null
+    steamKey?: string | null
+    isLive?: boolean
+    userId: string
+    categoryId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    chatSettings?: ChatSettingsUncheckedCreateNestedOneWithoutStreamInput
+  }
+
+  export type StreamCreateOrConnectWithoutChatMessagesInput = {
+    where: StreamWhereUniqueInput
+    create: XOR<StreamCreateWithoutChatMessagesInput, StreamUncheckedCreateWithoutChatMessagesInput>
+  }
+
+  export type UserCreateWithoutChatMessagesInput = {
+    id?: string
+    email: string
+    password: string
+    username: string
+    dispayName: string
+    avatar?: string | null
+    bio?: string | null
+    telegramId?: string | null
+    isVerefied?: boolean
+    isEmailVerefied?: boolean
+    isTotpEnabled?: boolean
+    totpSecret?: string | null
+    isDeactivated?: boolean
+    deactivatedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tokens?: TokenCreateNestedManyWithoutUserInput
+    socialLinks?: SocialLinkCreateNestedManyWithoutUserInput
+    stream?: StreamCreateNestedManyWithoutUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    notificationSettings?: NotificationSettingsCreateNestedOneWithoutUserInput
+    followers?: FollowCreateNestedManyWithoutFollowerInput
+    followings?: FollowCreateNestedManyWithoutFollowingInput
+  }
+
+  export type UserUncheckedCreateWithoutChatMessagesInput = {
+    id?: string
+    email: string
+    password: string
+    username: string
+    dispayName: string
+    avatar?: string | null
+    bio?: string | null
+    telegramId?: string | null
+    isVerefied?: boolean
+    isEmailVerefied?: boolean
+    isTotpEnabled?: boolean
+    totpSecret?: string | null
+    isDeactivated?: boolean
+    deactivatedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tokens?: TokenUncheckedCreateNestedManyWithoutUserInput
+    socialLinks?: SocialLinkUncheckedCreateNestedManyWithoutUserInput
+    stream?: StreamUncheckedCreateNestedManyWithoutUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    notificationSettings?: NotificationSettingsUncheckedCreateNestedOneWithoutUserInput
+    followers?: FollowUncheckedCreateNestedManyWithoutFollowerInput
+    followings?: FollowUncheckedCreateNestedManyWithoutFollowingInput
+  }
+
+  export type UserCreateOrConnectWithoutChatMessagesInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutChatMessagesInput, UserUncheckedCreateWithoutChatMessagesInput>
+  }
+
+  export type StreamUpsertWithoutChatMessagesInput = {
+    update: XOR<StreamUpdateWithoutChatMessagesInput, StreamUncheckedUpdateWithoutChatMessagesInput>
+    create: XOR<StreamCreateWithoutChatMessagesInput, StreamUncheckedCreateWithoutChatMessagesInput>
+    where?: StreamWhereInput
+  }
+
+  export type StreamUpdateToOneWithWhereWithoutChatMessagesInput = {
+    where?: StreamWhereInput
+    data: XOR<StreamUpdateWithoutChatMessagesInput, StreamUncheckedUpdateWithoutChatMessagesInput>
+  }
+
+  export type StreamUpdateWithoutChatMessagesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    ingressId?: NullableStringFieldUpdateOperationsInput | string | null
+    serverUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    steamKey?: NullableStringFieldUpdateOperationsInput | string | null
+    isLive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    chatSettings?: ChatSettingsUpdateOneWithoutStreamNestedInput
+    user?: UserUpdateOneWithoutStreamNestedInput
+    category?: CategoryUpdateOneWithoutStreamsNestedInput
+  }
+
+  export type StreamUncheckedUpdateWithoutChatMessagesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    ingressId?: NullableStringFieldUpdateOperationsInput | string | null
+    serverUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    steamKey?: NullableStringFieldUpdateOperationsInput | string | null
+    isLive?: BoolFieldUpdateOperationsInput | boolean
+    userId?: StringFieldUpdateOperationsInput | string
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    chatSettings?: ChatSettingsUncheckedUpdateOneWithoutStreamNestedInput
+  }
+
+  export type UserUpsertWithoutChatMessagesInput = {
+    update: XOR<UserUpdateWithoutChatMessagesInput, UserUncheckedUpdateWithoutChatMessagesInput>
+    create: XOR<UserCreateWithoutChatMessagesInput, UserUncheckedCreateWithoutChatMessagesInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutChatMessagesInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutChatMessagesInput, UserUncheckedUpdateWithoutChatMessagesInput>
+  }
+
+  export type UserUpdateWithoutChatMessagesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    dispayName?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    telegramId?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerefied?: BoolFieldUpdateOperationsInput | boolean
+    isEmailVerefied?: BoolFieldUpdateOperationsInput | boolean
+    isTotpEnabled?: BoolFieldUpdateOperationsInput | boolean
+    totpSecret?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeactivated?: BoolFieldUpdateOperationsInput | boolean
+    deactivatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tokens?: TokenUpdateManyWithoutUserNestedInput
+    socialLinks?: SocialLinkUpdateManyWithoutUserNestedInput
+    stream?: StreamUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    notificationSettings?: NotificationSettingsUpdateOneWithoutUserNestedInput
+    followers?: FollowUpdateManyWithoutFollowerNestedInput
+    followings?: FollowUpdateManyWithoutFollowingNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutChatMessagesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    dispayName?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    telegramId?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerefied?: BoolFieldUpdateOperationsInput | boolean
+    isEmailVerefied?: BoolFieldUpdateOperationsInput | boolean
+    isTotpEnabled?: BoolFieldUpdateOperationsInput | boolean
+    totpSecret?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeactivated?: BoolFieldUpdateOperationsInput | boolean
+    deactivatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tokens?: TokenUncheckedUpdateManyWithoutUserNestedInput
+    socialLinks?: SocialLinkUncheckedUpdateManyWithoutUserNestedInput
+    stream?: StreamUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    notificationSettings?: NotificationSettingsUncheckedUpdateOneWithoutUserNestedInput
+    followers?: FollowUncheckedUpdateManyWithoutFollowerNestedInput
+    followings?: FollowUncheckedUpdateManyWithoutFollowingNestedInput
+  }
+
+  export type StreamCreateWithoutChatSettingsInput = {
+    id?: string
+    title: string
+    thumbnailUrl?: string | null
+    ingressId?: string | null
+    serverUrl?: string | null
+    steamKey?: string | null
+    isLive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    chatMessages?: ChatMessageCreateNestedManyWithoutStreamInput
+    user?: UserCreateNestedOneWithoutStreamInput
+    category?: CategoryCreateNestedOneWithoutStreamsInput
+  }
+
+  export type StreamUncheckedCreateWithoutChatSettingsInput = {
+    id?: string
+    title: string
+    thumbnailUrl?: string | null
+    ingressId?: string | null
+    serverUrl?: string | null
+    steamKey?: string | null
+    isLive?: boolean
+    userId: string
+    categoryId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutStreamInput
+  }
+
+  export type StreamCreateOrConnectWithoutChatSettingsInput = {
+    where: StreamWhereUniqueInput
+    create: XOR<StreamCreateWithoutChatSettingsInput, StreamUncheckedCreateWithoutChatSettingsInput>
+  }
+
+  export type StreamUpsertWithoutChatSettingsInput = {
+    update: XOR<StreamUpdateWithoutChatSettingsInput, StreamUncheckedUpdateWithoutChatSettingsInput>
+    create: XOR<StreamCreateWithoutChatSettingsInput, StreamUncheckedCreateWithoutChatSettingsInput>
+    where?: StreamWhereInput
+  }
+
+  export type StreamUpdateToOneWithWhereWithoutChatSettingsInput = {
+    where?: StreamWhereInput
+    data: XOR<StreamUpdateWithoutChatSettingsInput, StreamUncheckedUpdateWithoutChatSettingsInput>
+  }
+
+  export type StreamUpdateWithoutChatSettingsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    ingressId?: NullableStringFieldUpdateOperationsInput | string | null
+    serverUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    steamKey?: NullableStringFieldUpdateOperationsInput | string | null
+    isLive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    chatMessages?: ChatMessageUpdateManyWithoutStreamNestedInput
+    user?: UserUpdateOneWithoutStreamNestedInput
+    category?: CategoryUpdateOneWithoutStreamsNestedInput
+  }
+
+  export type StreamUncheckedUpdateWithoutChatSettingsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    ingressId?: NullableStringFieldUpdateOperationsInput | string | null
+    serverUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    steamKey?: NullableStringFieldUpdateOperationsInput | string | null
+    isLive?: BoolFieldUpdateOperationsInput | boolean
+    userId?: StringFieldUpdateOperationsInput | string
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    chatMessages?: ChatMessageUncheckedUpdateManyWithoutStreamNestedInput
+  }
+
+  export type StreamCreateWithoutCategoryInput = {
+    id?: string
+    title: string
+    thumbnailUrl?: string | null
+    ingressId?: string | null
+    serverUrl?: string | null
+    steamKey?: string | null
+    isLive?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    chatMessages?: ChatMessageCreateNestedManyWithoutStreamInput
+    chatSettings?: ChatSettingsCreateNestedOneWithoutStreamInput
+    user?: UserCreateNestedOneWithoutStreamInput
+  }
+
+  export type StreamUncheckedCreateWithoutCategoryInput = {
+    id?: string
+    title: string
+    thumbnailUrl?: string | null
+    ingressId?: string | null
+    serverUrl?: string | null
+    steamKey?: string | null
+    isLive?: boolean
+    userId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutStreamInput
+    chatSettings?: ChatSettingsUncheckedCreateNestedOneWithoutStreamInput
+  }
+
+  export type StreamCreateOrConnectWithoutCategoryInput = {
+    where: StreamWhereUniqueInput
+    create: XOR<StreamCreateWithoutCategoryInput, StreamUncheckedCreateWithoutCategoryInput>
+  }
+
+  export type StreamCreateManyCategoryInputEnvelope = {
+    data: StreamCreateManyCategoryInput | StreamCreateManyCategoryInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type StreamUpsertWithWhereUniqueWithoutCategoryInput = {
+    where: StreamWhereUniqueInput
+    update: XOR<StreamUpdateWithoutCategoryInput, StreamUncheckedUpdateWithoutCategoryInput>
+    create: XOR<StreamCreateWithoutCategoryInput, StreamUncheckedCreateWithoutCategoryInput>
+  }
+
+  export type StreamUpdateWithWhereUniqueWithoutCategoryInput = {
+    where: StreamWhereUniqueInput
+    data: XOR<StreamUpdateWithoutCategoryInput, StreamUncheckedUpdateWithoutCategoryInput>
+  }
+
+  export type StreamUpdateManyWithWhereWithoutCategoryInput = {
+    where: StreamScalarWhereInput
+    data: XOR<StreamUpdateManyMutationInput, StreamUncheckedUpdateManyWithoutCategoryInput>
+  }
+
+  export type UserCreateWithoutFollowersInput = {
+    id?: string
+    email: string
+    password: string
+    username: string
+    dispayName: string
+    avatar?: string | null
+    bio?: string | null
+    telegramId?: string | null
+    isVerefied?: boolean
+    isEmailVerefied?: boolean
+    isTotpEnabled?: boolean
+    totpSecret?: string | null
+    isDeactivated?: boolean
+    deactivatedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tokens?: TokenCreateNestedManyWithoutUserInput
+    socialLinks?: SocialLinkCreateNestedManyWithoutUserInput
+    stream?: StreamCreateNestedManyWithoutUserInput
+    chatMessages?: ChatMessageCreateNestedManyWithoutUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    notificationSettings?: NotificationSettingsCreateNestedOneWithoutUserInput
+    followings?: FollowCreateNestedManyWithoutFollowingInput
+  }
+
+  export type UserUncheckedCreateWithoutFollowersInput = {
+    id?: string
+    email: string
+    password: string
+    username: string
+    dispayName: string
+    avatar?: string | null
+    bio?: string | null
+    telegramId?: string | null
+    isVerefied?: boolean
+    isEmailVerefied?: boolean
+    isTotpEnabled?: boolean
+    totpSecret?: string | null
+    isDeactivated?: boolean
+    deactivatedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tokens?: TokenUncheckedCreateNestedManyWithoutUserInput
+    socialLinks?: SocialLinkUncheckedCreateNestedManyWithoutUserInput
+    stream?: StreamUncheckedCreateNestedManyWithoutUserInput
+    chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    notificationSettings?: NotificationSettingsUncheckedCreateNestedOneWithoutUserInput
+    followings?: FollowUncheckedCreateNestedManyWithoutFollowingInput
+  }
+
+  export type UserCreateOrConnectWithoutFollowersInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutFollowersInput, UserUncheckedCreateWithoutFollowersInput>
+  }
+
+  export type UserCreateWithoutFollowingsInput = {
+    id?: string
+    email: string
+    password: string
+    username: string
+    dispayName: string
+    avatar?: string | null
+    bio?: string | null
+    telegramId?: string | null
+    isVerefied?: boolean
+    isEmailVerefied?: boolean
+    isTotpEnabled?: boolean
+    totpSecret?: string | null
+    isDeactivated?: boolean
+    deactivatedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tokens?: TokenCreateNestedManyWithoutUserInput
+    socialLinks?: SocialLinkCreateNestedManyWithoutUserInput
+    stream?: StreamCreateNestedManyWithoutUserInput
+    chatMessages?: ChatMessageCreateNestedManyWithoutUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    notificationSettings?: NotificationSettingsCreateNestedOneWithoutUserInput
+    followers?: FollowCreateNestedManyWithoutFollowerInput
+  }
+
+  export type UserUncheckedCreateWithoutFollowingsInput = {
+    id?: string
+    email: string
+    password: string
+    username: string
+    dispayName: string
+    avatar?: string | null
+    bio?: string | null
+    telegramId?: string | null
+    isVerefied?: boolean
+    isEmailVerefied?: boolean
+    isTotpEnabled?: boolean
+    totpSecret?: string | null
+    isDeactivated?: boolean
+    deactivatedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tokens?: TokenUncheckedCreateNestedManyWithoutUserInput
+    socialLinks?: SocialLinkUncheckedCreateNestedManyWithoutUserInput
+    stream?: StreamUncheckedCreateNestedManyWithoutUserInput
+    chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    notificationSettings?: NotificationSettingsUncheckedCreateNestedOneWithoutUserInput
+    followers?: FollowUncheckedCreateNestedManyWithoutFollowerInput
+  }
+
+  export type UserCreateOrConnectWithoutFollowingsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutFollowingsInput, UserUncheckedCreateWithoutFollowingsInput>
+  }
+
+  export type UserUpsertWithoutFollowersInput = {
+    update: XOR<UserUpdateWithoutFollowersInput, UserUncheckedUpdateWithoutFollowersInput>
+    create: XOR<UserCreateWithoutFollowersInput, UserUncheckedCreateWithoutFollowersInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutFollowersInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutFollowersInput, UserUncheckedUpdateWithoutFollowersInput>
+  }
+
+  export type UserUpdateWithoutFollowersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    dispayName?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    telegramId?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerefied?: BoolFieldUpdateOperationsInput | boolean
+    isEmailVerefied?: BoolFieldUpdateOperationsInput | boolean
+    isTotpEnabled?: BoolFieldUpdateOperationsInput | boolean
+    totpSecret?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeactivated?: BoolFieldUpdateOperationsInput | boolean
+    deactivatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tokens?: TokenUpdateManyWithoutUserNestedInput
+    socialLinks?: SocialLinkUpdateManyWithoutUserNestedInput
+    stream?: StreamUpdateManyWithoutUserNestedInput
+    chatMessages?: ChatMessageUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    notificationSettings?: NotificationSettingsUpdateOneWithoutUserNestedInput
+    followings?: FollowUpdateManyWithoutFollowingNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutFollowersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    dispayName?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    telegramId?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerefied?: BoolFieldUpdateOperationsInput | boolean
+    isEmailVerefied?: BoolFieldUpdateOperationsInput | boolean
+    isTotpEnabled?: BoolFieldUpdateOperationsInput | boolean
+    totpSecret?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeactivated?: BoolFieldUpdateOperationsInput | boolean
+    deactivatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tokens?: TokenUncheckedUpdateManyWithoutUserNestedInput
+    socialLinks?: SocialLinkUncheckedUpdateManyWithoutUserNestedInput
+    stream?: StreamUncheckedUpdateManyWithoutUserNestedInput
+    chatMessages?: ChatMessageUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    notificationSettings?: NotificationSettingsUncheckedUpdateOneWithoutUserNestedInput
+    followings?: FollowUncheckedUpdateManyWithoutFollowingNestedInput
+  }
+
+  export type UserUpsertWithoutFollowingsInput = {
+    update: XOR<UserUpdateWithoutFollowingsInput, UserUncheckedUpdateWithoutFollowingsInput>
+    create: XOR<UserCreateWithoutFollowingsInput, UserUncheckedCreateWithoutFollowingsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutFollowingsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutFollowingsInput, UserUncheckedUpdateWithoutFollowingsInput>
+  }
+
+  export type UserUpdateWithoutFollowingsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    dispayName?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    telegramId?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerefied?: BoolFieldUpdateOperationsInput | boolean
+    isEmailVerefied?: BoolFieldUpdateOperationsInput | boolean
+    isTotpEnabled?: BoolFieldUpdateOperationsInput | boolean
+    totpSecret?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeactivated?: BoolFieldUpdateOperationsInput | boolean
+    deactivatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tokens?: TokenUpdateManyWithoutUserNestedInput
+    socialLinks?: SocialLinkUpdateManyWithoutUserNestedInput
+    stream?: StreamUpdateManyWithoutUserNestedInput
+    chatMessages?: ChatMessageUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    notificationSettings?: NotificationSettingsUpdateOneWithoutUserNestedInput
+    followers?: FollowUpdateManyWithoutFollowerNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutFollowingsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    dispayName?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    telegramId?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerefied?: BoolFieldUpdateOperationsInput | boolean
+    isEmailVerefied?: BoolFieldUpdateOperationsInput | boolean
+    isTotpEnabled?: BoolFieldUpdateOperationsInput | boolean
+    totpSecret?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeactivated?: BoolFieldUpdateOperationsInput | boolean
+    deactivatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tokens?: TokenUncheckedUpdateManyWithoutUserNestedInput
+    socialLinks?: SocialLinkUncheckedUpdateManyWithoutUserNestedInput
+    stream?: StreamUncheckedUpdateManyWithoutUserNestedInput
+    chatMessages?: ChatMessageUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    notificationSettings?: NotificationSettingsUncheckedUpdateOneWithoutUserNestedInput
+    followers?: FollowUncheckedUpdateManyWithoutFollowerNestedInput
+  }
+
+  export type UserCreateWithoutNotificationsInput = {
+    id?: string
+    email: string
+    password: string
+    username: string
+    dispayName: string
+    avatar?: string | null
+    bio?: string | null
+    telegramId?: string | null
+    isVerefied?: boolean
+    isEmailVerefied?: boolean
+    isTotpEnabled?: boolean
+    totpSecret?: string | null
+    isDeactivated?: boolean
+    deactivatedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tokens?: TokenCreateNestedManyWithoutUserInput
+    socialLinks?: SocialLinkCreateNestedManyWithoutUserInput
+    stream?: StreamCreateNestedManyWithoutUserInput
+    chatMessages?: ChatMessageCreateNestedManyWithoutUserInput
+    notificationSettings?: NotificationSettingsCreateNestedOneWithoutUserInput
+    followers?: FollowCreateNestedManyWithoutFollowerInput
+    followings?: FollowCreateNestedManyWithoutFollowingInput
+  }
+
+  export type UserUncheckedCreateWithoutNotificationsInput = {
+    id?: string
+    email: string
+    password: string
+    username: string
+    dispayName: string
+    avatar?: string | null
+    bio?: string | null
+    telegramId?: string | null
+    isVerefied?: boolean
+    isEmailVerefied?: boolean
+    isTotpEnabled?: boolean
+    totpSecret?: string | null
+    isDeactivated?: boolean
+    deactivatedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tokens?: TokenUncheckedCreateNestedManyWithoutUserInput
+    socialLinks?: SocialLinkUncheckedCreateNestedManyWithoutUserInput
+    stream?: StreamUncheckedCreateNestedManyWithoutUserInput
+    chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutUserInput
+    notificationSettings?: NotificationSettingsUncheckedCreateNestedOneWithoutUserInput
+    followers?: FollowUncheckedCreateNestedManyWithoutFollowerInput
+    followings?: FollowUncheckedCreateNestedManyWithoutFollowingInput
+  }
+
+  export type UserCreateOrConnectWithoutNotificationsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutNotificationsInput, UserUncheckedCreateWithoutNotificationsInput>
+  }
+
+  export type UserUpsertWithoutNotificationsInput = {
+    update: XOR<UserUpdateWithoutNotificationsInput, UserUncheckedUpdateWithoutNotificationsInput>
+    create: XOR<UserCreateWithoutNotificationsInput, UserUncheckedCreateWithoutNotificationsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutNotificationsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutNotificationsInput, UserUncheckedUpdateWithoutNotificationsInput>
+  }
+
+  export type UserUpdateWithoutNotificationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    dispayName?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    telegramId?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerefied?: BoolFieldUpdateOperationsInput | boolean
+    isEmailVerefied?: BoolFieldUpdateOperationsInput | boolean
+    isTotpEnabled?: BoolFieldUpdateOperationsInput | boolean
+    totpSecret?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeactivated?: BoolFieldUpdateOperationsInput | boolean
+    deactivatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tokens?: TokenUpdateManyWithoutUserNestedInput
+    socialLinks?: SocialLinkUpdateManyWithoutUserNestedInput
+    stream?: StreamUpdateManyWithoutUserNestedInput
+    chatMessages?: ChatMessageUpdateManyWithoutUserNestedInput
+    notificationSettings?: NotificationSettingsUpdateOneWithoutUserNestedInput
+    followers?: FollowUpdateManyWithoutFollowerNestedInput
+    followings?: FollowUpdateManyWithoutFollowingNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutNotificationsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    dispayName?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    telegramId?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerefied?: BoolFieldUpdateOperationsInput | boolean
+    isEmailVerefied?: BoolFieldUpdateOperationsInput | boolean
+    isTotpEnabled?: BoolFieldUpdateOperationsInput | boolean
+    totpSecret?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeactivated?: BoolFieldUpdateOperationsInput | boolean
+    deactivatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tokens?: TokenUncheckedUpdateManyWithoutUserNestedInput
+    socialLinks?: SocialLinkUncheckedUpdateManyWithoutUserNestedInput
+    stream?: StreamUncheckedUpdateManyWithoutUserNestedInput
+    chatMessages?: ChatMessageUncheckedUpdateManyWithoutUserNestedInput
+    notificationSettings?: NotificationSettingsUncheckedUpdateOneWithoutUserNestedInput
+    followers?: FollowUncheckedUpdateManyWithoutFollowerNestedInput
+    followings?: FollowUncheckedUpdateManyWithoutFollowingNestedInput
+  }
+
+  export type UserCreateWithoutNotificationSettingsInput = {
+    id?: string
+    email: string
+    password: string
+    username: string
+    dispayName: string
+    avatar?: string | null
+    bio?: string | null
+    telegramId?: string | null
+    isVerefied?: boolean
+    isEmailVerefied?: boolean
+    isTotpEnabled?: boolean
+    totpSecret?: string | null
+    isDeactivated?: boolean
+    deactivatedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tokens?: TokenCreateNestedManyWithoutUserInput
+    socialLinks?: SocialLinkCreateNestedManyWithoutUserInput
+    stream?: StreamCreateNestedManyWithoutUserInput
+    chatMessages?: ChatMessageCreateNestedManyWithoutUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    followers?: FollowCreateNestedManyWithoutFollowerInput
+    followings?: FollowCreateNestedManyWithoutFollowingInput
+  }
+
+  export type UserUncheckedCreateWithoutNotificationSettingsInput = {
+    id?: string
+    email: string
+    password: string
+    username: string
+    dispayName: string
+    avatar?: string | null
+    bio?: string | null
+    telegramId?: string | null
+    isVerefied?: boolean
+    isEmailVerefied?: boolean
+    isTotpEnabled?: boolean
+    totpSecret?: string | null
+    isDeactivated?: boolean
+    deactivatedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tokens?: TokenUncheckedCreateNestedManyWithoutUserInput
+    socialLinks?: SocialLinkUncheckedCreateNestedManyWithoutUserInput
+    stream?: StreamUncheckedCreateNestedManyWithoutUserInput
+    chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    followers?: FollowUncheckedCreateNestedManyWithoutFollowerInput
+    followings?: FollowUncheckedCreateNestedManyWithoutFollowingInput
+  }
+
+  export type UserCreateOrConnectWithoutNotificationSettingsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutNotificationSettingsInput, UserUncheckedCreateWithoutNotificationSettingsInput>
+  }
+
+  export type UserUpsertWithoutNotificationSettingsInput = {
+    update: XOR<UserUpdateWithoutNotificationSettingsInput, UserUncheckedUpdateWithoutNotificationSettingsInput>
+    create: XOR<UserCreateWithoutNotificationSettingsInput, UserUncheckedCreateWithoutNotificationSettingsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutNotificationSettingsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutNotificationSettingsInput, UserUncheckedUpdateWithoutNotificationSettingsInput>
+  }
+
+  export type UserUpdateWithoutNotificationSettingsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    dispayName?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    telegramId?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerefied?: BoolFieldUpdateOperationsInput | boolean
+    isEmailVerefied?: BoolFieldUpdateOperationsInput | boolean
+    isTotpEnabled?: BoolFieldUpdateOperationsInput | boolean
+    totpSecret?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeactivated?: BoolFieldUpdateOperationsInput | boolean
+    deactivatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tokens?: TokenUpdateManyWithoutUserNestedInput
+    socialLinks?: SocialLinkUpdateManyWithoutUserNestedInput
+    stream?: StreamUpdateManyWithoutUserNestedInput
+    chatMessages?: ChatMessageUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    followers?: FollowUpdateManyWithoutFollowerNestedInput
+    followings?: FollowUpdateManyWithoutFollowingNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutNotificationSettingsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    dispayName?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    telegramId?: NullableStringFieldUpdateOperationsInput | string | null
+    isVerefied?: BoolFieldUpdateOperationsInput | boolean
+    isEmailVerefied?: BoolFieldUpdateOperationsInput | boolean
+    isTotpEnabled?: BoolFieldUpdateOperationsInput | boolean
+    totpSecret?: NullableStringFieldUpdateOperationsInput | string | null
+    isDeactivated?: BoolFieldUpdateOperationsInput | boolean
+    deactivatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tokens?: TokenUncheckedUpdateManyWithoutUserNestedInput
+    socialLinks?: SocialLinkUncheckedUpdateManyWithoutUserNestedInput
+    stream?: StreamUncheckedUpdateManyWithoutUserNestedInput
+    chatMessages?: ChatMessageUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    followers?: FollowUncheckedUpdateManyWithoutFollowerNestedInput
+    followings?: FollowUncheckedUpdateManyWithoutFollowingNestedInput
+  }
+
+  export type UserCreateWithoutTokensInput = {
+    id?: string
+    email: string
+    password: string
+    username: string
+    dispayName: string
+    avatar?: string | null
+    bio?: string | null
+    telegramId?: string | null
+    isVerefied?: boolean
+    isEmailVerefied?: boolean
+    isTotpEnabled?: boolean
+    totpSecret?: string | null
+    isDeactivated?: boolean
+    deactivatedAt?: Date | string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    socialLinks?: SocialLinkCreateNestedManyWithoutUserInput
+    stream?: StreamCreateNestedManyWithoutUserInput
+    chatMessages?: ChatMessageCreateNestedManyWithoutUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    notificationSettings?: NotificationSettingsCreateNestedOneWithoutUserInput
+    followers?: FollowCreateNestedManyWithoutFollowerInput
+    followings?: FollowCreateNestedManyWithoutFollowingInput
   }
 
   export type UserUncheckedCreateWithoutTokensInput = {
@@ -4375,6 +18032,7 @@ export namespace Prisma {
     dispayName: string
     avatar?: string | null
     bio?: string | null
+    telegramId?: string | null
     isVerefied?: boolean
     isEmailVerefied?: boolean
     isTotpEnabled?: boolean
@@ -4383,6 +18041,13 @@ export namespace Prisma {
     deactivatedAt?: Date | string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    socialLinks?: SocialLinkUncheckedCreateNestedManyWithoutUserInput
+    stream?: StreamUncheckedCreateNestedManyWithoutUserInput
+    chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    notificationSettings?: NotificationSettingsUncheckedCreateNestedOneWithoutUserInput
+    followers?: FollowUncheckedCreateNestedManyWithoutFollowerInput
+    followings?: FollowUncheckedCreateNestedManyWithoutFollowingInput
   }
 
   export type UserCreateOrConnectWithoutTokensInput = {
@@ -4409,6 +18074,7 @@ export namespace Prisma {
     dispayName?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
+    telegramId?: NullableStringFieldUpdateOperationsInput | string | null
     isVerefied?: BoolFieldUpdateOperationsInput | boolean
     isEmailVerefied?: BoolFieldUpdateOperationsInput | boolean
     isTotpEnabled?: BoolFieldUpdateOperationsInput | boolean
@@ -4417,6 +18083,13 @@ export namespace Prisma {
     deactivatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    socialLinks?: SocialLinkUpdateManyWithoutUserNestedInput
+    stream?: StreamUpdateManyWithoutUserNestedInput
+    chatMessages?: ChatMessageUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    notificationSettings?: NotificationSettingsUpdateOneWithoutUserNestedInput
+    followers?: FollowUpdateManyWithoutFollowerNestedInput
+    followings?: FollowUpdateManyWithoutFollowingNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTokensInput = {
@@ -4427,6 +18100,7 @@ export namespace Prisma {
     dispayName?: StringFieldUpdateOperationsInput | string
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
+    telegramId?: NullableStringFieldUpdateOperationsInput | string | null
     isVerefied?: BoolFieldUpdateOperationsInput | boolean
     isEmailVerefied?: BoolFieldUpdateOperationsInput | boolean
     isTotpEnabled?: BoolFieldUpdateOperationsInput | boolean
@@ -4435,6 +18109,13 @@ export namespace Prisma {
     deactivatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    socialLinks?: SocialLinkUncheckedUpdateManyWithoutUserNestedInput
+    stream?: StreamUncheckedUpdateManyWithoutUserNestedInput
+    chatMessages?: ChatMessageUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    notificationSettings?: NotificationSettingsUncheckedUpdateOneWithoutUserNestedInput
+    followers?: FollowUncheckedUpdateManyWithoutFollowerNestedInput
+    followings?: FollowUncheckedUpdateManyWithoutFollowingNestedInput
   }
 
   export type TokenCreateManyUserInput = {
@@ -4442,6 +18123,59 @@ export namespace Prisma {
     token: string
     type: $Enums.TokenType
     expiresIn: Date | string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SocialLinkCreateManyUserInput = {
+    id?: string
+    title: string
+    url: string
+    position: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type StreamCreateManyUserInput = {
+    id?: string
+    title: string
+    thumbnailUrl?: string | null
+    ingressId?: string | null
+    serverUrl?: string | null
+    steamKey?: string | null
+    isLive?: boolean
+    categoryId?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ChatMessageCreateManyUserInput = {
+    id?: string
+    text?: string | null
+    streamid: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type NotificationCreateManyUserInput = {
+    id?: string
+    message: string
+    type: $Enums.NotificationType
+    isRead?: boolean
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FollowCreateManyFollowerInput = {
+    id?: string
+    followingId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type FollowCreateManyFollowingInput = {
+    id?: string
+    followerId: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -4469,6 +18203,257 @@ export namespace Prisma {
     token?: StringFieldUpdateOperationsInput | string
     type?: EnumTokenTypeFieldUpdateOperationsInput | $Enums.TokenType
     expiresIn?: DateTimeFieldUpdateOperationsInput | Date | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SocialLinkUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    position?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SocialLinkUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    position?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SocialLinkUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    url?: StringFieldUpdateOperationsInput | string
+    position?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StreamUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    ingressId?: NullableStringFieldUpdateOperationsInput | string | null
+    serverUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    steamKey?: NullableStringFieldUpdateOperationsInput | string | null
+    isLive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    chatMessages?: ChatMessageUpdateManyWithoutStreamNestedInput
+    chatSettings?: ChatSettingsUpdateOneWithoutStreamNestedInput
+    category?: CategoryUpdateOneWithoutStreamsNestedInput
+  }
+
+  export type StreamUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    ingressId?: NullableStringFieldUpdateOperationsInput | string | null
+    serverUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    steamKey?: NullableStringFieldUpdateOperationsInput | string | null
+    isLive?: BoolFieldUpdateOperationsInput | boolean
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    chatMessages?: ChatMessageUncheckedUpdateManyWithoutStreamNestedInput
+    chatSettings?: ChatSettingsUncheckedUpdateOneWithoutStreamNestedInput
+  }
+
+  export type StreamUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    ingressId?: NullableStringFieldUpdateOperationsInput | string | null
+    serverUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    steamKey?: NullableStringFieldUpdateOperationsInput | string | null
+    isLive?: BoolFieldUpdateOperationsInput | boolean
+    categoryId?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ChatMessageUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    stream?: StreamUpdateOneRequiredWithoutChatMessagesNestedInput
+  }
+
+  export type ChatMessageUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
+    streamid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ChatMessageUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
+    streamid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    type?: EnumNotificationTypeFieldUpdateOperationsInput | $Enums.NotificationType
+    isRead?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    type?: EnumNotificationTypeFieldUpdateOperationsInput | $Enums.NotificationType
+    isRead?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    message?: StringFieldUpdateOperationsInput | string
+    type?: EnumNotificationTypeFieldUpdateOperationsInput | $Enums.NotificationType
+    isRead?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FollowUpdateWithoutFollowerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    following?: UserUpdateOneRequiredWithoutFollowingsNestedInput
+  }
+
+  export type FollowUncheckedUpdateWithoutFollowerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    followingId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FollowUncheckedUpdateManyWithoutFollowerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    followingId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FollowUpdateWithoutFollowingInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    follower?: UserUpdateOneRequiredWithoutFollowersNestedInput
+  }
+
+  export type FollowUncheckedUpdateWithoutFollowingInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    followerId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type FollowUncheckedUpdateManyWithoutFollowingInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    followerId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ChatMessageCreateManyStreamInput = {
+    id?: string
+    text?: string | null
+    userid: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ChatMessageUpdateWithoutStreamInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutChatMessagesNestedInput
+  }
+
+  export type ChatMessageUncheckedUpdateWithoutStreamInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
+    userid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ChatMessageUncheckedUpdateManyWithoutStreamInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    text?: NullableStringFieldUpdateOperationsInput | string | null
+    userid?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type StreamCreateManyCategoryInput = {
+    id?: string
+    title: string
+    thumbnailUrl?: string | null
+    ingressId?: string | null
+    serverUrl?: string | null
+    steamKey?: string | null
+    isLive?: boolean
+    userId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type StreamUpdateWithoutCategoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    ingressId?: NullableStringFieldUpdateOperationsInput | string | null
+    serverUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    steamKey?: NullableStringFieldUpdateOperationsInput | string | null
+    isLive?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    chatMessages?: ChatMessageUpdateManyWithoutStreamNestedInput
+    chatSettings?: ChatSettingsUpdateOneWithoutStreamNestedInput
+    user?: UserUpdateOneWithoutStreamNestedInput
+  }
+
+  export type StreamUncheckedUpdateWithoutCategoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    ingressId?: NullableStringFieldUpdateOperationsInput | string | null
+    serverUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    steamKey?: NullableStringFieldUpdateOperationsInput | string | null
+    isLive?: BoolFieldUpdateOperationsInput | boolean
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    chatMessages?: ChatMessageUncheckedUpdateManyWithoutStreamNestedInput
+    chatSettings?: ChatSettingsUncheckedUpdateOneWithoutStreamNestedInput
+  }
+
+  export type StreamUncheckedUpdateManyWithoutCategoryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    ingressId?: NullableStringFieldUpdateOperationsInput | string | null
+    serverUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    steamKey?: NullableStringFieldUpdateOperationsInput | string | null
+    isLive?: BoolFieldUpdateOperationsInput | boolean
+    userId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
